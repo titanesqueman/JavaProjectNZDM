@@ -16,7 +16,7 @@ public class Project {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        double b = 158185.4;
+        double c= 41.1;
     }
     
 }
