@@ -15,6 +15,7 @@ public class JavaApplication14 {
      * @param args the command line arguments
      */
     //SUPER TEST DE LA MORT QUI TUE
+    //test 2
     public static void main(String[] args) {
         // TODO code application logic here
     }
