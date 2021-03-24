@@ -14,8 +14,6 @@ public class Project {
     /**
      * @param args the command line arguments
      */
-    //salu c moa nikola
-    //plop
     public static void main(String[] args) {
         // TODO code application logic here
         // test de drazic
