@@ -4,7 +4,9 @@
  * and open the template in the editor.
  */
 package project;
-
+import javax.swing.*;
+import java.awt.*;
+        
 /**
  *
  * @author Drazic
@@ -17,8 +19,8 @@ public class Project {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        double c= 41.1;
-        //salut
+        Menu men = new Menu();
+        
     }
     
 }
