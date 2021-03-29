@@ -13,10 +13,13 @@ import java.awt.event.*;
  */
 public class Menu extends JFrame {
     final int WINDOW_WIDTH = 350;
-    final int WINDOW_HEIGHT = 250;
+    final int WINDOW_HEIGHT = 150;
+    private JPanel panel;
     private JLabel message ;
     private JTextField nameField;
     private JButton okButton;
+    private JRadioButton newcus;
+    private JRadioButton returcus;
     //private JPanel panel;
     //constructor
 
@@ -25,52 +28,61 @@ public class Menu extends JFrame {
         setTitle("Essai");
         message = new JLabel("what's your name ?");
         nameField = new JTextField(10);
-        okButton = new JButton("ok");
+        okButton = new JButton("Ok");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
-        JPanel panel = buildPanel();
+        buildPanel();
+        
         add(panel);
         panel.setBackground(Color.lightGray);
         setVisible(true);
     }
 
-private JPanel buildPanel(){
-      // Create a label to display instructions.
-      message = new JLabel("Enter a name " +
-                                "in letters");
+    private void buildPanel(){
+       // Create a JPanel object and let the panel
+      // field reference it.
+      
+      // Create the label, text field, and radio buttons.
+      message = new JLabel("Enter a name " + "in letters");
 
       // Create a text field 10 characters wide.
       nameField = new JTextField(10);
 
-      // Create a button with the caption "ok".
-      okButton = new JButton("okkay");;
+      // Create a button with the caption "sign in".
+      okButton = new JButton("sign In");
 
       // Add an action listener to the button.
       okButton.addActionListener(new OkButtonListener());
 
-      // Create a JPanel object and let the panel
-      // field reference it.
-      JPanel panel = new JPanel();
-
+      
       // Add the label, text field, and button
       // components to the panel.
-      panel.add(message);
-      panel.add(nameField);
-      panel.add(okButton);
+      
+      
+      
       okButton.setBackground(Color.red);
       okButton.setForeground(Color.yellow);
       
       
+      newcus = new JRadioButton("New Customer");
+      returcus = new JRadioButton("Returning Customer",true);
+      
+       // Group the radio buttons.
       ButtonGroup group = new ButtonGroup();
-      JRadioButton radio1 = new JRadioButton("New Customer",true);
-      JRadioButton radio2 = new JRadioButton("Returning Customer");
-      group.add(radio1);
-      group.add(radio2);
+      group.add(newcus);
+      group.add(returcus);
+      // Add action listeners to the radio buttons.
+      newcus.addActionListener(new RadioButtonListener());
+      returcus.addActionListener(new RadioButtonListener());
       
-      panel.add(radio1);
-      panel.add(radio2);
+      panel = new JPanel();
+      panel.add(message);
+      panel.add(nameField);
+      panel.add(okButton);
       
-      return panel;
+      panel.add(newcus);
+      panel.add(returcus);
+      
    }
 
 private class OkButtonListener implements ActionListener
@@ -88,10 +100,36 @@ private class OkButtonListener implements ActionListener
          String input;  // To hold the user's input
          
          input = nameField.getText();
-
+         
          // Display the result.
          JOptionPane.showMessageDialog(null, "your name is"
                   +input);
+      }
+   }
+
+
+private class RadioButtonListener implements ActionListener
+   {
+      @Override
+      public void actionPerformed(ActionEvent e)
+      {
+                  
+         // Determine which radio button was clicked.
+         if (e.getSource() == newcus)
+         {
+            okButton.setText("Sign Up");
+            okButton.setEnabled(true);
+            
+         }
+         else if (e.getSource() == returcus)
+         {
+            // Convert to feet.
+             
+            okButton.setText("Sign In");
+         }
+
+         // Display the conversion.
+         
       }
    }
 }
