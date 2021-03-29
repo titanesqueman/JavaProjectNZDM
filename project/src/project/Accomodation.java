@@ -8,6 +8,7 @@ package project;
 /**
  *
  * @author nicol
+ * @author drazic
  */
 public class Accomodation {
     protected String address;

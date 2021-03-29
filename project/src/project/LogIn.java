@@ -12,6 +12,7 @@ import java.awt.event.*;
  * @author nicol
  */
 public class LogIn extends JFrame {
+    JFrame frame;
     final int WINDOW_WIDTH = 350;
     final int WINDOW_HEIGHT = 150;
     private JPanel panel;
@@ -24,18 +25,19 @@ public class LogIn extends JFrame {
     //constructor
 
     public LogIn() {
-        setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
-        setTitle("Essai");
-        message = new JLabel("what's your name ?");
+        frame = new JFrame();
+        frame.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+        setTitle("Log In");
+        message = new JLabel();
         nameField = new JTextField(10);
-        okButton = new JButton("Ok");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        okButton = new JButton();
+        frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
         
         buildPanel();
         
-        add(panel);
+        frame.add(panel);
         panel.setBackground(Color.lightGray);
-        setVisible(true);
+        frame.setVisible(true);
     }
 
     private void buildPanel(){
@@ -97,8 +99,12 @@ private class OkButtonListener implements ActionListener
          String input;  // To hold the user's input
          input = nameField.getText();
          
-         // Display the result.
-         JOptionPane.showMessageDialog(null, "your name is"+input);
+         // closes the login menu
+         frame.dispose();
+         frame.setVisible(false);
+         
+         // Display the main menu
+         Menu men = new Menu();
       }
    }
 
