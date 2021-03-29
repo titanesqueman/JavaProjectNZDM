@@ -43,7 +43,7 @@ public class Menu extends JFrame {
       // field reference it.
       
       // Create the label, text field, and radio buttons.
-      message = new JLabel("Enter a name " + "in letters");
+      message = new JLabel("Enter your mail " +"");
 
       // Create a text field 10 characters wide.
       nameField = new JTextField(10);
