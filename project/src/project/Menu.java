@@ -102,8 +102,7 @@ private class OkButtonListener implements ActionListener
          input = nameField.getText();
          
          // Display the result.
-         JOptionPane.showMessageDialog(null, "your name is"
-                  +input);
+         JOptionPane.showMessageDialog(null, "your name is"+input);
       }
    }
 
