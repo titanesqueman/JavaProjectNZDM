@@ -19,7 +19,7 @@ public class Project {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Menu men = new Menu();
+        LogIn log = new LogIn();
         
     }
     
