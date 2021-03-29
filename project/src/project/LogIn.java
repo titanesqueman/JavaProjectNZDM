@@ -51,7 +51,7 @@ public class LogIn extends JFrame {
       nameField = new JTextField(10);
 
       // Create a button with the caption "sign in".
-      okButton = new JButton("sign In");
+      okButton = new JButton("Sign In");
 
       // Add an action listener to the button.
       okButton.addActionListener(new OkButtonListener());
@@ -104,7 +104,12 @@ private class OkButtonListener implements ActionListener
          frame.setVisible(false);
          
          // Display the main menu
-         Menu men = new Menu();
+         if (okButton.getText() == "Sign In"){
+            Menu men = new Menu();
+         }
+         else if (okButton.getText() == "Sign Up"){
+             SignUp register = new SignUp();
+         }
       }
    }
 
