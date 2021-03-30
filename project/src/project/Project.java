@@ -4,8 +4,6 @@
  * and open the template in the editor.
  */
 package project;
-import javax.swing.*;
-import java.awt.*;
         
 /**
  *
@@ -20,10 +18,12 @@ public class Project {
      */
     public static void main(String[] args) {
         //LogIn log = new LogIn();
+        User user = BDD.login("drazic9@live.fr","dm");
+        System.out.println(user.lastname);
         
-        LogIn2.main(args);
+        BDD.exempleAddUser();
+        //LogIn2.main(args);
         //
-        
     }
     
 }

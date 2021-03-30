@@ -62,6 +62,17 @@ public class BDD {
         }
     }
     
+    public static void exempleAddUser(){
+        String firstname = "DRAZIC";
+        String lastname = "MARTIN";
+        String phonenumber = "0781044869";
+        String email = "drazic@md2.fr";
+        String password = "dm";
+        String tokenId = "BUYER";
+        int gender = 1;
+        System.out.println(register(firstname, lastname, phonenumber, email, password, tokenId, gender));
+    }
+    
     // try to connect user 
     // return a user
     // return null if the user is not found in the table
@@ -115,4 +126,56 @@ public class BDD {
         return null;
     }
     
+    public static String register(String firstname, String lastname, String phonenumber, String email, String password, String tokenId, int gender){
+        
+        try {
+            PreparedStatement st;
+            ResultSet rs;
+            
+            if (isEmailAlreadyUse(email)) return"email already used";
+            
+            String query = "INSERT INTO users(firstname,lastname,phonenumber,email,password,token,gender)"
+                    + "     VALUES (?,?,?,?,?,?,?)";
+            
+            st = BDD.getConnection().prepareStatement(query);
+            
+            st.setString(1, firstname);
+            st.setString(2, lastname);
+            st.setString(3, phonenumber);
+            st.setString(4, email);
+            st.setString(5, password);
+            st.setString(6, tokenId);
+            st.setInt(7, gender);
+            
+            st.executeUpdate();
+            
+            return "Success";
+        } catch (SQLException ex) {
+            Logger.getLogger(BDD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return "Error";
+    }
+
+    private static boolean isEmailAlreadyUse(String email) {
+        try {
+            PreparedStatement st;
+            ResultSet rs;
+            
+            String query = "SELECT email "
+                    + "     FROM users "
+                    + "     WHERE email = ?";
+            
+            st = BDD.getConnection().prepareStatement(query);
+            
+            st.setString(1,email);
+            
+            rs = st.executeQuery();
+            
+            return rs.next();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(BDD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
 }
