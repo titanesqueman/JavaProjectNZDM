@@ -18,7 +18,7 @@ public class Project {
      */
     public static void main(String[] args) {
         //LogIn log = new LogIn();
-        User user = BDD.login("drazic9@live.fr","dm");
+        User2 user = BDD.login("drazic9@live.fr","dm");
         System.out.println(user.lastname);
         
         BDD.exempleAddUser();
