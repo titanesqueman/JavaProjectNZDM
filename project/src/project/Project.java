@@ -19,7 +19,7 @@ public class Project {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        LogIn log = new LogIn();
+        //LogIn log = new LogIn();
         
         LogIn2.main(args);
         //
