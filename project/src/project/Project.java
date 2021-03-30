@@ -18,11 +18,8 @@ public class Project {
      */
     public static void main(String[] args) {
         //LogIn log = new LogIn();
-        User2 user = BDD.login("drazic9@live.fr","dm");
-        System.out.println(user.lastname);
-        
-        BDD.exempleAddUser();
-        //LogIn2.main(args);
+        BDD.exempleGetInfo();
+        LogIn2.main(args);
         //
     }
     
