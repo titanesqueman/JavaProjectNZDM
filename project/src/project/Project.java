@@ -21,6 +21,9 @@ public class Project {
     public static void main(String[] args) {
         LogIn log = new LogIn();
         
+        LogIn2.main(args);
+        //
+        
     }
     
 }
