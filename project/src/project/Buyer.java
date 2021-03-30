@@ -5,17 +5,15 @@
  */
 package project;
 
+import project.Tokenizer.Token;
+
 /**
  *
  * @author nicol
  * @author drazic
  */
-public class Buyers extends user{
-    protected int buyerID;
-
-    public Buyers(int buyerID, String name, String emailAddress, String password) {
-        super(name, emailAddress, password, "buyer");
-        this.buyerID = buyerID;
+public class Buyer extends User{
+    public Buyer(int DBID, String firstname, String lastname, String emailAddress, String phonenumber) {
+        super(DBID, firstname, lastname, emailAddress, phonenumber, Token.BUYER);
     }
-    
 }

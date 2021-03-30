@@ -12,9 +12,10 @@ import project.Tokenizer.Token;
  * @author nicol
  * @author drazic
  */
-public class Seller extends User {
-    public Seller(int DBID, String firstname, String lastname, String phonenumber, String email, Token token) {
-        super(DBID, firstname, lastname, email, phonenumber, token);
+public class Employee extends Seller {
+    public Employee(int DBID, String firstname, String lastname, String email, String phonenumber) {
+        super(DBID, firstname, lastname, email, phonenumber, Token.EMPLOYEE);
     }
+    
     
 }
