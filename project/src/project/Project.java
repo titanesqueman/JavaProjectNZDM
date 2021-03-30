@@ -18,7 +18,6 @@ public class Project {
      */
     public static void main(String[] args) {
         //LogIn log = new LogIn();
-        BDD.exempleGetInfo();
         LogIn2.main(args);
         //
     }
