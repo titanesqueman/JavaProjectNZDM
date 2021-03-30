@@ -38,7 +38,7 @@ public class BDD {
         
         return cnx;
     }
-    
+     
     public static void exempleGetInfo(){
         try {
             PreparedStatement st;
