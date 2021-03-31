@@ -66,11 +66,11 @@ public class BDD {
         String firstname = "DRAZIC";
         String lastname = "MARTIN";
         String phonenumber = "0781044869";
-        String email = "drazic@md2.fr";
-        String password = "dm";
+        String email = "b";
+        String password = "b";
         String tokenId = "BUYER";
         int gender = 1;
-        System.out.println(register(firstname, lastname, phonenumber, email, password, tokenId, gender));
+        System.out.println(register(tokenId, firstname, lastname, phonenumber, email, password, gender));
     }
     
     // try to connect user 

@@ -124,7 +124,7 @@ public class LogIn2 extends javax.swing.JFrame {
         }else{
             // connexion success
             dispose();
-            Menu.main(user);
+            Menu2.main(user);
         }
     }//GEN-LAST:event_loginButtonActionPerformed
 
