@@ -19,7 +19,8 @@ import javax.swing.event.DocumentListener;
  */
 
 public class Register extends javax.swing.JFrame {
-
+    protected static String username = "";
+    protected static String pswrd = "";
     /**
      * Creates new form LogIn2
      */
@@ -27,6 +28,12 @@ public class Register extends javax.swing.JFrame {
         initComponents();
         setGhostTexts();
         //confirmButtonEnabled();
+        if (!username.equals("")){
+            mailTextField.setText(username);
+            PwrdText.setText(pswrd);
+            mailTextField.setForeground(Color.black);
+            PwrdText.setForeground(Color.black);
+        }
         
     }
     /*private void confirmButtonEnabled(){
@@ -42,7 +49,7 @@ public class Register extends javax.swing.JFrame {
         new GhostText(mailTextField, "example@mail.com");
         new GhostText(PwrdText, "password123");
         new GhostText(confirmPwrdText, "password123");
-        new GhostText(phoneText, "07911 123456");
+        new GhostText(phoneText, "07 81 04 48 69");
         new GhostText(firstNameText, "James");
         new GhostText(lastNameText, "Smith");
     }
@@ -289,7 +296,14 @@ public class Register extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Register().setVisible(true);
+                if (args == null){
+                    new Register().setVisible(true);
+                }
+                else{
+                    pswrd = args[0];
+                    username = args[1];
+                    new Register().setVisible(true);
+                }
                 
             }
         });

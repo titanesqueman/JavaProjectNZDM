@@ -129,6 +129,17 @@ public class LogIn2 extends javax.swing.JFrame {
 
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
         // TODO add your handling code here:
+        dispose();
+        setVisible(false);
+        String pass = new String (passwordTextField.getPassword());
+        String email = emailTextField.getText();
+        if ( pass.equals("password123")) {
+            Register.main(null);
+        }
+        else{
+            String[] infos = {pass, email};
+            Register.main(infos);
+        }
     }//GEN-LAST:event_registerButtonActionPerformed
 
     /**
