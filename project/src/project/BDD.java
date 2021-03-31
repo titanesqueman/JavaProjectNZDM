@@ -126,25 +126,25 @@ public class BDD {
         return null;
     }
     
-    public static String register(String firstname, String lastname, String phonenumber, String email, String password, String tokenId, int gender){
+    public static String register(String tokenId, String firstname, String lastname, String phonenumber, String email, String password, int gender){
         
         try {
             PreparedStatement st;
             ResultSet rs;
             
-            if (isEmailAlreadyUse(email)) return"email already used";
+            if (isEmailAlreadyUse(email)) return"email already use";
             
-            String query = "INSERT INTO users(firstname,lastname,phonenumber,email,password,token,gender)"
+            String query = "INSERT INTO users(token,firstname,lastname,phonenumber,email,password,gender)"
                     + "     VALUES (?,?,?,?,?,?,?)";
             
             st = BDD.getConnection().prepareStatement(query);
             
-            st.setString(1, firstname);
-            st.setString(2, lastname);
-            st.setString(3, phonenumber);
-            st.setString(4, email);
-            st.setString(5, password);
-            st.setString(6, tokenId);
+            st.setString(1, tokenId);
+            st.setString(2, firstname);
+            st.setString(3, lastname);
+            st.setString(4, phonenumber);
+            st.setString(5, email);
+            st.setString(6, password);
             st.setInt(7, gender);
             
             st.executeUpdate();
