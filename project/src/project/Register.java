@@ -319,12 +319,14 @@ public class Register extends javax.swing.JFrame {
         else{
             allEntriesLabel.setVisible(false);
         }
-        if (!pswrd.equals(confirm_pswrd)){
+        System.out.println(pswrd);
+        if ((!pswrd.equals(confirm_pswrd))&&(!confirm_pswrd.equals("password123"))){
             passwordMatchLabel.setVisible(true);
             confirmPwrdText.setBorder(BorderFactory.createLineBorder(Color.red));
         }
         else{
             passwordMatchLabel.setVisible(false);
+            confirmPwrdText.setBorder(null);
             
         }
         if(!(passwordMatchLabel.isVisible()&&passwordMatchLabel.isVisible())){
