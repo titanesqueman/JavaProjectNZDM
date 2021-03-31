@@ -44,7 +44,7 @@
                               <Component id="mailLabel" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <Component id="genderLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="fonctionLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="functionLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="phoneLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="passwordMatchLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -74,7 +74,7 @@
                               <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
-                              <Component id="fonctionComboBox" min="-2" pref="132" max="-2" attributes="0"/>
+                              <Component id="functionComboBox" min="-2" pref="132" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
@@ -125,8 +125,8 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="fonctionLabel" min="-2" max="-2" attributes="0"/>
-                  <Component id="fonctionComboBox" min="-2" max="-2" attributes="0"/>
+                  <Component id="functionLabel" min="-2" max="-2" attributes="0"/>
+                  <Component id="functionComboBox" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="allEntriesLabel" min="-2" max="-2" attributes="0"/>
@@ -244,23 +244,23 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="confirmButtonActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="fonctionLabel">
+    <Component class="javax.swing.JLabel" name="functionLabel">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Fonction:"/>
+        <Property name="text" type="java.lang.String" value="Function:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="fonctionComboBox">
+    <Component class="javax.swing.JComboBox" name="functionComboBox">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="3">
-            <StringItem index="0" value="Select your fonction..."/>
+            <StringItem index="0" value="Select your function..."/>
             <StringItem index="1" value="BUYER"/>
             <StringItem index="2" value="SELLER"/>
           </StringArray>
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="fonctionComboBoxActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="functionComboBoxActionPerformed"/>
       </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>

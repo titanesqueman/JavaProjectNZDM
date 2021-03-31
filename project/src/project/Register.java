@@ -86,8 +86,8 @@ public class Register extends javax.swing.JFrame {
         radioFemale = new javax.swing.JRadioButton();
         radioOther = new javax.swing.JRadioButton();
         confirmButton = new javax.swing.JButton();
-        fonctionLabel = new javax.swing.JLabel();
-        fonctionComboBox = new javax.swing.JComboBox<>();
+        functionLabel = new javax.swing.JLabel();
+        functionComboBox = new javax.swing.JComboBox<>();
         allEntriesLabel = new javax.swing.JLabel();
         passwordMatchLabel = new javax.swing.JLabel();
 
@@ -164,12 +164,12 @@ public class Register extends javax.swing.JFrame {
             }
         });
 
-        fonctionLabel.setText("Fonction:");
+        functionLabel.setText("Function:");
 
-        fonctionComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select your fonction...", "BUYER", "SELLER" }));
-        fonctionComboBox.addActionListener(new java.awt.event.ActionListener() {
+        functionComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select your function...", "BUYER", "SELLER" }));
+        functionComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fonctionComboBoxActionPerformed(evt);
+                functionComboBoxActionPerformed(evt);
             }
         });
 
@@ -198,7 +198,7 @@ public class Register extends javax.swing.JFrame {
                                 .addComponent(passwordLabel)
                                 .addComponent(mailLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addComponent(genderLabel)
-                            .addComponent(fonctionLabel)
+                            .addComponent(functionLabel)
                             .addComponent(phoneLabel)
                             .addComponent(passwordMatchLabel))
                         .addGap(60, 60, 60)
@@ -223,7 +223,7 @@ public class Register extends javax.swing.JFrame {
                                         .addGap(0, 0, Short.MAX_VALUE)))
                                 .addGap(39, 39, 39))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(fonctionComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(functionComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
         );
         layout.setVerticalGroup(
@@ -261,8 +261,8 @@ public class Register extends javax.swing.JFrame {
                     .addComponent(radioOther))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(fonctionLabel)
-                    .addComponent(fonctionComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(functionLabel)
+                    .addComponent(functionComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(allEntriesLabel)
                 .addGap(3, 3, 3)
@@ -309,7 +309,7 @@ public class Register extends javax.swing.JFrame {
         username = mailTextField.getText();
         phonenumber=phoneText.getText();
         pswrd = new String(PwrdText.getPassword());
-        tokenId = (String)fonctionComboBox.getSelectedItem();
+        tokenId = (String)functionComboBox.getSelectedItem();
         String confirm_pswrd = new String(confirmPwrdText.getPassword());
         if (firstname.equals("James  ")||lastname.equals("Smith  ")||phonenumber.equals("07 81 04 48 69  ")
                 ||pswrd.equals("password123 ")||username.equals("example@mail.com")||gender==0 ||tokenId.equals("Select your fonction...")){
@@ -319,14 +319,13 @@ public class Register extends javax.swing.JFrame {
         else{
             allEntriesLabel.setVisible(false);
         }
-        System.out.println(pswrd);
         if ((!pswrd.equals(confirm_pswrd))&&(!confirm_pswrd.equals("password123"))){
             passwordMatchLabel.setVisible(true);
             confirmPwrdText.setBorder(BorderFactory.createLineBorder(Color.red));
         }
         else{
             passwordMatchLabel.setVisible(false);
-            confirmPwrdText.setBorder(null);
+            confirmPwrdText.setBorder(javax.swing.BorderFactory.createEmptyBorder());
             
         }
         if(!(passwordMatchLabel.isVisible()&&passwordMatchLabel.isVisible())){
@@ -335,11 +334,11 @@ public class Register extends javax.swing.JFrame {
         
     }//GEN-LAST:event_confirmButtonActionPerformed
 
-    private void fonctionComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fonctionComboBoxActionPerformed
-        if (fonctionComboBox.getSelectedIndex()!=0){
-            tokenId = (String)fonctionComboBox.getSelectedItem();
+    private void functionComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_functionComboBoxActionPerformed
+        if (functionComboBox.getSelectedIndex()!=0){
+            tokenId = (String)functionComboBox.getSelectedItem();
         }
-    }//GEN-LAST:event_fonctionComboBoxActionPerformed
+    }//GEN-LAST:event_functionComboBoxActionPerformed
 
     /**
      * @param args the command line arguments
@@ -404,8 +403,8 @@ public class Register extends javax.swing.JFrame {
     private javax.swing.JPasswordField confirmPwrdText;
     private javax.swing.JLabel firstNameLabel;
     private javax.swing.JTextField firstNameText;
-    private javax.swing.JComboBox<String> fonctionComboBox;
-    private javax.swing.JLabel fonctionLabel;
+    private javax.swing.JComboBox<String> functionComboBox;
+    private javax.swing.JLabel functionLabel;
     private javax.swing.ButtonGroup genderGroup;
     private javax.swing.JLabel genderLabel;
     private javax.swing.JLabel lastNameLabel;
