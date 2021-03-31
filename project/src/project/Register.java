@@ -19,7 +19,7 @@ import javax.swing.event.DocumentListener;
  */
 
 public class Register extends javax.swing.JFrame {
-    protected static String username = "";
+    protected static String email = "";
     protected static String pswrd = "";
     private String firstname;
     private String lastname;
@@ -33,8 +33,8 @@ public class Register extends javax.swing.JFrame {
         initComponents();
         setGhostTexts();
         //confirmButtonEnabled();
-        if (!username.equals("")){
-            mailTextField.setText(username);
+        if (!email.equals("")){
+            mailTextField.setText(email);
             PwrdText.setText(pswrd);
             mailTextField.setForeground(Color.black);
             PwrdText.setForeground(Color.black);
@@ -188,7 +188,7 @@ public class Register extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(allEntriesLabel)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -199,16 +199,18 @@ public class Register extends javax.swing.JFrame {
                                 .addComponent(mailLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addComponent(genderLabel)
                             .addComponent(functionLabel)
-                            .addComponent(phoneLabel)
-                            .addComponent(passwordMatchLabel))
-                        .addGap(60, 60, 60)
+                            .addComponent(phoneLabel))
+                        .addGap(76, 76, 76)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
+                                .addComponent(functionComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(0, 0, Short.MAX_VALUE)
-                                        .addComponent(confirmButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(mailTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
+                                        .addComponent(passwordMatchLabel))
+                                    .addComponent(mailTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
                                     .addComponent(lastNameText, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(firstNameText, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(PwrdText, javax.swing.GroupLayout.Alignment.LEADING)
@@ -221,10 +223,11 @@ public class Register extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(radioOther)
                                         .addGap(0, 0, Short.MAX_VALUE)))
-                                .addGap(39, 39, 39))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(functionComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                                .addGap(39, 39, 39))))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(confirmButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -264,12 +267,12 @@ public class Register extends javax.swing.JFrame {
                     .addComponent(functionLabel)
                     .addComponent(functionComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(allEntriesLabel)
-                .addGap(3, 3, 3)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(confirmButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(passwordMatchLabel))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(allEntriesLabel)
+                    .addComponent(passwordMatchLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(confirmButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15))
         );
 
         pack();
@@ -277,7 +280,7 @@ public class Register extends javax.swing.JFrame {
 
     private void mailTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mailTextFieldActionPerformed
         // TODO add your handling code here:
-       username = mailTextField.getText();
+       email = mailTextField.getText();
     }//GEN-LAST:event_mailTextFieldActionPerformed
 
     private void phoneTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phoneTextActionPerformed
@@ -306,13 +309,13 @@ public class Register extends javax.swing.JFrame {
     private void confirmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmButtonActionPerformed
         firstname = firstNameText.getText();
         lastname = lastNameText.getText();
-        username = mailTextField.getText();
+        email = mailTextField.getText();
         phonenumber=phoneText.getText();
         pswrd = new String(PwrdText.getPassword());
         tokenId = (String)functionComboBox.getSelectedItem();
         String confirm_pswrd = new String(confirmPwrdText.getPassword());
         if (firstname.equals("James  ")||lastname.equals("Smith  ")||phonenumber.equals("07 81 04 48 69  ")
-                ||pswrd.equals("password123 ")||username.equals("example@mail.com")||gender==0 ||tokenId.equals("Select your fonction...")){
+                ||pswrd.equals("password123 ")||email.equals("example@mail.com")||gender==0 ||tokenId.equals("Select your fonction...")){
             
             allEntriesLabel.setVisible(true);
         }
@@ -321,15 +324,18 @@ public class Register extends javax.swing.JFrame {
         }
         if ((!pswrd.equals(confirm_pswrd))&&(!confirm_pswrd.equals("password123"))){
             passwordMatchLabel.setVisible(true);
-            confirmPwrdText.setBorder(BorderFactory.createLineBorder(Color.red));
+            //confirmPwrdText.setBorder(BorderFactory.createLineBorder(Color.red));
         }
         else{
             passwordMatchLabel.setVisible(false);
-            confirmPwrdText.setBorder(javax.swing.BorderFactory.createEmptyBorder());
+            //confirmPwrdText.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
             
         }
         if(!(passwordMatchLabel.isVisible()&&passwordMatchLabel.isVisible())){
-            BDD.register(tokenId, firstname, lastname, phonenumber, username, pswrd, gender);
+            BDD.register(tokenId, firstname, lastname, phonenumber, email, pswrd, gender);
+            User user = BDD.login(email, pswrd);
+            dispose();
+            MainWindow.main(user);
         }
         
     }//GEN-LAST:event_confirmButtonActionPerformed
@@ -380,7 +386,7 @@ public class Register extends javax.swing.JFrame {
                 }
                 else{
                     pswrd = args[0];
-                    username = args[1];
+                    email = args[1];
                     new Register().setVisible(true);
                     allEntriesLabel.setVisible(false);
                     passwordMatchLabel.setVisible(false);
