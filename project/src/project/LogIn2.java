@@ -124,7 +124,6 @@ public class LogIn2 extends javax.swing.JFrame {
         }else{
             // connexion success
             dispose();
-            Menu.main(user);
         }
     }//GEN-LAST:event_loginButtonActionPerformed
 
@@ -145,7 +144,6 @@ public class LogIn2 extends javax.swing.JFrame {
 
     /**
      * @param args the command line arguments
-     * @param user
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -170,7 +168,6 @@ public class LogIn2 extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(LogIn2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-       
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {

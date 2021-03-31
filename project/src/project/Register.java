@@ -21,6 +21,11 @@ import javax.swing.event.DocumentListener;
 public class Register extends javax.swing.JFrame {
     protected static String username = "";
     protected static String pswrd = "";
+    private String firstname;
+    private String lastname;
+    private String phonenumber;
+    private String tokenId;
+    private int gender;
     /**
      * Creates new form LogIn2
      */
@@ -77,10 +82,12 @@ public class Register extends javax.swing.JFrame {
         confirmPwrdText = new javax.swing.JPasswordField();
         phoneText = new javax.swing.JTextField();
         genderLabel = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
+        radioMale = new javax.swing.JRadioButton();
+        radioFemale = new javax.swing.JRadioButton();
+        radioOther = new javax.swing.JRadioButton();
         confirmButton = new javax.swing.JButton();
+        fonctionLabel = new javax.swing.JLabel();
+        fonctionComboBox = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -124,27 +131,27 @@ public class Register extends javax.swing.JFrame {
 
         genderLabel.setText("Gender:");
 
-        genderGroup.add(jRadioButton1);
-        jRadioButton1.setText("Male");
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+        genderGroup.add(radioMale);
+        radioMale.setText("Male");
+        radioMale.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
+                radioMaleActionPerformed(evt);
             }
         });
 
-        genderGroup.add(jRadioButton2);
-        jRadioButton2.setText("Female");
-        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+        genderGroup.add(radioFemale);
+        radioFemale.setText("Female");
+        radioFemale.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton2ActionPerformed(evt);
+                radioFemaleActionPerformed(evt);
             }
         });
 
-        genderGroup.add(jRadioButton3);
-        jRadioButton3.setText("Other");
-        jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
+        genderGroup.add(radioOther);
+        radioOther.setText("Other");
+        radioOther.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton3ActionPerformed(evt);
+                radioOtherActionPerformed(evt);
             }
         });
 
@@ -155,39 +162,55 @@ public class Register extends javax.swing.JFrame {
             }
         });
 
+        fonctionLabel.setText("Fonction:");
+
+        fonctionComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select your fonction...", "BUYER", "SELLER" }));
+        fonctionComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fonctionComboBoxActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(confirmButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(confPasswordLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(firstNameLabel)
+                        .addComponent(lastNameLabel)
+                        .addComponent(passwordLabel)
+                        .addComponent(mailLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(phoneLabel)
+                    .addComponent(genderLabel)
+                    .addComponent(fonctionLabel))
+                .addGap(57, 57, 57)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(confPasswordLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(firstNameLabel)
-                                .addComponent(lastNameLabel)
-                                .addComponent(passwordLabel)
-                                .addComponent(mailLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(phoneLabel)
-                            .addComponent(genderLabel))
-                        .addGap(57, 57, 57)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(mailTextField)
-                            .addComponent(lastNameText)
-                            .addComponent(firstNameText)
-                            .addComponent(PwrdText)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jRadioButton1)
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(confirmButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(mailTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
+                            .addComponent(lastNameText, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(firstNameText, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(PwrdText, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(phoneText, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(confirmPwrdText, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(radioMale)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jRadioButton2)
+                                .addComponent(radioFemale)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioButton3))
-                            .addComponent(phoneText)
-                            .addComponent(confirmPwrdText))))
-                .addGap(39, 39, 39))
+                                .addComponent(radioOther)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(39, 39, 39))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(fonctionComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -219,12 +242,16 @@ public class Register extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(genderLabel)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2)
-                    .addComponent(jRadioButton3))
-                .addGap(18, 18, 18)
+                    .addComponent(radioMale)
+                    .addComponent(radioFemale)
+                    .addComponent(radioOther))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(fonctionLabel)
+                    .addComponent(fonctionComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28)
                 .addComponent(confirmButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         pack();
@@ -232,37 +259,43 @@ public class Register extends javax.swing.JFrame {
 
     private void mailTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mailTextFieldActionPerformed
         // TODO add your handling code here:
-        mailTextField.setForeground(Color.black);
+       username = mailTextField.getText();
     }//GEN-LAST:event_mailTextFieldActionPerformed
 
     private void phoneTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phoneTextActionPerformed
-        // TODO add your handling code here:
+        phonenumber=phoneText.getText();
     }//GEN-LAST:event_phoneTextActionPerformed
 
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
+    private void radioMaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioMaleActionPerformed
+        gender = 1;
+    }//GEN-LAST:event_radioMaleActionPerformed
 
-    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton2ActionPerformed
+    private void radioFemaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioFemaleActionPerformed
+        gender = 2;
+    }//GEN-LAST:event_radioFemaleActionPerformed
 
     private void confirmPwrdTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmPwrdTextActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_confirmPwrdTextActionPerformed
 
-    private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton3ActionPerformed
+    private void radioOtherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioOtherActionPerformed
+        gender = 3;
+    }//GEN-LAST:event_radioOtherActionPerformed
 
     private void firstNameTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_firstNameTextActionPerformed
-        // TODO add your handling code here:
+        firstname= firstNameText.getText();
     }//GEN-LAST:event_firstNameTextActionPerformed
 
     private void confirmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmButtonActionPerformed
         // TODO add your handling code here:
         
     }//GEN-LAST:event_confirmButtonActionPerformed
+
+    private void fonctionComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fonctionComboBoxActionPerformed
+        if (fonctionComboBox.getSelectedIndex()!=0){
+            tokenId = (String)fonctionComboBox.getSelectedItem();
+        }
+    }//GEN-LAST:event_fonctionComboBoxActionPerformed
 
     /**
      * @param args the command line arguments
@@ -321,11 +354,10 @@ public class Register extends javax.swing.JFrame {
     private javax.swing.JPasswordField confirmPwrdText;
     private javax.swing.JLabel firstNameLabel;
     private javax.swing.JTextField firstNameText;
+    private javax.swing.JComboBox<String> fonctionComboBox;
+    private javax.swing.JLabel fonctionLabel;
     private javax.swing.ButtonGroup genderGroup;
     private javax.swing.JLabel genderLabel;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JLabel lastNameLabel;
     private javax.swing.JTextField lastNameText;
     private javax.swing.JLabel mailLabel;
@@ -333,6 +365,9 @@ public class Register extends javax.swing.JFrame {
     private javax.swing.JLabel passwordLabel;
     private javax.swing.JLabel phoneLabel;
     private javax.swing.JTextField phoneText;
+    private javax.swing.JRadioButton radioFemale;
+    private javax.swing.JRadioButton radioMale;
+    private javax.swing.JRadioButton radioOther;
     // End of variables declaration//GEN-END:variables
 
     public static class GhostText implements FocusListener, DocumentListener, PropertyChangeListener {
