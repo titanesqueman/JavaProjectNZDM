@@ -328,7 +328,7 @@ public class Register extends javax.swing.JFrame {
             
         }
         if(!(passwordMatchLabel.isVisible()&&passwordMatchLabel.isVisible())){
-            BDD.register(tokenId, firstname, lastname, phonenumber, pswrd, pswrd, gender);
+            BDD.register(tokenId, firstname, lastname, phonenumber, username, pswrd, gender);
         }
         
     }//GEN-LAST:event_confirmButtonActionPerformed
