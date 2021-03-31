@@ -105,7 +105,7 @@ private class OkButtonListener implements ActionListener
          
          // Display the main menu
          if (okButton.getText() == "Sign In"){
-            Menu men = new Menu();
+            //Menu men = new Menu();
          }
          else if (okButton.getText() == "Sign Up"){
              SignUp register = new SignUp();
