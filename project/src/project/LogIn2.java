@@ -116,7 +116,7 @@ public class LogIn2 extends javax.swing.JFrame {
         email = emailTextField.getText();
         String password = new String(passwordTextField.getPassword());
         
-        User2 user = BDD.login(email, password);
+        User user = BDD.login(email, password);
         
         if (user == null){
             // erreur de connexion

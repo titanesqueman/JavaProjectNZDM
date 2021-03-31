@@ -76,7 +76,7 @@ public class BDD {
     // try to connect user 
     // return a user
     // return null if the user is not found in the table
-    public static User2 login(String email, String password){
+    public static User login(String email, String password){
         try {
             PreparedStatement st;
             ResultSet rs;
@@ -99,7 +99,7 @@ public class BDD {
                 String phonenumber = rs.getString("phonenumber");
                 Token token = getToken(rs.getString("token"));
                 
-                User2 user;
+                User user;
                 
                 if (null == token){
                     System.out.println("token not reconized");

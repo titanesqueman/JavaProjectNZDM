@@ -12,7 +12,7 @@ import project.Tokenizer.Token;
  * @author nicol
  * @author drazic
  */
-public class Buyer extends User2{
+public class Buyer extends User{
     public Buyer(int DBID, String firstname, String lastname, String emailAddress, String phonenumber) {
         super(DBID, firstname, lastname, emailAddress, phonenumber, Token.BUYER);
     }
