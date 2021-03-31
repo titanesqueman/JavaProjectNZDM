@@ -25,7 +25,7 @@ public class Register extends javax.swing.JFrame {
     private String lastname;
     private String phonenumber;
     private String tokenId;
-    private int gender;
+    private int gender=0;
     /**
      * Creates new form LogIn2
      */
@@ -309,9 +309,10 @@ public class Register extends javax.swing.JFrame {
         username = mailTextField.getText();
         phonenumber=phoneText.getText();
         pswrd = new String(PwrdText.getPassword());
+        tokenId = (String)fonctionComboBox.getSelectedItem();
         String confirm_pswrd = new String(confirmPwrdText.getPassword());
         if (firstname.equals("James  ")||lastname.equals("Smith  ")||phonenumber.equals("07 81 04 48 69  ")
-                ||pswrd.equals("password123 ")||username.equals("example@mail.com")){
+                ||pswrd.equals("password123 ")||username.equals("example@mail.com")||gender==0 ||tokenId.equals("Select your fonction...")){
             
             allEntriesLabel.setVisible(true);
         }
@@ -326,7 +327,9 @@ public class Register extends javax.swing.JFrame {
             passwordMatchLabel.setVisible(false);
             
         }
-        
+        if(!(passwordMatchLabel.isVisible()&&passwordMatchLabel.isVisible())){
+            BDD.register(tokenId, firstname, lastname, phonenumber, pswrd, pswrd, gender);
+        }
         
     }//GEN-LAST:event_confirmButtonActionPerformed
 
