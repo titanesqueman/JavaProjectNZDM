@@ -78,6 +78,7 @@ public class ButtonMenuPanel extends javax.swing.JPanel {
 
     private void browseFavButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browseFavButtonActionPerformed
         // TODO add your handling code here:
+        MainWindow.changePanel(new BrowseFavPropertiesPanel());
     }//GEN-LAST:event_browseFavButtonActionPerformed
 
     private void browsePropertiesButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browsePropertiesButton1ActionPerformed

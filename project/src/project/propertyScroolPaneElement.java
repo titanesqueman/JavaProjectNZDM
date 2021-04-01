@@ -10,16 +10,21 @@ package project;
  * @author Drazic
  */
 public class propertyScroolPaneElement extends javax.swing.JPanel {
-
+    Property property;
     /**
      * Creates new form propertyScroolPanelElement
+     * @param p
      */
-    public propertyScroolPaneElement(String title, String address, String area) {
+    public propertyScroolPaneElement(Property p) {
+        this.property = p;
         initComponents();
         
-        titleLabel.setText(title);
-        addressLabel.setText(address);
-        areaLabel.setText("Area : "+area+"m²");
+        titleLabel.setText(property.getTitle());
+        addressLabel.setText(property.getAddress());
+        areaLabel.setText("Area : "+property.getArea()+"m²");
+        priceLabel.setText("Price : "+property.getPrice()+"€");
+        
+        loaddata();
     }
 
     /**
@@ -33,8 +38,11 @@ public class propertyScroolPaneElement extends javax.swing.JPanel {
 
         titleLabel = new javax.swing.JLabel();
         addressLabel = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
+        favRadioButton = new javax.swing.JRadioButton();
         areaLabel = new javax.swing.JLabel();
+        priceLabel = new javax.swing.JLabel();
+
+        setMaximumSize(new java.awt.Dimension(32767, 100));
 
         titleLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         titleLabel.setText("titleLabel");
@@ -42,14 +50,16 @@ public class propertyScroolPaneElement extends javax.swing.JPanel {
         addressLabel.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         addressLabel.setText("addressLabel");
 
-        jRadioButton1.setText("Fav");
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+        favRadioButton.setText("Fav");
+        favRadioButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
+                favRadioButtonActionPerformed(evt);
             }
         });
 
         areaLabel.setText("area");
+
+        priceLabel.setText("price");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -63,9 +73,11 @@ public class propertyScroolPaneElement extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(areaLabel))
-                        .addGap(0, 40, Short.MAX_VALUE)))
-                .addGap(18, 18, 18)
-                .addComponent(jRadioButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 109, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(priceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33)
+                .addComponent(favRadioButton)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -78,19 +90,36 @@ public class propertyScroolPaneElement extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(addressLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(26, 26, 26))
-            .addComponent(jRadioButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(favRadioButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(priceLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+    private void favRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_favRadioButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
+        if (favRadioButton.isSelected()){
+            // add fav
+            BDD.setFav(property.getPropertyId(),MainWindow.user.getUserId());
+        }else{
+            // delete fav
+            BDD.deleteFav(property.getPropertyId(),MainWindow.user.getUserId());
+        }
+    }//GEN-LAST:event_favRadioButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel addressLabel;
     private javax.swing.JLabel areaLabel;
-    private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JRadioButton favRadioButton;
+    private javax.swing.JLabel priceLabel;
     private javax.swing.JLabel titleLabel;
     // End of variables declaration//GEN-END:variables
+
+    private void loaddata() {
+        if (BDD.isFav(property.getPropertyId(), MainWindow.user.getUserId())){
+            favRadioButton.setSelected(true);
+        }else{
+            favRadioButton.setSelected(false);
+        }
+    }
 }

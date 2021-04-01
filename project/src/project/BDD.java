@@ -93,7 +93,7 @@ public class BDD {
             rs = st.executeQuery();
             
             if(rs.next()){
-                int DBID = rs.getInt("id");
+                int userId = rs.getInt("userId");
                 String firstname = rs.getString("firstname");
                 String lastname = rs.getString("lastname");
                 String phonenumber = rs.getString("phonenumber");
@@ -105,9 +105,9 @@ public class BDD {
                     System.out.println("token not reconized");
                     return null;
                 }else switch (token) {
-                    case BUYER -> user = new Buyer(DBID,firstname,lastname,phonenumber,email);
-                    case SELLER -> user = new Seller(DBID,firstname,lastname,phonenumber,email,token);
-                    case EMPLOYEE -> user = new Employee(DBID,firstname,lastname,phonenumber,email);
+                    case BUYER -> user = new Buyer(userId,firstname,lastname,phonenumber,email);
+                    case SELLER -> user = new Seller(userId,firstname,lastname,phonenumber,email,token);
+                    case EMPLOYEE -> user = new Employee(userId,firstname,lastname,phonenumber,email);
                     default -> {
                         System.out.println("token not reconized");
                         return null;
@@ -177,5 +177,70 @@ public class BDD {
             Logger.getLogger(BDD.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
+    }
+
+    static boolean isFav(int propertyId, int userId) {
+        try {
+            PreparedStatement st;
+            ResultSet rs;
+            
+            String query = "SELECT * "
+                    + "     FROM fav "
+                    + "     WHERE propertyId = ? AND userId = ? ";
+            
+            st = BDD.getConnection().prepareStatement(query);
+            
+            st.setInt(1,propertyId);
+            st.setInt(2,userId);
+            
+            rs = st.executeQuery();
+            
+            return rs.next();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(BDD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+    
+    static void setFav(int propertyId, int userId) {
+        try {
+            PreparedStatement st;
+            ResultSet rs;
+            
+            String query = "INSERT INTO fav(propertyId,userId) "
+                    + "     VALUES(?,?)";
+            
+            st = BDD.getConnection().prepareStatement(query);
+            
+            st.setInt(1,propertyId);
+            st.setInt(2,userId);
+            
+            st.executeUpdate();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(BDD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    static void deleteFav(int propertyId, int userId) {
+        try {
+            PreparedStatement st;
+            ResultSet rs;
+            
+            String query = "DELETE"
+                    + "     FROM fav "
+                    + "     WHERE propertyId = ? AND userId = ?";
+            
+            st = BDD.getConnection().prepareStatement(query);
+            
+            st.setInt(1,propertyId);
+            st.setInt(2,userId);
+            
+            st.executeUpdate();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(BDD.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

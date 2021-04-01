@@ -13,7 +13,7 @@ import project.Tokenizer.Token;
  * @author drazic
  */
 public class User {
-    protected int BDID;
+    protected int userId;
     protected String firstname;
     protected String lastname;
     protected String phonenumber;
@@ -21,7 +21,8 @@ public class User {
 
     public Token token;
 
-    public User(int BDID, String firstname, String lastname,String phonenumber, String email, Token token) {
+    public User(int userId, String firstname, String lastname,String phonenumber, String email, Token token) {
+        this.userId = userId;
         this.firstname = firstname;
         this.lastname = lastname;
         this.phonenumber = phonenumber;
@@ -29,8 +30,8 @@ public class User {
         this.token = token;
     }
 
-    public int getBDID() {
-        return BDID;
+    public int getUserId() {
+        return userId;
     }
 
     public String getFirstname() {
