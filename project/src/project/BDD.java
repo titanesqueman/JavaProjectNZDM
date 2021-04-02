@@ -9,8 +9,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import project.Tokenizer.Token;
-import static project.Tokenizer.getToken;
+import project.Tokeniser.Token;
+import static project.Tokeniser.getToken;
 
 /**
  *

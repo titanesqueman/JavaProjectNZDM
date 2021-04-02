@@ -110,7 +110,7 @@ public class BrowseFavPropertiesPanel extends javax.swing.JPanel {
             
             st = BDD.getConnection().prepareStatement(query);
             
-            st.setInt(1,MainWindow.user.getUserId());
+            st.setInt(1,MainWindow.getUser().getUserId());
             
             rs = st.executeQuery();
             

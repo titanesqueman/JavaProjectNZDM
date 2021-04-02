@@ -18,7 +18,7 @@ public class Menu2 extends javax.swing.JFrame {
         this.user = user;
         initComponents();
         nameLabel.setText("Bonjour "+ user.getFirstname());
-        tokenLabel.setText("Connected as " + Tokenizer.getTokenId(user.getToken()));
+        tokenLabel.setText("Connected as " + Tokeniser.getTokenId(user.getToken()));
     }
 
     /**

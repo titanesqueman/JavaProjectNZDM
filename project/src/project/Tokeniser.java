@@ -9,7 +9,7 @@ package project;
  *
  * @author Drazic
  */
-public class Tokenizer {
+public class Tokeniser {
     public enum Token { 
         BUYER, SELLER, EMPLOYEE
     }

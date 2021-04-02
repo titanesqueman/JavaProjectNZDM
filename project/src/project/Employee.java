@@ -5,7 +5,7 @@
  */
 package project;
 
-import project.Tokenizer.Token;
+import project.Tokeniser.Token;
 
 /**
  *

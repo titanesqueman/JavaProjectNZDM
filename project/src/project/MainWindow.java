@@ -17,13 +17,15 @@ import javax.swing.*;
  * @author Drazic
  */
 public class MainWindow extends JFrame {
-    public static User user;
+    private static User user;
     /**
      * Creates new form MainWindow
      */
     public MainWindow(User user) {
         initComponents();
         this.user = user;
+        
+        userInfoPanel1.setUser(user);
         
         MainWindow.changePanel(new MenuPanel(user));
         
@@ -55,6 +57,7 @@ public class MainWindow extends JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         mainPanel = new javax.swing.JPanel();
+        userInfoPanel1 = new project.UserInfoPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -69,15 +72,18 @@ public class MainWindow extends JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 777, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 395, Short.MAX_VALUE)
+                .addComponent(userInfoPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 820, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(userInfoPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 735, Short.MAX_VALUE))
         );
 
         pack();
@@ -117,6 +123,12 @@ public class MainWindow extends JFrame {
             }
         });
     }
+
+    public static User getUser() {
+        return user;
+    }
+    
+    
     
    
     
@@ -124,5 +136,6 @@ public class MainWindow extends JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private static javax.swing.JPanel mainPanel;
+    private project.UserInfoPanel userInfoPanel1;
     // End of variables declaration//GEN-END:variables
 }

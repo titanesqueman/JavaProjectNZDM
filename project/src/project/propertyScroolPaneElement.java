@@ -99,10 +99,10 @@ public class propertyScroolPaneElement extends javax.swing.JPanel {
         // TODO add your handling code here:
         if (favRadioButton.isSelected()){
             // add fav
-            BDD.setFav(property.getPropertyId(),MainWindow.user.getUserId());
+            BDD.setFav(property.getPropertyId(),MainWindow.getUser().getUserId());
         }else{
             // delete fav
-            BDD.deleteFav(property.getPropertyId(),MainWindow.user.getUserId());
+            BDD.deleteFav(property.getPropertyId(),MainWindow.getUser().getUserId());
         }
     }//GEN-LAST:event_favRadioButtonActionPerformed
 
@@ -116,7 +116,7 @@ public class propertyScroolPaneElement extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void loaddata() {
-        if (BDD.isFav(property.getPropertyId(), MainWindow.user.getUserId())){
+        if (BDD.isFav(property.getPropertyId(), MainWindow.getUser().getUserId())){
             favRadioButton.setSelected(true);
         }else{
             favRadioButton.setSelected(false);

@@ -43,7 +43,7 @@ public class backButton extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        MainWindow.changePanel(new MenuPanel(MainWindow.user));
+        MainWindow.changePanel(new MenuPanel(MainWindow.getUser()));
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
