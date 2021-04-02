@@ -52,7 +52,7 @@ public class ButtonMenuPanel extends javax.swing.JPanel {
         });
         add(browseFavButton);
 
-        browsePropertiesButton1.setText("other button");
+        browsePropertiesButton1.setText("Sign out");
         browsePropertiesButton1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.lightGray, java.awt.Color.white, java.awt.Color.black, java.awt.Color.darkGray));
         browsePropertiesButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -83,6 +83,7 @@ public class ButtonMenuPanel extends javax.swing.JPanel {
 
     private void browsePropertiesButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browsePropertiesButton1ActionPerformed
         // TODO add your handling code here:
+
     }//GEN-LAST:event_browsePropertiesButton1ActionPerformed
 
     private void browsePropertiesButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browsePropertiesButton2ActionPerformed

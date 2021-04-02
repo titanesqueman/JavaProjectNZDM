@@ -11,13 +11,12 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
-import javax.swing.JToolBar.Separator;
 
 /**
  *
  * @author Drazic
  */
-public class BrowseFavPropertiesPanel extends javax.swing.JPanel {
+public class BrowseFavPropertiesPanel extends JPanel {
 
     /**
      * Creates new form BrowseProperties
@@ -115,8 +114,6 @@ public class BrowseFavPropertiesPanel extends javax.swing.JPanel {
             rs = st.executeQuery();
             
             while(rs.next()){
-                System.out.println(rs.getString("title"));
-                
                 Property p = Property.getPropertyFromRS(rs);
                 
                 if (p != null){

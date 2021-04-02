@@ -156,6 +156,7 @@ public class BDD {
         return "Error";
     }
 
+    // return 
     private static boolean isEmailAlreadyUse(String email) {
         try {
             PreparedStatement st;
@@ -178,7 +179,8 @@ public class BDD {
         }
         return false;
     }
-
+    
+    // return if the property is fav for the user
     static boolean isFav(int propertyId, int userId) {
         try {
             PreparedStatement st;
@@ -203,6 +205,7 @@ public class BDD {
         return false;
     }
     
+    // set in fav a property to a user
     static void setFav(int propertyId, int userId) {
         try {
             PreparedStatement st;
@@ -223,6 +226,7 @@ public class BDD {
         }
     }
     
+    // delete fav to a user 
     static void deleteFav(int propertyId, int userId) {
         try {
             PreparedStatement st;
@@ -241,6 +245,32 @@ public class BDD {
             
         } catch (SQLException ex) {
             Logger.getLogger(BDD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    // return Result set with a certain property filter
+    static ResultSet propertiesFilter(int minPrice, int maxPrice, int minArea, int maxArea){
+        PreparedStatement st;
+        ResultSet rs;
+        try {
+            String query = "SELECT * "
+                    + "     FROM property"
+                    + "     WHERE (area BETWEEN ? AND ?)"
+                    + "     AND   (price BETWEEN ? AND ?)";
+            
+            st = BDD.getConnection().prepareStatement(query);
+            
+            st.setInt(1,minArea);
+            st.setInt(2,maxArea);
+            st.setInt(3,minPrice);
+            st.setInt(4,maxPrice);
+            
+            rs = st.executeQuery();
+            
+            return rs;
+        } catch (SQLException ex) {
+            Logger.getLogger(BDD.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
         }
     }
 }
