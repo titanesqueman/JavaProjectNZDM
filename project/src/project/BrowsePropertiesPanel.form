@@ -123,7 +123,7 @@
         </Container>
       </SubComponents>
     </Container>
-    <Component class="project.BackButton" name="backButton1">
+    <Component class="project.BackButton2" name="backButton1">
     </Component>
   </SubComponents>
 </Form>

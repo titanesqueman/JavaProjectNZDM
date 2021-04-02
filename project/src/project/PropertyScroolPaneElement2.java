@@ -9,13 +9,13 @@ package project;
  *
  * @author Drazic
  */
-public class propertyScroolPaneElement extends javax.swing.JPanel {
+public class PropertyScroolPaneElement2 extends javax.swing.JPanel {
     Property property;
     /**
      * Creates new form propertyScroolPanelElement
-     * @param p
+     * @param 
      */
-    public propertyScroolPaneElement(Property p) {
+    public PropertyScroolPaneElement2(Property p) {
         this.property = p;
         initComponents();
         

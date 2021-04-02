@@ -104,7 +104,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="favRadioButtonActionPerformed"/>
       </Events>
     </Component>
-    <Component class="project.BackButton" name="backButton1">
+    <Component class="project.BackButton2" name="backButton1">
     </Component>
   </SubComponents>
 </Form>

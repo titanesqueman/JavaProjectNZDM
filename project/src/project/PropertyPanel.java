@@ -38,7 +38,7 @@ public class PropertyPanel extends javax.swing.JPanel {
         priceLabel = new javax.swing.JLabel();
         areaLabel = new javax.swing.JLabel();
         favRadioButton = new javax.swing.JRadioButton();
-        backButton1 = new project.BackButton();
+        backButton1 = new project.BackButton2();
 
         titleLabel.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         titleLabel.setText("titleLabel");
@@ -127,7 +127,7 @@ public class PropertyPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel addressLabel;
     private javax.swing.JLabel areaLabel;
-    private project.BackButton backButton1;
+    private project.BackButton2 backButton1;
     private javax.swing.JRadioButton favRadioButton;
     private javax.swing.JLabel priceLabel;
     private javax.swing.JLabel titleLabel;
