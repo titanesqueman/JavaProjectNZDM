@@ -91,7 +91,7 @@
         <Property name="text" type="java.lang.String" value="here are your fav"/>
       </Properties>
     </Component>
-    <Component class="project.backButton" name="backButton1">
+    <Component class="project.BackButton" name="backButton1">
     </Component>
   </SubComponents>
 </Form>

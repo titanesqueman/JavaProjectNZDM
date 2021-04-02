@@ -41,7 +41,7 @@ public class BrowseFavPropertiesPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         container = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        backButton1 = new project.backButton();
+        backButton1 = new project.BackButton();
 
         jLabel1.setText("Browse Fav Properties");
 
@@ -89,7 +89,7 @@ public class BrowseFavPropertiesPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private project.backButton backButton1;
+    private project.BackButton backButton1;
     private javax.swing.JPanel container;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -120,7 +120,7 @@ public class BrowseFavPropertiesPanel extends javax.swing.JPanel {
                 Property p = Property.getPropertyFromRS(rs);
                 
                 if (p != null){
-                    propertyScroolPaneElement newpPropertyScroolPaneElement = new propertyScroolPaneElement(p);
+                    PropertyScroolPaneElement newpPropertyScroolPaneElement = new PropertyScroolPaneElement(p);
                     container.add(newpPropertyScroolPaneElement);
                 }
             }

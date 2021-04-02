@@ -42,7 +42,7 @@ public class BrowsePropertiesPanel extends javax.swing.JPanel {
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         container = new javax.swing.JPanel();
-        backButton1 = new project.backButton();
+        backButton1 = new project.BackButton();
 
         jLabel1.setText("Browse Properties");
 
@@ -119,7 +119,7 @@ public class BrowsePropertiesPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private project.backButton backButton1;
+    private project.BackButton backButton1;
     private javax.swing.JPanel container;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
@@ -144,7 +144,7 @@ public class BrowsePropertiesPanel extends javax.swing.JPanel {
                 Property p = Property.getPropertyFromRS(rs);
                 
                 if (p != null){
-                    propertyScroolPaneElement newpPropertyScroolPaneElement = new propertyScroolPaneElement(p);
+                    PropertyScroolPaneElement newpPropertyScroolPaneElement = new PropertyScroolPaneElement(p);
                     container.add(newpPropertyScroolPaneElement);
                 }
             }
