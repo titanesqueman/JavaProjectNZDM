@@ -18,6 +18,7 @@ import javax.swing.*;
  */
 public class MainWindow extends JFrame {
     private static User user;
+    public static JFrame frameMain;
     /**
      * Creates new form MainWindow
      */
@@ -41,9 +42,9 @@ public class MainWindow extends JFrame {
         mainPanel.revalidate();
         mainPanel.repaint();
     }
-    
+
     public void closeWindow(){
-        dispose();
+        frameMain.dispose();
     }
 
     /**
@@ -119,7 +120,8 @@ public class MainWindow extends JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainWindow(user).setVisible(true);
+                frameMain = new MainWindow(user);
+                frameMain.setVisible(true);
             }
         });
     }
