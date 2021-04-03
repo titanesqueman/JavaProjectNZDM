@@ -58,7 +58,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="browseFavButtonActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="browsePropertiesButton1">
+    <Component class="javax.swing.JButton" name="signoutButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Sign out"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -73,7 +73,7 @@
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="browsePropertiesButton1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="signoutButtonActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="browsePropertiesButton2">
