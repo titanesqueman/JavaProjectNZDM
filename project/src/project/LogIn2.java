@@ -18,6 +18,7 @@ public class LogIn2 extends javax.swing.JFrame {
      */
     public LogIn2() {
         initComponents();
+        getRootPane().setDefaultButton(loginButton);
         new Register.GhostText(passwordTextField,"password123");
         new Register.GhostText(emailTextField,"username");
     }

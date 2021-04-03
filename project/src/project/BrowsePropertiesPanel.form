@@ -23,33 +23,95 @@
                       <Component id="jScrollPane1" min="-2" pref="656" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="19" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <Component id="jLabel1" min="-2" pref="102" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="rangeSlider2" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="areaMinLabel" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Component id="areaMaxLabel" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="144" max="-2" attributes="0"/>
+                              <Component id="areaLabel" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="rangeSlider1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="priceMinLabel" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Component id="priceMaxLabel" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="priceLabel" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="215" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
                       <Component id="backButton1" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="backButton1" min="-2" pref="37" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="backButton1" alignment="0" min="-2" pref="37" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <Component id="rangeSlider2" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="areaMinLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="areaMaxLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="priceLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="areaLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace pref="10" max="32767" attributes="0"/>
+                              <Component id="rangeSlider1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="priceMinLabel" min="-2" max="-2" attributes="0"/>
+                                  <Component id="priceMaxLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jScrollPane1" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
                       <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="532" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="478" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -110,7 +172,7 @@
         <Container class="javax.swing.JPanel" name="container">
           <Properties>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-              <Color id="Default Cursor"/>
+              <Color id="Curseur par d&#xe9;faut"/>
             </Property>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[300, 300]"/>
@@ -124,6 +186,66 @@
       </SubComponents>
     </Container>
     <Component class="project.backButton" name="backButton1">
+    </Component>
+    <Component class="javax.swing.JLabel" name="priceMinLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="0 &#x20ac;"/>
+      </Properties>
+    </Component>
+    <Component class="com.jidesoft.swing.RangeSlider" name="rangeSlider1">
+      <Properties>
+        <Property name="majorTickSpacing" type="int" value="25000"/>
+        <Property name="maximum" type="int" value="2000000"/>
+        <Property name="snapToTicks" type="boolean" value="true"/>
+        <Property name="extent" type="int" value="2500000"/>
+        <Property name="highValue" type="int" value="2000000"/>
+        <Property name="lowValue" type="int" value="0"/>
+      </Properties>
+      <Events>
+        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="rangeSlider1StateChanged"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="priceMaxLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="2,000,000 &#x20ac;"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="priceLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Price"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="areaMinLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="0 m&#xb2;"/>
+      </Properties>
+    </Component>
+    <Component class="com.jidesoft.swing.RangeSlider" name="rangeSlider2">
+      <Properties>
+        <Property name="majorTickSpacing" type="int" value="10"/>
+        <Property name="maximum" type="int" value="500"/>
+        <Property name="snapToTicks" type="boolean" value="true"/>
+        <Property name="extent" type="int" value="600"/>
+        <Property name="highValue" type="int" value="500"/>
+        <Property name="lowValue" type="int" value="0"/>
+        <Property name="name" type="java.lang.String" value="" noResource="true"/>
+      </Properties>
+      <AccessibilityProperties>
+        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value=""/>
+      </AccessibilityProperties>
+      <Events>
+        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="rangeSlider2StateChanged"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="areaMaxLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="500 m&#xb2;"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="areaLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Area"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
