@@ -5,17 +5,20 @@
  */
 package project;
 
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 /**
  *
  * @author Drazic
  */
-public class propertyScroolPaneElement extends javax.swing.JPanel {
+public class PropertyScroolPaneElement2 extends javax.swing.JPanel {
     Property property;
     /**
      * Creates new form propertyScroolPanelElement
-     * @param p
+     * @param 
      */
-    public propertyScroolPaneElement(Property p) {
+    public PropertyScroolPaneElement2(Property p) {
         this.property = p;
         initComponents();
         
@@ -25,6 +28,13 @@ public class propertyScroolPaneElement extends javax.swing.JPanel {
         priceLabel.setText("Price : "+property.getPrice()+"€");
         
         loaddata();
+        
+        this.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                MainWindow.changePanel(new PropertyPanel(property));
+            }
+        });
     }
 
     /**

@@ -10,12 +10,12 @@ package project;
  *
  * @author Drazic
  */
-public class backButton extends javax.swing.JPanel {
+public class BackButton2 extends javax.swing.JPanel {
 
     /**
      * Creates new form backButton
      */
-    public backButton() {
+    public BackButton2() {
         initComponents();
     }
 
@@ -30,7 +30,7 @@ public class backButton extends javax.swing.JPanel {
 
         jButton1 = new javax.swing.JButton();
 
-        setLayout(new java.awt.GridLayout());
+        setLayout(new java.awt.GridLayout(1, 0));
 
         jButton1.setText("Back to menu");
         jButton1.addActionListener(new java.awt.event.ActionListener() {

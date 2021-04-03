@@ -43,6 +43,7 @@ public class MenuPanel extends javax.swing.JPanel {
 
         helloUserLabel.setText("jLabel2");
 
+        buttonMenuPanel1.setBackground(new java.awt.Color(0, 102, 102));
         buttonMenuPanel1.setPreferredSize(new java.awt.Dimension(300, 300));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -53,11 +54,11 @@ public class MenuPanel extends javax.swing.JPanel {
                 .addComponent(jLabel1)
                 .addGap(149, 149, 149)
                 .addComponent(helloUserLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 212, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(104, 104, 104)
-                .addComponent(buttonMenuPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(128, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(buttonMenuPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -65,9 +66,9 @@ public class MenuPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(helloUserLabel))
-                .addGap(85, 85, 85)
-                .addComponent(buttonMenuPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(101, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(buttonMenuPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 407, Short.MAX_VALUE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
