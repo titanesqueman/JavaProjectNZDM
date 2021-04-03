@@ -17,6 +17,10 @@ import javax.swing.*;
  * @author Drazic
  */
 public class BrowsePropertiesPanel extends JPanel {
+    private int minPrice;
+    private int maxPrice;
+    private int minArea;
+    private int maxArea;
 
     /**
      * Creates new form BrowseProperties
@@ -147,6 +151,24 @@ public class BrowsePropertiesPanel extends JPanel {
             }
         } catch (SQLException ex) {
             Logger.getLogger(BDD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    private void loadPropertiesFilter(){
+        try {
+            ResultSet rs = BDD.propertiesFilter(minPrice, maxPrice, minArea, maxArea);
+            if (rs == null) return;
+            
+            while(rs.next()){
+                Property p = Property.getPropertyFromRS(rs);
+                
+                if (p != null){
+                    PropertyScroolPaneElement2 newpPropertyScroolPaneElement = new PropertyScroolPaneElement2(p);
+                    container.add(newpPropertyScroolPaneElement);
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(BrowsePropertiesPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

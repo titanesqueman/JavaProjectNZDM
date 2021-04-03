@@ -18,11 +18,11 @@ import static project.Tokeniser.getToken;
  */
 public class BDD {
 
-    private static String servername = "localhost";
-    private static String username = "root";
-    private static String dbname  = "java";
-    private static Integer portnumber  = 3306;
-    private static String password = "";
+    private static final String servername = "localhost";
+    private static final String username = "root";
+    private static final String dbname  = "java";
+    private static final Integer portnumber  = 3306;
+    private static final String password = "";
     
     public static Connection getConnection() throws SQLException
     {
