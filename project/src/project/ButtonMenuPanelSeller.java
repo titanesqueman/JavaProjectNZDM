@@ -9,12 +9,12 @@ package project;
  *
  * @author Drazic
  */
-public class ButtonMenuPanellSeller extends javax.swing.JPanel {
+public class ButtonMenuPanelSeller extends javax.swing.JPanel {
 
     /**
      * Creates new form MenuPanel
      */
-    public ButtonMenuPanellSeller() {
+    public ButtonMenuPanelSeller() {
         initComponents();
     }
 
@@ -28,9 +28,8 @@ public class ButtonMenuPanellSeller extends javax.swing.JPanel {
     private void initComponents() {
 
         browsePropertiesButton = new javax.swing.JButton();
-        browseFavButton = new javax.swing.JButton();
-        signoutButton = new javax.swing.JButton();
         addPropertyButton = new javax.swing.JButton();
+        signoutButton = new javax.swing.JButton();
 
         setLayout(new java.awt.GridLayout(2, 2));
 
@@ -43,14 +42,14 @@ public class ButtonMenuPanellSeller extends javax.swing.JPanel {
         });
         add(browsePropertiesButton);
 
-        browseFavButton.setText("Browse Fav");
-        browseFavButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.lightGray, java.awt.Color.white, java.awt.Color.black, java.awt.Color.darkGray));
-        browseFavButton.addActionListener(new java.awt.event.ActionListener() {
+        addPropertyButton.setText("Add Property");
+        addPropertyButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.lightGray, java.awt.Color.white, java.awt.Color.black, java.awt.Color.darkGray));
+        addPropertyButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                browseFavButtonActionPerformed(evt);
+                addPropertyButtonActionPerformed(evt);
             }
         });
-        add(browseFavButton);
+        add(addPropertyButton);
 
         signoutButton.setText("Sign out");
         signoutButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.lightGray, java.awt.Color.white, java.awt.Color.black, java.awt.Color.darkGray));
@@ -60,26 +59,12 @@ public class ButtonMenuPanellSeller extends javax.swing.JPanel {
             }
         });
         add(signoutButton);
-
-        addPropertyButton.setText("Add Property");
-        addPropertyButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.lightGray, java.awt.Color.white, java.awt.Color.black, java.awt.Color.darkGray));
-        addPropertyButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addPropertyButtonActionPerformed(evt);
-            }
-        });
-        add(addPropertyButton);
     }// </editor-fold>//GEN-END:initComponents
 
     private void browsePropertiesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browsePropertiesButtonActionPerformed
         // TODO add your handling code here:
         MainWindow.changePanel(new BrowsePropertiesPanel());
     }//GEN-LAST:event_browsePropertiesButtonActionPerformed
-
-    private void browseFavButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browseFavButtonActionPerformed
-        // TODO add your handling code here:
-        MainWindow.changePanel(new BrowseFavPropertiesPanel());
-    }//GEN-LAST:event_browseFavButtonActionPerformed
 
     private void signoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signoutButtonActionPerformed
         MainWindow.frameMain.dispose();
@@ -95,7 +80,6 @@ public class ButtonMenuPanellSeller extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addPropertyButton;
-    private javax.swing.JButton browseFavButton;
     public javax.swing.JButton browsePropertiesButton;
     private javax.swing.JButton signoutButton;
     // End of variables declaration//GEN-END:variables

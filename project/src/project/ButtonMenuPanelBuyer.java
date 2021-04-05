@@ -5,17 +5,20 @@
  */
 package project;
 
+import static project.Tokeniser.Token.*;
+
 /**
  *
  * @author Drazic
  */
-public class ButtonMenuPanel extends javax.swing.JPanel {
+public class ButtonMenuPanelBuyer extends javax.swing.JPanel {
 
     /**
      * Creates new form MenuPanel
      */
-    public ButtonMenuPanel() {
+    public ButtonMenuPanelBuyer() {
         initComponents();
+       
     }
 
     /**
@@ -30,7 +33,6 @@ public class ButtonMenuPanel extends javax.swing.JPanel {
         browsePropertiesButton = new javax.swing.JButton();
         browseFavButton = new javax.swing.JButton();
         signoutButton = new javax.swing.JButton();
-        browsePropertiesButton2 = new javax.swing.JButton();
 
         setLayout(new java.awt.GridLayout(2, 2));
 
@@ -60,15 +62,6 @@ public class ButtonMenuPanel extends javax.swing.JPanel {
             }
         });
         add(signoutButton);
-
-        browsePropertiesButton2.setText("other button");
-        browsePropertiesButton2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.lightGray, java.awt.Color.white, java.awt.Color.black, java.awt.Color.darkGray));
-        browsePropertiesButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                browsePropertiesButton2ActionPerformed(evt);
-            }
-        });
-        add(browsePropertiesButton2);
     }// </editor-fold>//GEN-END:initComponents
 
     private void browsePropertiesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browsePropertiesButtonActionPerformed
@@ -82,21 +75,17 @@ public class ButtonMenuPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_browseFavButtonActionPerformed
 
     private void signoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signoutButtonActionPerformed
-        MainWindow.frameMain.dispose();
-        MainWindow.frameMain.setVisible(false);
+        MainWindow.closeWindow();
         LogIn2.main(null);
 
     }//GEN-LAST:event_signoutButtonActionPerformed
-
-    private void browsePropertiesButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browsePropertiesButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_browsePropertiesButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton browseFavButton;
     public javax.swing.JButton browsePropertiesButton;
-    private javax.swing.JButton browsePropertiesButton2;
     private javax.swing.JButton signoutButton;
     // End of variables declaration//GEN-END:variables
+
+
 }

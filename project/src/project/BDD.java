@@ -27,18 +27,18 @@ public class BDD {
     public static Connection getConnection() throws SQLException
     {
         Connection cnx = null;
-        
+
         MysqlDataSource datasource = new MysqlDataSource();
-        
+
         datasource.setServerName(servername);
         datasource.setUser(username);
         datasource.setPassword(password);
         datasource.setDatabaseName(dbname);
         datasource.setPortNumber(portnumber);
-        
+
         cnx = datasource.getConnection();
-        
-        return cnx;
+
+        return cnx;    
     }
     
     public static void exempleGetInfo(){

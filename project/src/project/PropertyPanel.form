@@ -19,20 +19,17 @@
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="priceLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="areaLabel" alignment="0" max="32767" attributes="0"/>
-                          <Component id="addressLabel" alignment="0" pref="269" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="favRadioButton" min="-2" max="-2" attributes="0"/>
+                  <Component id="titleLabel" alignment="0" min="-2" pref="384" max="-2" attributes="0"/>
+                  <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="priceLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="areaLabel" alignment="0" max="32767" attributes="0"/>
+                      <Component id="addressLabel" alignment="0" pref="269" max="32767" attributes="0"/>
                   </Group>
-                  <Group type="102" attributes="0">
-                      <Component id="titleLabel" min="-2" pref="384" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="backButton1" min="-2" max="-2" attributes="0"/>
-                  </Group>
+              </Group>
+              <EmptySpace max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="backButton1" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Component id="favCheckBox" alignment="1" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -50,8 +47,8 @@
                   </Group>
                   <Group type="102" attributes="0">
                       <Component id="backButton1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                      <Component id="favRadioButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="favCheckBox" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -96,15 +93,15 @@
         <Property name="text" type="java.lang.String" value="area"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JRadioButton" name="favRadioButton">
+    <Component class="project.BackButton2" name="backButton1">
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="favCheckBox">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Fav"/>
+        <Property name="text" type="java.lang.String" value="fav"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="favRadioButtonActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="favCheckBoxActionPerformed"/>
       </Events>
-    </Component>
-    <Component class="project.BackButton2" name="backButton1">
     </Component>
   </SubComponents>
 </Form>

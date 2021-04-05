@@ -27,14 +27,9 @@ public class MainWindow extends JFrame {
         this.user = user;
         
         userInfoPanel1.setUser(user);
-        if (user.token.equals(Tokeniser.Token.BUYER)){
-            System.out.println("buyer");
-            MainWindow.changePanel(new MenuPanel(user));
-        }
-        else if (user.token.equals(Tokeniser.Token.SELLER)){
-            System.out.println("seller");
-            MainWindow.changePanel(new MenuPanelSeller(user));
-        }
+        
+        MainWindow.changePanel(new MenuPanel(user));
+        
         
         // refresh
         mainPanel.revalidate();
@@ -49,8 +44,10 @@ public class MainWindow extends JFrame {
         mainPanel.repaint();
     }
 
-    public void closeWindow(){
+    public static void closeWindow(){
+        user = null;
         frameMain.dispose();
+        frameMain.setVisible(false);
     }
 
     /**
