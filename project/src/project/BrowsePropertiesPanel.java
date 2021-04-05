@@ -33,6 +33,8 @@ public class BrowsePropertiesPanel extends JPanel {
      */
     public BrowsePropertiesPanel() {
         initComponents();
+        
+        jScrollPane1.getVerticalScrollBar().setUnitIncrement(16);
        
         loadAllProperties();
     }
