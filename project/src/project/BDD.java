@@ -273,4 +273,30 @@ public class BDD {
             return null;
         }
     }
+    public static String addProperty(int ownerId, String title, double area, String address, int price){
+        
+        try {
+            PreparedStatement st;
+            ResultSet rs;
+            
+            
+            String query = "INSERT INTO property(OwnerId,title,area,address,price)"
+                    + "     VALUES (?,?,?,?,?)";
+            
+            st = BDD.getConnection().prepareStatement(query);
+            
+            st.setInt(1, ownerId);
+            st.setString(2, title);
+            st.setDouble(3, area);
+            st.setString(4, address);
+            st.setInt(5, price);
+            
+            st.executeUpdate();
+            
+            return "Success";
+        } catch (SQLException ex) {
+            Logger.getLogger(BDD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return "Error";
+    }
 }
