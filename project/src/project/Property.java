@@ -19,9 +19,9 @@ public class Property {
     protected int propertyId;
     protected String address;
     protected String title;
-    protected double area;
+    protected double area=-1;
     protected String features;
-    protected int price;
+    protected int price=-1;
 
     public Property(int propertyId, String title, String address, double area, String features, int price) {
         this.propertyId = propertyId;
@@ -31,7 +31,9 @@ public class Property {
         this.features = features;
         this.price = price;
     }
-    
+    public Property(){
+        
+    }
     static Property getPropertyFromRS(ResultSet rs) {
         try {
             return new Property(rs.getInt("propertyId"),rs.getString("title"),rs.getString("address"),rs.getDouble("area"),null,rs.getInt("price"));
@@ -63,6 +65,30 @@ public class Property {
 
     public int getPrice() {
         return price;
+    }
+
+    public void setPropertyId(int propertyId) {
+        this.propertyId = propertyId;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setArea(double area) {
+        this.area = area;
+    }
+
+    public void setFeatures(String features) {
+        this.features = features;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
     }
     
     
