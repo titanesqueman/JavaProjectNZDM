@@ -82,8 +82,7 @@ public class ButtonMenuPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_browseFavButtonActionPerformed
 
     private void signoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signoutButtonActionPerformed
-        MainWindow.frameMain.dispose();
-        MainWindow.frameMain.setVisible(false);
+        MainWindow.closeWindow();
         LogIn2.main(null);
 
     }//GEN-LAST:event_signoutButtonActionPerformed

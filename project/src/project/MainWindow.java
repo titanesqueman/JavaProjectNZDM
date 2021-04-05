@@ -43,8 +43,10 @@ public class MainWindow extends JFrame {
         mainPanel.repaint();
     }
 
-    public void closeWindow(){
+    public static void closeWindow(){
+        user = null;
         frameMain.dispose();
+        frameMain.setVisible(false);
     }
 
     /**
