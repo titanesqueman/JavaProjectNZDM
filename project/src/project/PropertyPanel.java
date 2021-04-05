@@ -5,6 +5,9 @@
  */
 package project;
 
+import static project.Tokeniser.Token.EMPLOYEE;
+import static project.Tokeniser.Token.SELLER;
+
 /**
  *
  * @author Drazic
@@ -37,8 +40,8 @@ public class PropertyPanel extends javax.swing.JPanel {
         addressLabel = new javax.swing.JLabel();
         priceLabel = new javax.swing.JLabel();
         areaLabel = new javax.swing.JLabel();
-        favRadioButton = new javax.swing.JRadioButton();
         backButton1 = new project.BackButton2();
+        favCheckBox = new javax.swing.JCheckBox();
 
         titleLabel.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         titleLabel.setText("titleLabel");
@@ -52,10 +55,10 @@ public class PropertyPanel extends javax.swing.JPanel {
         areaLabel.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         areaLabel.setText("area");
 
-        favRadioButton.setText("Fav");
-        favRadioButton.addActionListener(new java.awt.event.ActionListener() {
+        favCheckBox.setText("fav");
+        favCheckBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                favRadioButtonActionPerformed(evt);
+                favCheckBoxActionPerformed(evt);
             }
         });
 
@@ -66,17 +69,15 @@ public class PropertyPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(priceLabel)
-                            .addComponent(areaLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(addressLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(favRadioButton))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(backButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(priceLabel)
+                        .addComponent(areaLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(addressLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(backButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(favCheckBox, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -90,8 +91,8 @@ public class PropertyPanel extends javax.swing.JPanel {
                         .addComponent(priceLabel))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(backButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(favRadioButton)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(favCheckBox)))
                 .addGap(18, 18, 18)
                 .addComponent(areaLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -100,22 +101,25 @@ public class PropertyPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void favRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_favRadioButtonActionPerformed
+    private void favCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_favCheckBoxActionPerformed
         // TODO add your handling code here:
-        if (favRadioButton.isSelected()){
-            // add fav
-            BDD.setFav(property.getPropertyId(),MainWindow.getUser().getUserId());
+        if (favCheckBox.isSelected()){
+            BDD.setFav(property.propertyId, MainWindow.getUser().userId);
         }else{
-            // delete fav
-            BDD.deleteFav(property.getPropertyId(),MainWindow.getUser().getUserId());
+            BDD.deleteFav(property.propertyId, MainWindow.getUser().userId);
         }
-    }//GEN-LAST:event_favRadioButtonActionPerformed
+    }//GEN-LAST:event_favCheckBoxActionPerformed
     
     private void loaddata() {
-        if (BDD.isFav(property.getPropertyId(), MainWindow.getUser().getUserId())){
-            favRadioButton.setSelected(true);
+        
+        if (MainWindow.getUser().token == SELLER || MainWindow.getUser().token == EMPLOYEE){
+            favCheckBox.setVisible(false);
         }else{
-            favRadioButton.setSelected(false);
+            if (BDD.isFav(property.getPropertyId(), MainWindow.getUser().getUserId())){
+            favCheckBox.setSelected(true);
+            }else{
+                favCheckBox.setSelected(false);
+            }
         }
         
         titleLabel.setText(property.getTitle());
@@ -128,7 +132,7 @@ public class PropertyPanel extends javax.swing.JPanel {
     private javax.swing.JLabel addressLabel;
     private javax.swing.JLabel areaLabel;
     private project.BackButton2 backButton1;
-    private javax.swing.JRadioButton favRadioButton;
+    private javax.swing.JCheckBox favCheckBox;
     private javax.swing.JLabel priceLabel;
     private javax.swing.JLabel titleLabel;
     // End of variables declaration//GEN-END:variables

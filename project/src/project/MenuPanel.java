@@ -5,6 +5,9 @@
  */
 package project;
 
+import static project.Tokeniser.Token.EMPLOYEE;
+import static project.Tokeniser.Token.SELLER;
+
 /**
  *
  * @author Drazic
@@ -24,6 +27,12 @@ public class MenuPanel extends javax.swing.JPanel {
     
     private void loaddata(){
         helloUserLabel.setText("hello " + user.firstname + user.lastname);
+        
+        if (MainWindow.getUser().token == SELLER || MainWindow.getUser().token == EMPLOYEE){
+            ButtonPanel.add(new ButtonMenuPanelSeller());
+        }else{
+            ButtonPanel.add(new ButtonMenuPanelBuyer());
+        }
     }
 
     /**
@@ -37,14 +46,13 @@ public class MenuPanel extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         helloUserLabel = new javax.swing.JLabel();
-        buttonMenuPanel1 = new project.ButtonMenuPanel();
+        ButtonPanel = new javax.swing.JPanel();
 
         jLabel1.setText("Panel : Menu");
 
         helloUserLabel.setText("jLabel2");
 
-        buttonMenuPanel1.setBackground(new java.awt.Color(0, 102, 102));
-        buttonMenuPanel1.setPreferredSize(new java.awt.Dimension(300, 300));
+        ButtonPanel.setLayout(new java.awt.GridLayout());
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -57,7 +65,7 @@ public class MenuPanel extends javax.swing.JPanel {
                 .addGap(0, 212, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(buttonMenuPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(ButtonPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -66,15 +74,15 @@ public class MenuPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(helloUserLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(buttonMenuPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 407, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ButtonPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public project.ButtonMenuPanel buttonMenuPanel1;
+    private javax.swing.JPanel ButtonPanel;
     private javax.swing.JLabel helloUserLabel;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables

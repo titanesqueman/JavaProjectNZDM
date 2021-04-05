@@ -30,14 +30,14 @@
                           <Component id="titleLabel" alignment="0" min="-2" pref="197" max="-2" attributes="0"/>
                           <Component id="areaLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="109" max="32767" attributes="0"/>
+                      <EmptySpace pref="104" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="priceLabel" min="-2" pref="88" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-              <Component id="favRadioButton" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
+              <Component id="favCheckBox" min="-2" pref="68" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -52,12 +52,20 @@
               <Component id="addressLabel" max="32767" attributes="0"/>
               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
           </Group>
-          <Component id="favRadioButton" alignment="0" max="32767" attributes="0"/>
           <Component id="priceLabel" alignment="0" max="32767" attributes="0"/>
+          <Component id="favCheckBox" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
+    <Component class="javax.swing.JCheckBox" name="favCheckBox">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="fav"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="favCheckBoxActionPerformed"/>
+      </Events>
+    </Component>
     <Component class="javax.swing.JLabel" name="titleLabel">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -73,14 +81,6 @@
         </Property>
         <Property name="text" type="java.lang.String" value="addressLabel"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JRadioButton" name="favRadioButton">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Fav"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="favRadioButtonActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="areaLabel">
       <Properties>

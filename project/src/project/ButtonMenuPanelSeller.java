@@ -9,12 +9,12 @@ package project;
  *
  * @author Drazic
  */
-public class ButtonMenuPanel extends javax.swing.JPanel {
+public class ButtonMenuPanelSeller extends javax.swing.JPanel {
 
     /**
      * Creates new form MenuPanel
      */
-    public ButtonMenuPanel() {
+    public ButtonMenuPanelSeller() {
         initComponents();
     }
 
@@ -28,9 +28,8 @@ public class ButtonMenuPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         browsePropertiesButton = new javax.swing.JButton();
-        browseFavButton = new javax.swing.JButton();
+        addPropertyButton = new javax.swing.JButton();
         signoutButton = new javax.swing.JButton();
-        browsePropertiesButton2 = new javax.swing.JButton();
 
         setLayout(new java.awt.GridLayout(2, 2));
 
@@ -43,14 +42,14 @@ public class ButtonMenuPanel extends javax.swing.JPanel {
         });
         add(browsePropertiesButton);
 
-        browseFavButton.setText("Browse Fav");
-        browseFavButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.lightGray, java.awt.Color.white, java.awt.Color.black, java.awt.Color.darkGray));
-        browseFavButton.addActionListener(new java.awt.event.ActionListener() {
+        addPropertyButton.setText("Add Property");
+        addPropertyButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.lightGray, java.awt.Color.white, java.awt.Color.black, java.awt.Color.darkGray));
+        addPropertyButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                browseFavButtonActionPerformed(evt);
+                addPropertyButtonActionPerformed(evt);
             }
         });
-        add(browseFavButton);
+        add(addPropertyButton);
 
         signoutButton.setText("Sign out");
         signoutButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.lightGray, java.awt.Color.white, java.awt.Color.black, java.awt.Color.darkGray));
@@ -60,15 +59,6 @@ public class ButtonMenuPanel extends javax.swing.JPanel {
             }
         });
         add(signoutButton);
-
-        browsePropertiesButton2.setText("other button");
-        browsePropertiesButton2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.lightGray, java.awt.Color.white, java.awt.Color.black, java.awt.Color.darkGray));
-        browsePropertiesButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                browsePropertiesButton2ActionPerformed(evt);
-            }
-        });
-        add(browsePropertiesButton2);
     }// </editor-fold>//GEN-END:initComponents
 
     private void browsePropertiesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browsePropertiesButtonActionPerformed
@@ -76,26 +66,21 @@ public class ButtonMenuPanel extends javax.swing.JPanel {
         MainWindow.changePanel(new BrowsePropertiesPanel());
     }//GEN-LAST:event_browsePropertiesButtonActionPerformed
 
-    private void browseFavButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browseFavButtonActionPerformed
-        // TODO add your handling code here:
-        MainWindow.changePanel(new BrowseFavPropertiesPanel());
-    }//GEN-LAST:event_browseFavButtonActionPerformed
-
     private void signoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signoutButtonActionPerformed
-        MainWindow.closeWindow();
+        MainWindow.frameMain.dispose();
+        MainWindow.frameMain.setVisible(false);
         LogIn2.main(null);
 
     }//GEN-LAST:event_signoutButtonActionPerformed
 
-    private void browsePropertiesButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browsePropertiesButton2ActionPerformed
+    private void addPropertyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addPropertyButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_browsePropertiesButton2ActionPerformed
+    }//GEN-LAST:event_addPropertyButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton browseFavButton;
+    private javax.swing.JButton addPropertyButton;
     public javax.swing.JButton browsePropertiesButton;
-    private javax.swing.JButton browsePropertiesButton2;
     private javax.swing.JButton signoutButton;
     // End of variables declaration//GEN-END:variables
 }
