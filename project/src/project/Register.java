@@ -90,6 +90,7 @@ public class Register extends javax.swing.JFrame {
         functionComboBox = new javax.swing.JComboBox<>();
         allEntriesLabel = new javax.swing.JLabel();
         passwordMatchLabel = new javax.swing.JLabel();
+        cancelButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -179,6 +180,13 @@ public class Register extends javax.swing.JFrame {
         passwordMatchLabel.setForeground(new java.awt.Color(255, 0, 0));
         passwordMatchLabel.setText("Passwords must match");
 
+        cancelButton.setText("Cancel");
+        cancelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -186,6 +194,11 @@ public class Register extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(cancelButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(confirmButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(19, 19, 19))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(allEntriesLabel)
                         .addContainerGap())
@@ -224,10 +237,6 @@ public class Register extends javax.swing.JFrame {
                                         .addComponent(radioOther)
                                         .addGap(0, 0, Short.MAX_VALUE)))
                                 .addGap(39, 39, 39))))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(confirmButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -267,11 +276,13 @@ public class Register extends javax.swing.JFrame {
                     .addComponent(functionLabel)
                     .addComponent(functionComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(allEntriesLabel)
-                    .addComponent(passwordMatchLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(passwordMatchLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(allEntriesLabel))
                 .addGap(18, 18, 18)
-                .addComponent(confirmButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(confirmButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cancelButton))
                 .addGap(15, 15, 15))
         );
 
@@ -314,9 +325,7 @@ public class Register extends javax.swing.JFrame {
         pswrd = new String(PwrdText.getPassword());
         tokenId = (String)functionComboBox.getSelectedItem();
         String confirm_pswrd = new String(confirmPwrdText.getPassword());
-        if (firstname.equals("James  ")||lastname.equals("Smith  ")||phonenumber.equals("07 81 04 48 69  ")
-                ||pswrd.equals("password123 ")||email.equals("example@mail.com")||gender==0 ||tokenId.equals("Select your fonction...")){
-            
+        if (entriesAreDefault()){
             allEntriesLabel.setVisible(true);
         }
         else{
@@ -331,20 +340,33 @@ public class Register extends javax.swing.JFrame {
             //confirmPwrdText.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
             
         }
-        if(!(passwordMatchLabel.isVisible()&&passwordMatchLabel.isVisible())){
+        if(!(passwordMatchLabel.isVisible()||allEntriesLabel.isVisible())){
             BDD.register(tokenId, firstname, lastname, phonenumber, email, pswrd, gender);
             User user = BDD.login(email, pswrd);
             dispose();
+            setVisible(false);
             MainWindow.main(user);
         }
         
     }//GEN-LAST:event_confirmButtonActionPerformed
-
+    private boolean entriesAreDefault(){
+        if (firstname.equals("James  ")||lastname.equals("Smith  ")||phonenumber.equals("07 81 04 48 69  ")
+                ||pswrd.equals("password123 ")||email.equals("example@mail.com")||gender==0 ||tokenId.equals("Select your fonction...")){
+            return true;
+        }
+        return false;
+    }
     private void functionComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_functionComboBoxActionPerformed
         if (functionComboBox.getSelectedIndex()!=0){
             tokenId = (String)functionComboBox.getSelectedItem();
         }
     }//GEN-LAST:event_functionComboBoxActionPerformed
+
+    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
+        dispose();
+        setVisible(false);
+        LogIn2.main(null);
+    }//GEN-LAST:event_cancelButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -404,6 +426,7 @@ public class Register extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPasswordField PwrdText;
     private static javax.swing.JLabel allEntriesLabel;
+    private javax.swing.JButton cancelButton;
     private javax.swing.JLabel confPasswordLabel;
     private javax.swing.JButton confirmButton;
     private javax.swing.JPasswordField confirmPwrdText;
