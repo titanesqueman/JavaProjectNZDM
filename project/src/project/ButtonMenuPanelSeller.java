@@ -30,6 +30,7 @@ public class ButtonMenuPanelSeller extends javax.swing.JPanel {
         browsePropertiesButton = new javax.swing.JButton();
         addPropertyButton = new javax.swing.JButton();
         signoutButton = new javax.swing.JButton();
+        browseOnSellProperty = new javax.swing.JButton();
 
         setLayout(new java.awt.GridLayout(2, 2));
 
@@ -59,6 +60,15 @@ public class ButtonMenuPanelSeller extends javax.swing.JPanel {
             }
         });
         add(signoutButton);
+
+        browseOnSellProperty.setText("Browse my viewing");
+        browseOnSellProperty.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.lightGray, java.awt.Color.white, java.awt.Color.black, java.awt.Color.darkGray));
+        browseOnSellProperty.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                browseOnSellPropertyActionPerformed(evt);
+            }
+        });
+        add(browseOnSellProperty);
     }// </editor-fold>//GEN-END:initComponents
 
     private void browsePropertiesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browsePropertiesButtonActionPerformed
@@ -78,9 +88,15 @@ public class ButtonMenuPanelSeller extends javax.swing.JPanel {
         addPropertyPopUp.main(null);
     }//GEN-LAST:event_addPropertyButtonActionPerformed
 
+    private void browseOnSellPropertyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browseOnSellPropertyActionPerformed
+        // TODO add your handling code here:
+        MainWindow.changePanel(new ViewingPanel());
+    }//GEN-LAST:event_browseOnSellPropertyActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addPropertyButton;
+    private javax.swing.JButton browseOnSellProperty;
     public javax.swing.JButton browsePropertiesButton;
     private javax.swing.JButton signoutButton;
     // End of variables declaration//GEN-END:variables

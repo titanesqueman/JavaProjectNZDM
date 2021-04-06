@@ -267,10 +267,6 @@ public class BDD {
  
             st = MainWindow.getUser().getCon().prepareStatement(query);
             
-            System.out.println(sortBy);
-            System.out.println(orderBy);
-            System.out.println("");
-            
             st.setInt(1, minArea);
             st.setInt(2, maxArea);
             st.setInt(3, minPrice);
@@ -340,21 +336,22 @@ public class BDD {
         return false;
     }
     
-    public static String addViewing(int propertyId, int year, int month, int day, int hour){
+    public static String addViewing(int userId, int propertyId, int year, int month, int day, int hour){
         try {
             PreparedStatement st;
             ResultSet rs;
             
-            String query = "INSERT INTO viewing(propertyId,year,month,day,hour)"
-                    + "     VALUES (?,?,?,?,?)";
+            String query = "INSERT INTO viewing(userId, propertyId,year,month,day,hour)"
+                    + "     VALUES (?,?,?,?,?,?)";
             
             st = BDD.getConnection().prepareStatement(query);
             
-            st.setInt(1, propertyId);
-            st.setInt(2, year);
-            st.setInt(3, month);
-            st.setInt(4, day);
-            st.setInt(5, hour);
+            st.setInt(1, userId);
+            st.setInt(2, propertyId);
+            st.setInt(3, year);
+            st.setInt(4, month);
+            st.setInt(5, day);
+            st.setInt(6, hour);
             
             st.executeUpdate();
             
@@ -363,5 +360,31 @@ public class BDD {
             Logger.getLogger(BDD.class.getName()).log(Level.SEVERE, null, ex);
         }
         return "Error";
+    }
+    
+    public static ResultSet getViewing(int sellerId){
+        PreparedStatement st;
+        ResultSet rs;
+        try {
+            String query =
+                      "     SELECT * "
+                    + "     FROM viewing v"
+                    + "     INNER JOIN property p"
+                    + "     ON v.propertyId = p.propertyId"
+                    + "     INNER JOIN users u"
+                    + "     ON p.sellerId = u.userId"
+                    + "     WHERE u.userId = ?";
+ 
+            st = MainWindow.getUser().getCon().prepareStatement(query);
+            
+            st.setInt(1, sellerId);
+            
+            rs = st.executeQuery();
+            
+            return rs;
+        } catch (SQLException ex) {
+            Logger.getLogger(BDD.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
     }
 }
