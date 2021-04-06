@@ -53,6 +53,7 @@ public class PropertyPanel extends javax.swing.JPanel {
         yearCombo = new javax.swing.JComboBox<>();
         hourCombo = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
+        confirmButton = new javax.swing.JButton();
 
         titleLabel.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         titleLabel.setText("titleLabel");
@@ -105,6 +106,13 @@ public class PropertyPanel extends javax.swing.JPanel {
 
         jLabel2.setText("NB : our viewings last around 45 minutes");
 
+        confirmButton.setText("Confirm");
+        confirmButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                confirmButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -124,19 +132,22 @@ public class PropertyPanel extends javax.swing.JPanel {
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(confirmButton)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(hourCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel1)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(dayCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(monthCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(yearCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(hourCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel2))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(dayCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(monthCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(yearCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -166,7 +177,9 @@ public class PropertyPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(hourCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
-                .addContainerGap(142, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(confirmButton)
+                .addContainerGap(103, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -186,7 +199,8 @@ public class PropertyPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_dayComboActionPerformed
 
     private void yearComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yearComboActionPerformed
-        year = (int)yearCombo.getSelectedIndex();
+        year = Integer.parseInt((String) yearCombo.getSelectedItem());
+        
         
         updateHours();
     }//GEN-LAST:event_yearComboActionPerformed
@@ -231,6 +245,11 @@ public class PropertyPanel extends javax.swing.JPanel {
         }
         System.out.println(hour);
     }//GEN-LAST:event_hourComboActionPerformed
+
+    private void confirmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmButtonActionPerformed
+        BDD.addViewing(property.propertyId,year,month,day,hour);
+        MainWindow.changePanel(new BrowsePropertiesPanel());
+    }//GEN-LAST:event_confirmButtonActionPerformed
     private void updateHours(){
         for (int i=hourCombo.getItemCount(); i>1; i--){
                 hourCombo.removeItemAt(i-1);
@@ -238,7 +257,9 @@ public class PropertyPanel extends javax.swing.JPanel {
         if ((month != 0 && year != 0 && day != 0)){
             
             for (int i=8; i<18;i++){
-                hourCombo.addItem(i+"h -- "+(i+1)+"h");
+                if (!BDD.isBooked(property.propertyId,year,month,day,i)){
+                    hourCombo.addItem(i+"h -- "+(i+1)+"h");
+                }
             }
         }
     }
@@ -264,6 +285,7 @@ public class PropertyPanel extends javax.swing.JPanel {
     private javax.swing.JLabel addressLabel;
     private javax.swing.JLabel areaLabel;
     private project.BackButton2 backButton1;
+    private javax.swing.JButton confirmButton;
     private javax.swing.JComboBox<String> dayCombo;
     private javax.swing.JCheckBox favCheckBox;
     private javax.swing.JComboBox<String> hourCombo;

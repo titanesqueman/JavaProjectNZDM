@@ -313,7 +313,7 @@ public class BDD {
         return "Error";
     }
     
-    public static boolean isViewingAvailable(int propertyId, int year, int month, int day, int hour){
+    public static boolean isBooked(int propertyId, int year, int month, int day, int hour){
         try {
             PreparedStatement st;
             ResultSet rs;
@@ -345,7 +345,7 @@ public class BDD {
             PreparedStatement st;
             ResultSet rs;
             
-            String query = "INSERT INTO property(propertyId,year,month,day,hour)"
+            String query = "INSERT INTO viewing(propertyId,year,month,day,hour)"
                     + "     VALUES (?,?,?,?,?)";
             
             st = MainWindow.getUser().getCon().prepareStatement(query);
