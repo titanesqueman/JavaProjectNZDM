@@ -249,21 +249,29 @@ public class BDD {
     }
     
     // return Result set with a certain property filter
-    static ResultSet propertiesFilter(int minPrice, int maxPrice, int minArea, int maxArea){
+    static ResultSet propertiesFilter(int minPrice, int maxPrice, int minArea, int maxArea, String sortBy, String orderBy){
         PreparedStatement st;
         ResultSet rs;
         try {
-            String query = "SELECT * "
+            String query = String.format("SELECT price,title,area,propertyId,address "
                     + "     FROM property"
                     + "     WHERE (area BETWEEN ? AND ?)"
-                    + "     AND   (price BETWEEN ? AND ?)";
+                    + "     AND   (price BETWEEN ? AND ?)"
+                    + "     ORDER BY %s %s", sortBy, orderBy);
             
+ 
             st = BDD.getConnection().prepareStatement(query);
             
-            st.setInt(1,minArea);
-            st.setInt(2,maxArea);
-            st.setInt(3,minPrice);
-            st.setInt(4,maxPrice);
+            System.out.println(sortBy);
+            System.out.println(orderBy);
+            System.out.println("");
+            
+            st.setInt(1, minArea);
+            st.setInt(2, maxArea);
+            st.setInt(3, minPrice);
+            st.setInt(4, maxPrice);
+            //st.setString(5, sortBy);
+            //st.setString(6, orderBy);
             
             rs = st.executeQuery();
             
@@ -298,5 +306,32 @@ public class BDD {
             Logger.getLogger(BDD.class.getName()).log(Level.SEVERE, null, ex);
         }
         return "Error";
+    }
+    
+    public static boolean isViewingAvailable(int propertyId, int year, int month, int day, int hour){
+        try {
+            PreparedStatement st;
+            ResultSet rs;
+            
+            String query = "SELECT * "
+                    + "     FROM viewing "
+                    + "     WHERE propertyId = ? AND year = ? AND month = ? AND day = ? AND hour = ?";
+            
+            st = BDD.getConnection().prepareStatement(query);
+            
+            st.setInt(1,propertyId);
+            st.setInt(2,year);
+            st.setInt(3,month);
+            st.setInt(4,day);
+            st.setInt(5,hour);
+            
+            rs = st.executeQuery();
+            
+            return rs.next();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(BDD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
     }
 }
