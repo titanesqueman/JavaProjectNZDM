@@ -309,7 +309,7 @@ public class BDD {
         return "Error";
     }
     
-    public static boolean isViewingAvailable(int propertyId, int year, int month, int day, int hour){
+    public static boolean isBooked(int propertyId, int year, int month, int day, int hour){
         try {
             PreparedStatement st;
             ResultSet rs;

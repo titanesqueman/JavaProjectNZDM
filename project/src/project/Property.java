@@ -22,21 +22,23 @@ public class Property {
     protected double area=-1;
     protected String features;
     protected int price=-1;
+    protected String description;
 
-    public Property(int propertyId, String title, String address, double area, String features, int price) {
+    public Property(int propertyId, String title, String address, double area, String features, int price, String description) {
         this.propertyId = propertyId;
         this.title = title;
         this.address = address;
         this.area = area;
         this.features = features;
         this.price = price;
+        this.description = description;
     }
     public Property(){
         
     }
     static Property getPropertyFromRS(ResultSet rs) {
         try {
-            return new Property(rs.getInt("propertyId"),rs.getString("title"),rs.getString("address"),rs.getDouble("area"),null,rs.getInt("price"));
+            return new Property(rs.getInt("propertyId"),rs.getString("title"),rs.getString("address"),rs.getDouble("area"),null,rs.getInt("price"),rs.getString("description"));
         } catch (SQLException ex) {
             Logger.getLogger(Property.class.getName()).log(Level.SEVERE, null, ex);
         }

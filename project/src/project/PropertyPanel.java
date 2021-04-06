@@ -5,6 +5,8 @@
  */
 package project;
 
+import java.awt.Font;
+import static project.Tokeniser.Token.BUYER;
 import static project.Tokeniser.Token.EMPLOYEE;
 import static project.Tokeniser.Token.SELLER;
 
@@ -24,11 +26,19 @@ public class PropertyPanel extends javax.swing.JPanel {
      */
     public PropertyPanel() {
         initComponents();
+        
     }
     
     public PropertyPanel(Property property) {
         this.property = property;
         initComponents();
+        if (MainWindow.getUser().token==BUYER){
+            jPanel1.add(new BookViewingPanel(property));
+            desciptionText.setText(property.description);
+            desciptionText.setLineWrap(true);
+            desciptionText.setWrapStyleWord(true);
+        }
+        
         loaddata();
     }
 
@@ -47,63 +57,46 @@ public class PropertyPanel extends javax.swing.JPanel {
         areaLabel = new javax.swing.JLabel();
         backButton1 = new project.BackButton2();
         favCheckBox = new javax.swing.JCheckBox();
-        dayCombo = new javax.swing.JComboBox<>();
-        jLabel1 = new javax.swing.JLabel();
-        monthCombo = new javax.swing.JComboBox<>();
-        yearCombo = new javax.swing.JComboBox<>();
-        hourCombo = new javax.swing.JComboBox<>();
-        jLabel2 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        desciptionText = new javax.swing.JTextArea();
+        jButton1 = new javax.swing.JButton();
 
         titleLabel.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         titleLabel.setText("titleLabel");
 
-        addressLabel.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        addressLabel.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         addressLabel.setText("address");
 
         priceLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         priceLabel.setText("price");
 
-        areaLabel.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        areaLabel.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         areaLabel.setText("area");
 
-        favCheckBox.setText("fav");
+        favCheckBox.setText("add to Favorites");
         favCheckBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 favCheckBoxActionPerformed(evt);
             }
         });
 
-        dayCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Day", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
-        dayCombo.addActionListener(new java.awt.event.ActionListener() {
+        jPanel1.setBackground(new java.awt.Color(204, 255, 0));
+        jPanel1.setLayout(new java.awt.GridLayout());
+
+        desciptionText.setEditable(false);
+        desciptionText.setBackground(new java.awt.Color(240, 240, 240));
+        desciptionText.setColumns(20);
+        desciptionText.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        desciptionText.setRows(5);
+        jScrollPane1.setViewportView(desciptionText);
+
+        jButton1.setText("Back to properties");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dayComboActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
-
-        jLabel1.setText("Book a viewing:");
-
-        monthCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Month", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" }));
-        monthCombo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                monthComboActionPerformed(evt);
-            }
-        });
-
-        yearCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Year", "2021", "2022" }));
-        yearCombo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                yearComboActionPerformed(evt);
-            }
-        });
-
-        hourCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hour of visit", "--------------" }));
-        hourCombo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                hourComboActionPerformed(evt);
-            }
-        });
-
-        jLabel2.setText("NB : our viewings last around 45 minutes");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -112,61 +105,45 @@ public class PropertyPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(priceLabel)
-                        .addComponent(areaLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(addressLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(backButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(favCheckBox, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 117, Short.MAX_VALUE)
+                        .addComponent(backButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(priceLabel)
+                            .addComponent(addressLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+                            .addComponent(areaLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(favCheckBox, javax.swing.GroupLayout.Alignment.TRAILING)))
+                    .addComponent(jScrollPane1))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(hourCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(dayCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(monthCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(yearCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(titleLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(priceLabel))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(backButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(favCheckBox)))
+                    .addComponent(titleLabel)
+                    .addComponent(backButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(areaLabel)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(priceLabel)
+                    .addComponent(jButton1))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(areaLabel)
+                    .addComponent(favCheckBox))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(addressLabel)
-                .addGap(93, 93, 93)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(dayCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1)
-                    .addComponent(monthCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(yearCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(hourCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addContainerGap(142, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -179,69 +156,10 @@ public class PropertyPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_favCheckBoxActionPerformed
 
-    private void dayComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dayComboActionPerformed
-        day = (int)dayCombo.getSelectedIndex();
-        
-        updateHours();
-    }//GEN-LAST:event_dayComboActionPerformed
-
-    private void yearComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yearComboActionPerformed
-        year = (int)yearCombo.getSelectedIndex();
-        
-        updateHours();
-    }//GEN-LAST:event_yearComboActionPerformed
-
-    private void monthComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_monthComboActionPerformed
-        month = (int)monthCombo.getSelectedIndex();
-        
-        if (month==2||month==4 || month ==6 || month==9|| month ==11){
-            dayCombo.removeItem("31");
-            if (dayCombo.getItemCount()<31 ){ //if there's not 31 days avalaible
-                int initialNrOfDays =dayCombo.getItemCount();
-                int daystoadd = 30-dayCombo.getItemCount();
-                for (int i=1; i<=daystoadd; i++){
-                    dayCombo.addItem(Integer.toString(initialNrOfDays+i));
-                }
-            }
-            if (month==2){
-                dayCombo.removeItem("30");
-                dayCombo.removeItem("29");
-            }
-        }
-        else { //if it's a month with > than 30 days 
-            if (dayCombo.getItemCount()<32 ){ //if there's not 31 days avalaible
-                int initialNrOfDays =dayCombo.getItemCount();
-                int daystoadd = 31-dayCombo.getItemCount();
-                for (int i=1; i<=daystoadd; i++){
-                    dayCombo.addItem(Integer.toString(initialNrOfDays+i));
-                }
-            }
-        }
-        updateHours();
-    }//GEN-LAST:event_monthComboActionPerformed
-
-    private void hourComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hourComboActionPerformed
-        String fullHour= (String)hourCombo.getSelectedItem();
-        if (fullHour.charAt(1)=='h'){ //8h / 9h 
-            hour= Integer.parseInt(String.valueOf(fullHour.charAt(0)));
-        }
-        else if (fullHour.charAt(2)=='h'){
-            String twoDigitsHour= String.valueOf(fullHour.charAt(0)) + String.valueOf(fullHour.charAt(1));
-            hour = Integer.parseInt(twoDigitsHour);
-        }
-        System.out.println(hour);
-    }//GEN-LAST:event_hourComboActionPerformed
-    private void updateHours(){
-        for (int i=hourCombo.getItemCount(); i>1; i--){
-                hourCombo.removeItemAt(i-1);
-        }
-        if ((month != 0 && year != 0 && day != 0)){
-            
-            for (int i=8; i<18;i++){
-                hourCombo.addItem(i+"h -- "+(i+1)+"h");
-            }
-        }
-    }
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        MainWindow.changePanel(new BrowsePropertiesPanel());
+    }//GEN-LAST:event_jButton1ActionPerformed
+    
     private void loaddata() {
         
         if (MainWindow.getUser().token == SELLER || MainWindow.getUser().token == EMPLOYEE){
@@ -264,14 +182,12 @@ public class PropertyPanel extends javax.swing.JPanel {
     private javax.swing.JLabel addressLabel;
     private javax.swing.JLabel areaLabel;
     private project.BackButton2 backButton1;
-    private javax.swing.JComboBox<String> dayCombo;
+    private javax.swing.JTextArea desciptionText;
     private javax.swing.JCheckBox favCheckBox;
-    private javax.swing.JComboBox<String> hourCombo;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JComboBox<String> monthCombo;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel priceLabel;
     private javax.swing.JLabel titleLabel;
-    private javax.swing.JComboBox<String> yearCombo;
     // End of variables declaration//GEN-END:variables
 }
