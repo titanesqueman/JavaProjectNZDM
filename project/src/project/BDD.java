@@ -348,7 +348,7 @@ public class BDD {
             String query = "INSERT INTO viewing(propertyId,year,month,day,hour)"
                     + "     VALUES (?,?,?,?,?)";
             
-            st = MainWindow.getUser().getCon().prepareStatement(query);
+            st = BDD.getConnection().prepareStatement(query);
             
             st.setInt(1, propertyId);
             st.setInt(2, year);
