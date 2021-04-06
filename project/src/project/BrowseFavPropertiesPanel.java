@@ -105,7 +105,7 @@ public class BrowseFavPropertiesPanel extends JPanel {
                     + "     ON u.userId = f.userId AND p.propertyId = f.propertyId"
                     + "     WHERE u.userId = ?";
             
-            st = BDD.getConnection().prepareStatement(query);
+            st = MainWindow.getUser().getCon().prepareStatement(query);
             
             st.setInt(1,MainWindow.getUser().getUserId());
             

@@ -13,7 +13,7 @@ import project.Tokeniser.Token;
  * @author drazic
  */
 public class Buyer extends User{
-    public Buyer(int DBID, String firstname, String lastname, String emailAddress, String phonenumber) {
-        super(DBID, firstname, lastname, emailAddress, phonenumber, Token.BUYER);
+    public Buyer(int DBID, String firstname, String lastname, String emailAddress, String phonenumber, java.sql.Connection cnx) {
+        super(DBID, firstname, lastname, emailAddress, phonenumber, Token.BUYER, cnx);
     }
 }

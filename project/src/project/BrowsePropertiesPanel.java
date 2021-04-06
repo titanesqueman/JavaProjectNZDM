@@ -27,6 +27,8 @@ public class BrowsePropertiesPanel extends JPanel {
     private int maxPrice = 9999999;
     private int minArea = 0;
     private int maxArea = 99999999;
+    private String orderBy = "ASC";
+    private String sortBy = "price";
 
     /**
      * Creates new form BrowseProperties
@@ -284,10 +286,26 @@ public class BrowsePropertiesPanel extends JPanel {
 
     private void orderComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orderComboActionPerformed
         // TODO add your handling code here:
+        int selected = orderCombo.getSelectedIndex();
+        if (selected == 1){
+            orderBy = "DESC";
+        }else{
+            orderBy = "ASC";
+        }
+        
+        loadPropertiesFilter();
     }//GEN-LAST:event_orderComboActionPerformed
 
     private void sortComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sortComboActionPerformed
         // TODO add your handling code here:
+        int selected = orderCombo.getSelectedIndex();
+        if (selected == 1){
+            sortBy = "area";
+        }else{
+            sortBy = "price";
+        }
+        
+        loadPropertiesFilter();
     }//GEN-LAST:event_sortComboActionPerformed
     
 
@@ -318,12 +336,11 @@ public class BrowsePropertiesPanel extends JPanel {
             
             String query = "SELECT * FROM property";
             
-            st = BDD.getConnection().prepareStatement(query);
+            st = MainWindow.getUser().getCon().prepareStatement(query);
             
             rs = st.executeQuery();
             
             while(rs.next()){
-                System.out.println(rs.getString("title"));
                 
                 Property p = Property.getPropertyFromRS(rs);
                 
@@ -338,17 +355,13 @@ public class BrowsePropertiesPanel extends JPanel {
     }
     
     private void loadPropertiesFilter(){
-        System.out.println("min area :" +minArea);
-        System.out.println("max area :" +maxArea);
-        System.out.println("min price :" +minPrice);
-        System.out.println("max Price :" +maxPrice);
         
         container.removeAll();
         // refresh
         container.revalidate();
         container.repaint();
         try {
-            ResultSet rs = BDD.propertiesFilter(minPrice, maxPrice, minArea, maxArea);
+            ResultSet rs = BDD.propertiesFilter(minPrice, maxPrice, minArea, maxArea, sortBy, orderBy);
             
             if (rs == null) return;
             

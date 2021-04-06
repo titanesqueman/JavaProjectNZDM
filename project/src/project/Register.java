@@ -6,6 +6,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import static project.LogIn2.errorMessage;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -343,9 +344,16 @@ public class Register extends javax.swing.JFrame {
         if(!(passwordMatchLabel.isVisible()||allEntriesLabel.isVisible())){
             BDD.register(tokenId, firstname, lastname, phonenumber, email, pswrd, gender);
             User user = BDD.login(email, pswrd);
-            dispose();
-            setVisible(false);
-            MainWindow.main(user);
+            if (user == null){
+            // erreur de connexion
+                System.out.println("ERROR");
+                //errorMessage.setVisible(true);
+            }else{
+                // connexion success
+                dispose();
+                setVisible(false);
+                MainWindow.main(user);
+            }
         }
         
     }//GEN-LAST:event_confirmButtonActionPerformed

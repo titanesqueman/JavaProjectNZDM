@@ -13,8 +13,8 @@ import project.Tokeniser.Token;
  * @author drazic
  */
 public class Seller extends User {
-    public Seller(int DBID, String firstname, String lastname, String phonenumber, String email, Token token) {
-        super(DBID, firstname, lastname, email, phonenumber, token);
+    public Seller(int DBID, String firstname, String lastname, String phonenumber, String email, Token token, java.sql.Connection cnx) {
+        super(DBID, firstname, lastname, email, phonenumber, token, cnx);
     }
     
 }

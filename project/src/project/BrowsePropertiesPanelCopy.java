@@ -276,7 +276,7 @@ public class BrowsePropertiesPanelCopy extends JPanel {
     
     private void loadPropertiesFilter(){
         try {
-            ResultSet rs = BDD.propertiesFilter(minPrice, maxPrice, minArea, maxArea);
+            ResultSet rs = BDD.propertiesFilter(minPrice, maxPrice, minArea, maxArea, "", "");
             if (rs == null) return;
             
             container.removeAll();
