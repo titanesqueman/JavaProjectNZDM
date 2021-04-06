@@ -336,12 +336,11 @@ public class BrowsePropertiesPanel extends JPanel {
             
             String query = "SELECT * FROM property";
             
-            st = BDD.getConnection().prepareStatement(query);
+            st = MainWindow.getUser().getCon().prepareStatement(query);
             
             rs = st.executeQuery();
             
             while(rs.next()){
-                System.out.println(rs.getString("title"));
                 
                 Property p = Property.getPropertyFromRS(rs);
                 

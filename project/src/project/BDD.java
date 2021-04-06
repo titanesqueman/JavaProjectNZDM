@@ -48,7 +48,7 @@ public class BDD {
             
             String query = "SELECT * FROM users";
             
-            st = BDD.getConnection().prepareStatement(query);
+            st = MainWindow.getUser().getCon().prepareStatement(query);
             
             rs = st.executeQuery();
             
@@ -85,7 +85,8 @@ public class BDD {
                     +  "    FROM users "
                     + "     WHERE email = ? AND password = ? ";
             
-            st = BDD.getConnection().prepareStatement(query);
+            Connection cnx = BDD.getConnection();
+            st = cnx.prepareStatement(query);
             
             st.setString(1,email);
             st.setString(2,password);
@@ -105,9 +106,9 @@ public class BDD {
                     System.out.println("token not reconized");
                     return null;
                 }else switch (token) {
-                    case BUYER -> user = new Buyer(userId,firstname,lastname,phonenumber,email);
-                    case SELLER -> user = new Seller(userId,firstname,lastname,phonenumber,email,token);
-                    case EMPLOYEE -> user = new Employee(userId,firstname,lastname,phonenumber,email);
+                    case BUYER -> user = new Buyer(userId,firstname,lastname,phonenumber,email,cnx);
+                    case SELLER -> user = new Seller(userId,firstname,lastname,phonenumber,email,token,cnx);
+                    case EMPLOYEE -> user = new Employee(userId,firstname,lastname,phonenumber,email,cnx);
                     default -> {
                         System.out.println("token not reconized");
                         return null;
@@ -190,7 +191,7 @@ public class BDD {
                     + "     FROM fav "
                     + "     WHERE propertyId = ? AND userId = ? ";
             
-            st = BDD.getConnection().prepareStatement(query);
+            st = MainWindow.getUser().getCon().prepareStatement(query);
             
             st.setInt(1,propertyId);
             st.setInt(2,userId);
@@ -214,12 +215,14 @@ public class BDD {
             String query = "INSERT INTO fav(propertyId,userId) "
                     + "     VALUES(?,?)";
             
-            st = BDD.getConnection().prepareStatement(query);
+            st = MainWindow.getUser().getCon().prepareStatement(query);
             
             st.setInt(1,propertyId);
             st.setInt(2,userId);
             
             st.executeUpdate();
+            
+            st.close();
             
         } catch (SQLException ex) {
             Logger.getLogger(BDD.class.getName()).log(Level.SEVERE, null, ex);
@@ -236,12 +239,14 @@ public class BDD {
                     + "     FROM fav "
                     + "     WHERE propertyId = ? AND userId = ?";
             
-            st = BDD.getConnection().prepareStatement(query);
+            st = MainWindow.getUser().getCon().prepareStatement(query);
             
             st.setInt(1,propertyId);
             st.setInt(2,userId);
             
             st.executeUpdate();
+            
+            st.close();
             
         } catch (SQLException ex) {
             Logger.getLogger(BDD.class.getName()).log(Level.SEVERE, null, ex);
@@ -260,7 +265,7 @@ public class BDD {
                     + "     ORDER BY %s %s", sortBy, orderBy);
             
  
-            st = BDD.getConnection().prepareStatement(query);
+            st = MainWindow.getUser().getCon().prepareStatement(query);
             
             System.out.println(sortBy);
             System.out.println(orderBy);
@@ -291,7 +296,7 @@ public class BDD {
             String query = "INSERT INTO property(OwnerId,title,area,address,price)"
                     + "     VALUES (?,?,?,?,?)";
             
-            st = BDD.getConnection().prepareStatement(query);
+            st = MainWindow.getUser().getCon().prepareStatement(query);
             
             st.setInt(1, ownerId);
             st.setString(2, title);
@@ -317,7 +322,7 @@ public class BDD {
                     + "     FROM viewing "
                     + "     WHERE propertyId = ? AND year = ? AND month = ? AND day = ? AND hour = ?";
             
-            st = BDD.getConnection().prepareStatement(query);
+            st = MainWindow.getUser().getCon().prepareStatement(query);
             
             st.setInt(1,propertyId);
             st.setInt(2,year);

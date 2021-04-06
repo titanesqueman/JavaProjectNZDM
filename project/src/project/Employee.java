@@ -13,7 +13,7 @@ import project.Tokeniser.Token;
  * @author drazic
  */
 public class Employee extends Seller {
-    public Employee(int DBID, String firstname, String lastname, String email, String phonenumber) {
-        super(DBID, firstname, lastname, email, phonenumber, Token.EMPLOYEE);
+    public Employee(int DBID, String firstname, String lastname, String email, String phonenumber , java.sql.Connection cnx) {
+        super(DBID, firstname, lastname, email, phonenumber, Token.EMPLOYEE, cnx);
     }
 }
