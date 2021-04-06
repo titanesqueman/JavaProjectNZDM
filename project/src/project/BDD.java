@@ -339,4 +339,29 @@ public class BDD {
         }
         return false;
     }
+    
+    public static String addViewing(int propertyId, int year, int month, int day, int hour){
+        try {
+            PreparedStatement st;
+            ResultSet rs;
+            
+            String query = "INSERT INTO property(propertyId,year,month,day,hour)"
+                    + "     VALUES (?,?,?,?,?)";
+            
+            st = MainWindow.getUser().getCon().prepareStatement(query);
+            
+            st.setInt(1, propertyId);
+            st.setInt(2, year);
+            st.setInt(3, month);
+            st.setInt(4, day);
+            st.setInt(5, hour);
+            
+            st.executeUpdate();
+            
+            return "Success";
+        } catch (SQLException ex) {
+            Logger.getLogger(BDD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return "Error";
+    }
 }
