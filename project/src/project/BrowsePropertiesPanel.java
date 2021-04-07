@@ -100,7 +100,6 @@ public class BrowsePropertiesPanel extends JPanel {
         rangeSlider2.setMajorTickSpacing(10);
         rangeSlider2.setMaximum(500);
         rangeSlider2.setSnapToTicks(true);
-        rangeSlider2.setExtent(600);
         rangeSlider2.setLowValue(0);
         rangeSlider2.setName(""); // NOI18N
         rangeSlider2.addChangeListener(new javax.swing.event.ChangeListener() {

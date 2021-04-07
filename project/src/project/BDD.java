@@ -283,24 +283,23 @@ public class BDD {
             return null;
         }
     }
-    public static String addProperty(int sellerId, String title, double area, String address, int price, String description){
+    public static String addProperty(int ownerId, String title, double area, String address, int price){
         
         try {
             PreparedStatement st;
             ResultSet rs;
             
             
-            String query = "INSERT INTO property(sellerId,title,area,address,price,description)"
-                    + "     VALUES (?,?,?,?,?,?)";
+            String query = "INSERT INTO property(OwnerId,title,area,address,price)"
+                    + "     VALUES (?,?,?,?,?)";
             
             st = MainWindow.getUser().getCon().prepareStatement(query);
             
-            st.setInt(1, sellerId);
+            st.setInt(1, ownerId);
             st.setString(2, title);
             st.setDouble(3, area);
             st.setString(4, address);
             st.setInt(5, price);
-            st.setString(6,description);
             
             st.executeUpdate();
             
