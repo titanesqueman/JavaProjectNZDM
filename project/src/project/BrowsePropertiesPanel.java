@@ -300,7 +300,7 @@ public class BrowsePropertiesPanel extends JPanel {
 
     private void sortComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sortComboActionPerformed
         // TODO add your handling code here:
-        int selected = orderCombo.getSelectedIndex();
+        int selected = sortCombo.getSelectedIndex();
         if (selected == 1){
             sortBy = "area";
         }else{

@@ -269,6 +269,8 @@ public class BDD {
                     + "     AND isSell = false"
                     + "     ORDER BY %s %s", sortBy, orderBy);
             
+            System.out.println(query);
+            
  
             st = MainWindow.getUser().getCon().prepareStatement(query);
             
