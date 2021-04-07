@@ -258,11 +258,11 @@ public class BDD {
         PreparedStatement st;
         ResultSet rs;
         try {
-            String query = String.format("SELECT price,title,area,propertyId,address "
+            String query = String.format("SELECT * "
                     + "     FROM property"
                     + "     WHERE (area BETWEEN ? AND ?)"
                     + "     AND   (price BETWEEN ? AND ?)"
-                    + "     WHERE isSell = true"
+                    + "     AND isSell = false"
                     + "     ORDER BY %s %s", sortBy, orderBy);
             
  
@@ -411,5 +411,27 @@ public class BDD {
             Logger.getLogger(BDD.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
+    }
+
+    public static String setPropertySelled(int propertyId) {
+        try {
+            PreparedStatement st;
+            ResultSet rs;
+            
+            String query = "UPDATE property " +
+                            "SET isSell = true " +
+                            "WHERE propertyId = ?";
+            
+            st = BDD.getConnection().prepareStatement(query);
+            
+            st.setInt(1, propertyId);
+            
+            st.executeUpdate();
+            
+            return "Success";
+        } catch (SQLException ex) {
+            Logger.getLogger(BDD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return "Error";
     }
 }
