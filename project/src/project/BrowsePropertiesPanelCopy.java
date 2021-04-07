@@ -260,8 +260,6 @@ public class BrowsePropertiesPanelCopy extends JPanel {
             rs = st.executeQuery();
             
             while(rs.next()){
-                System.out.println(rs.getString("title"));
-                
                 Property p = Property.getPropertyFromRS(rs);
                 
                 if (p != null){

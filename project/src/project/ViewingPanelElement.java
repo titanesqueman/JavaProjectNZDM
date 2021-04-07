@@ -21,10 +21,12 @@ public class ViewingPanelElement extends javax.swing.JPanel {
     int price;
     String title;
     double area;
+    Property property;
     /**
      * Creates new form ViewingPanelElement
      */
-    public ViewingPanelElement(int year, int month, int day, int hour, int price, String title, double area) {
+    public ViewingPanelElement(Property property, int year, int month, int day, int hour, int price, String title, double area) {
+        this.property = property;
         this.year = year;
         this.month = month;
         this.day = day;
@@ -53,6 +55,11 @@ public class ViewingPanelElement extends javax.swing.JPanel {
 
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         setMaximumSize(new java.awt.Dimension(32767, 50));
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
+        });
 
         hourLabel.setText("hourStart");
 
@@ -75,12 +82,12 @@ public class ViewingPanelElement extends javax.swing.JPanel {
                         .addComponent(areaLabel)
                         .addGap(18, 18, 18)
                         .addComponent(priceLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 194, Short.MAX_VALUE)
                         .addComponent(hourLabel))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(dateLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 134, Short.MAX_VALUE)
-                        .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(titleLabel)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -98,6 +105,11 @@ public class ViewingPanelElement extends javax.swing.JPanel {
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+        // TODO add your handling code here:
+        MainWindow.changePanel(new PropertyPanel(property));
+    }//GEN-LAST:event_formMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -124,7 +136,5 @@ public class ViewingPanelElement extends javax.swing.JPanel {
         priceLabel.setText(priceTemp+"€");
         areaLabel.setText("area : "+area+" m²");
         titleLabel.setText(title);
-        
-        System.out.println(title);
     }
 }

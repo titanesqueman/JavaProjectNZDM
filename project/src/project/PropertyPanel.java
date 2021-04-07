@@ -5,6 +5,7 @@
  */
 package project;
 
+import java.awt.Dimension;
 import java.awt.Font;
 import static project.Tokeniser.Token.BUYER;
 import static project.Tokeniser.Token.EMPLOYEE;
@@ -13,6 +14,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.Box;
+import javax.swing.JLabel;
 
 /**
  *
@@ -46,7 +49,9 @@ public class PropertyPanel extends javax.swing.JPanel {
                 if (rs != null){
                     try {
                         if (rs.next()){
-                            jPanel1.add(new ViewingPanelElement(rs.getInt("year"), rs.getInt("month"), rs.getInt("day"), rs.getInt("hour"),rs.getInt("price"),rs.getString("title"),rs.getDouble("area")));
+                            jPanel1.add(new JLabel("You have already reserved a viewing :"));
+                            jPanel1.add(Box.createRigidArea(new Dimension(10, 0)));
+                            jPanel1.add(new ViewingPanelElement(property, rs.getInt("year"), rs.getInt("month"), rs.getInt("day"), rs.getInt("hour"),rs.getInt("price"),rs.getString("title"),rs.getDouble("area")));
                         }
                     } catch (SQLException ex) {
                         Logger.getLogger(PropertyPanel.class.getName()).log(Level.SEVERE, null, ex);
@@ -102,7 +107,7 @@ public class PropertyPanel extends javax.swing.JPanel {
             }
         });
 
-        jPanel1.setLayout(new java.awt.GridLayout(1, 0));
+        jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.X_AXIS));
 
         desciptionText.setEditable(false);
         desciptionText.setBackground(new java.awt.Color(240, 240, 240));
@@ -139,14 +144,7 @@ public class PropertyPanel extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(favCheckBox))
                     .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 117, Short.MAX_VALUE)
-                        .addComponent(backButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(priceLabel)
@@ -157,7 +155,14 @@ public class PropertyPanel extends javax.swing.JPanel {
                             .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
                             .addComponent(setSellButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(editPropertyButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 598, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(favCheckBox))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(titleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(backButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
