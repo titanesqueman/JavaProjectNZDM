@@ -37,6 +37,7 @@ public class ButtonMenuPanelBuyer extends javax.swing.JPanel {
 
         setLayout(new java.awt.GridLayout(2, 2));
 
+        browsePropertiesButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         browsePropertiesButton.setText("Browse properties");
         browsePropertiesButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.lightGray, java.awt.Color.white, java.awt.Color.black, java.awt.Color.darkGray));
         browsePropertiesButton.addActionListener(new java.awt.event.ActionListener() {
@@ -46,6 +47,7 @@ public class ButtonMenuPanelBuyer extends javax.swing.JPanel {
         });
         add(browsePropertiesButton);
 
+        browseFavButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         browseFavButton.setText("Browse Fav");
         browseFavButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.lightGray, java.awt.Color.white, java.awt.Color.black, java.awt.Color.darkGray));
         browseFavButton.addActionListener(new java.awt.event.ActionListener() {
@@ -55,6 +57,7 @@ public class ButtonMenuPanelBuyer extends javax.swing.JPanel {
         });
         add(browseFavButton);
 
+        signoutButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         signoutButton.setText("Sign out");
         signoutButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.lightGray, java.awt.Color.white, java.awt.Color.black, java.awt.Color.darkGray));
         signoutButton.addActionListener(new java.awt.event.ActionListener() {
@@ -64,6 +67,7 @@ public class ButtonMenuPanelBuyer extends javax.swing.JPanel {
         });
         add(signoutButton);
 
+        browseMyViewing.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         browseMyViewing.setText("Browse my viewing");
         browseMyViewing.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.lightGray, java.awt.Color.white, java.awt.Color.black, java.awt.Color.darkGray));
         browseMyViewing.addActionListener(new java.awt.event.ActionListener() {

@@ -25,7 +25,7 @@ public class PropertyScroolPaneElement2 extends javax.swing.JPanel {
         initComponents();
         
         titleLabel.setText(property.getTitle());
-        addressLabel.setText(property.getAddress());
+        addressLabel.setText(property.getAddress()+" ");
         areaLabel.setText("Area : "+property.getArea()+"m²");
         priceLabel.setText("Price : "+property.getPrice()+"€");
         
@@ -57,20 +57,22 @@ public class PropertyScroolPaneElement2 extends javax.swing.JPanel {
         setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.darkGray, java.awt.Color.white, null, null));
         setMaximumSize(new java.awt.Dimension(32767, 100));
 
-        favCheckBox.setText("fav");
+        favCheckBox.setText("Add to favorites");
         favCheckBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 favCheckBoxActionPerformed(evt);
             }
         });
 
-        titleLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        titleLabel.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         titleLabel.setText("titleLabel");
 
+        addressLabel.setFont(new java.awt.Font("Tahoma", 2, 14)); // NOI18N
         addressLabel.setText("addressLabel");
 
         areaLabel.setText("area");
 
+        priceLabel.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         priceLabel.setText("price");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -82,13 +84,13 @@ public class PropertyScroolPaneElement2 extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(areaLabel)
-                        .addGap(0, 269, Short.MAX_VALUE))
+                        .addGap(0, 198, Short.MAX_VALUE))
                     .addComponent(addressLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(titleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(priceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(priceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(favCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(favCheckBox)
                 .addGap(19, 19, 19))
         );
         layout.setVerticalGroup(

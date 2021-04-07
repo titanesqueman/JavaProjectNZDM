@@ -34,15 +34,15 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Component id="areaLabel" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="269" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="198" max="32767" attributes="0"/>
                   </Group>
                   <Component id="addressLabel" max="32767" attributes="0"/>
                   <Component id="titleLabel" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="priceLabel" min="-2" pref="88" max="-2" attributes="0"/>
+              <Component id="priceLabel" min="-2" pref="130" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="favCheckBox" min="-2" pref="68" max="-2" attributes="0"/>
+              <Component id="favCheckBox" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -66,7 +66,7 @@
   <SubComponents>
     <Component class="javax.swing.JCheckBox" name="favCheckBox">
       <Properties>
-        <Property name="text" type="java.lang.String" value="fav"/>
+        <Property name="text" type="java.lang.String" value="Add to favorites"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="favCheckBoxActionPerformed"/>
@@ -75,13 +75,16 @@
     <Component class="javax.swing.JLabel" name="titleLabel">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="14" style="0"/>
+          <Font name="Tahoma" size="16" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="titleLabel"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="addressLabel">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="14" style="2"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="addressLabel"/>
       </Properties>
     </Component>
@@ -92,6 +95,9 @@
     </Component>
     <Component class="javax.swing.JLabel" name="priceLabel">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="SansSerif" size="14" style="0"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="price"/>
       </Properties>
     </Component>

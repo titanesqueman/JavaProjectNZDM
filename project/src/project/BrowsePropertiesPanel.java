@@ -16,6 +16,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
 import javax.swing.JToolBar.Separator;
+import static project.Tokeniser.Token.BUYER;
 
 /**
  *https://perso.limsi.fr/vernier/BiSlider/
@@ -31,6 +32,7 @@ public class BrowsePropertiesPanel extends JPanel {
     private String orderBy = "ASC";
     private String sortBy = "price";
     final private Color myPropertiesColor = new Color(183, 142, 142, 45);
+    private int myPropertiesOnly=-1;
 
     /**
      * Creates new form BrowseProperties
@@ -39,7 +41,9 @@ public class BrowsePropertiesPanel extends JPanel {
         initComponents();
         rangeSlider2.setExtent(600);
         jScrollPane1.getVerticalScrollBar().setUnitIncrement(16);
-       
+        if (MainWindow.getUser().token==BUYER){
+            myPropertiesCheckbox.setVisible(false);
+        }
         loadAllProperties();
     }
 
@@ -66,6 +70,7 @@ public class BrowsePropertiesPanel extends JPanel {
         orderCombo = new javax.swing.JComboBox<>();
         sortLabel = new javax.swing.JLabel();
         sortCombo = new javax.swing.JComboBox<>();
+        myPropertiesCheckbox = new javax.swing.JCheckBox();
         jScrollPane1 = new javax.swing.JScrollPane();
         container = new javax.swing.JPanel();
         backButton21 = new project.BackButton2();
@@ -78,6 +83,7 @@ public class BrowsePropertiesPanel extends JPanel {
 
         priceMaxLabel.setText("2,000,000 €");
 
+        priceLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         priceLabel.setText("Price");
 
         priceMinLabel.setText("0 €");
@@ -139,50 +145,60 @@ public class BrowsePropertiesPanel extends JPanel {
             }
         });
 
+        myPropertiesCheckbox.setText("See only my properties");
+        myPropertiesCheckbox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                myPropertiesCheckboxActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(22, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(priceMinLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(priceMaxLabel))
-                    .addComponent(rangeSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(areaMinLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(areaMaxLabel))
-                    .addComponent(rangeSlider2, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(104, 104, 104)
-                .addComponent(priceLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(areaLabel)
-                .addGap(111, 111, 111))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(sortLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(sortCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(orderCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(0, 1, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(priceMinLabel)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(priceMaxLabel))
+                                    .addComponent(rangeSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(priceLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(areaMinLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(areaMaxLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(areaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(rangeSlider2, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addContainerGap(20, Short.MAX_VALUE))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(sortLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(sortCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(orderCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(91, 91, 91)
+                        .addComponent(myPropertiesCheckbox)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(areaLabel)
-                    .addComponent(priceLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(areaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(priceLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -201,7 +217,8 @@ public class BrowsePropertiesPanel extends JPanel {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(orderCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel2))
+                                .addComponent(jLabel2)
+                                .addComponent(myPropertiesCheckbox))
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(sortLabel)
                                 .addComponent(sortCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
@@ -245,7 +262,7 @@ public class BrowsePropertiesPanel extends JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 511, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 510, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -310,6 +327,11 @@ public class BrowsePropertiesPanel extends JPanel {
         
         loadPropertiesFilter();
     }//GEN-LAST:event_sortComboActionPerformed
+
+    private void myPropertiesCheckboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myPropertiesCheckboxActionPerformed
+        myPropertiesOnly = -myPropertiesOnly;
+        loadAllProperties();
+    }//GEN-LAST:event_myPropertiesCheckboxActionPerformed
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -322,6 +344,7 @@ public class BrowsePropertiesPanel extends JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JCheckBox myPropertiesCheckbox;
     private javax.swing.JComboBox<String> orderCombo;
     private javax.swing.JLabel priceLabel;
     private javax.swing.JLabel priceMaxLabel;
@@ -343,22 +366,35 @@ public class BrowsePropertiesPanel extends JPanel {
             st = MainWindow.getUser().getCon().prepareStatement(query);
             
             rs = st.executeQuery();
-            
+            container.removeAll();
             while(rs.next()){
                 
                 Property p = Property.getPropertyFromRS(rs);
                 
                 if (p != null){
-                    PropertyScroolPaneElement2 newpPropertyScroolPaneElement = new PropertyScroolPaneElement2(p);
-                    container.add(newpPropertyScroolPaneElement);
-                    if (BDD.isMyProperty(MainWindow.getUser().userId, p.propertyId)){
-                        newpPropertyScroolPaneElement.setBackground(myPropertiesColor);
+                    if (myPropertiesOnly==-1){
+                            PropertyScroolPaneElement2 newpPropertyScroolPaneElement = new PropertyScroolPaneElement2(p);
+                            container.add(newpPropertyScroolPaneElement);
+
+                        if (BDD.isMyProperty(MainWindow.getUser().userId, p.propertyId)){
+                            newpPropertyScroolPaneElement.setBackground(myPropertiesColor);
+                        }
+                    }
+                    else{
+                        System.out.println("je suis else");
+                        if (BDD.isMyProperty(MainWindow.getUser().userId, p.propertyId)){
+                            PropertyScroolPaneElement2 newpPropertyScroolPaneElement = new PropertyScroolPaneElement2(p);
+                            container.add(newpPropertyScroolPaneElement);
+                            newpPropertyScroolPaneElement.setBackground(myPropertiesColor);
+                        }
                     }
                 }
             }
         } catch (SQLException ex) {
             Logger.getLogger(BDD.class.getName()).log(Level.SEVERE, null, ex);
         }
+        container.revalidate();
+        container.repaint();
     }
     
     private void loadPropertiesFilter(){
