@@ -3,12 +3,16 @@ package project;
 
 
 import com.mysql.cj.jdbc.MysqlDataSource;
+import java.sql.Timestamp;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import project.Tokeniser.Token;
 import static project.Tokeniser.getToken;
 
@@ -359,15 +363,21 @@ public class BDD {
         return false;
     }
     
-    public static String addViewing(int userId, int propertyId, int year, int month, int day, int hour){
+    public static String addViewing(int userId, int propertyId, int year, int month, int day, int hour) throws ParseException{
         try {
             PreparedStatement st;
             ResultSet rs;
             
-            String query = "INSERT INTO viewing(userId, propertyId,year,month,day,hour)"
-                    + "     VALUES (?,?,?,?,?,?)";
+            String query = "INSERT INTO viewing(userId, propertyId,year,month,day,hour,datetime)"
+                    + "     VALUES (?,?,?,?,?,?,?)";
             
             st = BDD.getConnection().prepareStatement(query);
+            
+            String myDate = String.format("%04d/%02d/%02d %02d:00:00",year,month,day,hour);
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+            Date date = sdf.parse(myDate);
+            long timeInMillis = date.getTime();
+            Timestamp tmstmp = new Timestamp(timeInMillis);
             
             st.setInt(1, userId);
             st.setInt(2, propertyId);
@@ -375,6 +385,7 @@ public class BDD {
             st.setInt(4, month);
             st.setInt(5, day);
             st.setInt(6, hour);
+            st.setTimestamp(7, tmstmp);
             
             st.executeUpdate();
             
@@ -385,6 +396,7 @@ public class BDD {
         return "Error";
     }
     
+    // get ResultSet 
     public static ResultSet getViewing(int sellerId){
         PreparedStatement st;
         ResultSet rs;
@@ -396,7 +408,8 @@ public class BDD {
                     + "     ON v.propertyId = p.propertyId"
                     + "     INNER JOIN users u"
                     + "     ON p.sellerId = u.userId"
-                    + "     WHERE u.userId = ?";
+                    + "     WHERE u.userId = ? AND v.datetime >= CURRENT_TIMESTAMP"
+                    + "     ORDER BY v.datetime ASC";
  
             st = MainWindow.getUser().getCon().prepareStatement(query);
             

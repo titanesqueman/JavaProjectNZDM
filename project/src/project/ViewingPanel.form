@@ -22,7 +22,8 @@
                   <Component id="jScrollPane1" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
                       <Component id="jLabel1" min="-2" pref="89" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="291" max="32767" attributes="0"/>
+                      <EmptySpace pref="194" max="32767" attributes="0"/>
+                      <Component id="backButton21" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -33,7 +34,10 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jLabel1" min="-2" pref="24" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jLabel1" min="-2" pref="24" max="-2" attributes="0"/>
+                  <Component id="backButton21" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jScrollPane1" pref="248" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
@@ -59,5 +63,7 @@
         </Container>
       </SubComponents>
     </Container>
+    <Component class="project.BackButton2" name="backButton21">
+    </Component>
   </SubComponents>
 </Form>
