@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import static project.Tokeniser.Token.BUYER;
 
 /**
  *
@@ -80,7 +81,12 @@ public class ViewingPanel extends javax.swing.JPanel {
 
     private void loaddata() {
         try {
-            ResultSet rs = BDD.getViewing(MainWindow.getUser().getUserId());
+            ResultSet rs;
+            if (MainWindow.getUser().getToken() == BUYER ){
+                rs = BDD.getBuyerViewing(MainWindow.getUser().getUserId());
+            }else{
+                rs = BDD.getSellerViewing(MainWindow.getUser().getUserId());
+            }
             
             if (rs == null) return;
             

@@ -269,6 +269,8 @@ public class BDD {
                     + "     AND isSell = false"
                     + "     ORDER BY %s %s", sortBy, orderBy);
             
+            System.out.println(query);
+            
  
             st = MainWindow.getUser().getCon().prepareStatement(query);
             
@@ -363,7 +365,7 @@ public class BDD {
         return false;
     }
     
-    public static String addViewing(int userId, int propertyId, int year, int month, int day, int hour) throws ParseException{
+    public static String addViewing(int userId, int propertyId, int year, int month, int day, int hour){
         try {
             PreparedStatement st;
             ResultSet rs;
@@ -375,21 +377,26 @@ public class BDD {
             
             String myDate = String.format("%04d/%02d/%02d %02d:00:00",year,month,day,hour);
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-            Date date = sdf.parse(myDate);
-            long timeInMillis = date.getTime();
-            Timestamp tmstmp = new Timestamp(timeInMillis);
-            
-            st.setInt(1, userId);
-            st.setInt(2, propertyId);
-            st.setInt(3, year);
-            st.setInt(4, month);
-            st.setInt(5, day);
-            st.setInt(6, hour);
-            st.setTimestamp(7, tmstmp);
-            
-            st.executeUpdate();
-            
-            return "Success";
+            Date date;
+            try {
+                date = sdf.parse(myDate);
+                long timeInMillis = date.getTime();
+                Timestamp tmstmp = new Timestamp(timeInMillis);
+                st.setInt(1, userId);
+                st.setInt(2, propertyId);
+                st.setInt(3, year);
+                st.setInt(4, month);
+                st.setInt(5, day);
+                st.setInt(6, hour);
+                st.setTimestamp(7, tmstmp);
+                
+                st.executeUpdate();
+                return "Success";
+                
+            } catch (ParseException ex) {
+                Logger.getLogger(BDD.class.getName()).log(Level.SEVERE, null, ex);
+                return "Error";
+            }
         } catch (SQLException ex) {
             Logger.getLogger(BDD.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -397,7 +404,7 @@ public class BDD {
     }
     
     // get ResultSet 
-    public static ResultSet getViewing(int sellerId){
+    public static ResultSet getSellerViewing(int sellerId){
         PreparedStatement st;
         ResultSet rs;
         try {
@@ -414,6 +421,31 @@ public class BDD {
             st = MainWindow.getUser().getCon().prepareStatement(query);
             
             st.setInt(1, sellerId);
+            
+            rs = st.executeQuery();
+            
+            return rs;
+        } catch (SQLException ex) {
+            Logger.getLogger(BDD.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
+    
+    public static ResultSet getBuyerViewing(int userId){
+        PreparedStatement st;
+        ResultSet rs;
+        try {
+            String query =
+                      "     SELECT * "
+                    + "     FROM viewing v"
+                    + "     INNER JOIN property p"
+                    + "     ON v.propertyId = p.propertyId"
+                    + "     WHERE v.userId = ? AND v.datetime >= CURRENT_TIMESTAMP"
+                    + "     ORDER BY v.datetime ASC";
+ 
+            st = MainWindow.getUser().getCon().prepareStatement(query);
+            
+            st.setInt(1, userId);
             
             rs = st.executeQuery();
             

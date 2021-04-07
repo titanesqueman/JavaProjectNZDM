@@ -185,7 +185,7 @@ public class PropertyPanel extends javax.swing.JPanel {
 
     private void setSellButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setSellButtonActionPerformed
         // TODO add your handling code here:
-        DeleteFramePopUp.main(property);
+        SetSellPopUp.main(property);
     }//GEN-LAST:event_setSellButtonActionPerformed
 
     private void editPropertyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editPropertyButtonActionPerformed

@@ -10,12 +10,12 @@ package project;
  *
  * @author Drazic
  */
-public class DeleteFramePopUp extends javax.swing.JFrame {
+public class SetSellPopUp extends javax.swing.JFrame {
     Property property;
     /**
      * Creates new form DeleteFramePopUp
      */
-    public DeleteFramePopUp(Property property) {
+    public SetSellPopUp(Property property) {
         this.property = property;
         initComponents();
     }
@@ -91,6 +91,7 @@ public class DeleteFramePopUp extends javax.swing.JFrame {
         BDD.setPropertySelled(property.getPropertyId());
         this.dispose();
         this.setVisible(false);
+        MainWindow.changePanel(new BrowsePropertiesPanel());
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
@@ -110,20 +111,21 @@ public class DeleteFramePopUp extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DeleteFramePopUp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SetSellPopUp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DeleteFramePopUp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SetSellPopUp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DeleteFramePopUp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SetSellPopUp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DeleteFramePopUp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SetSellPopUp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DeleteFramePopUp(property).setVisible(true);
+                new SetSellPopUp(property).setVisible(true);
             }
         });
     }
