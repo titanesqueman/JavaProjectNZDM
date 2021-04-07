@@ -45,23 +45,14 @@ public class ViewingPanelElement extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        dayLabel = new javax.swing.JLabel();
-        yearLabel = new javax.swing.JLabel();
-        monthLabel = new javax.swing.JLabel();
         hourLabel = new javax.swing.JLabel();
         titleLabel = new javax.swing.JLabel();
         areaLabel = new javax.swing.JLabel();
         priceLabel = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        dateLabel = new javax.swing.JLabel();
 
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         setMaximumSize(new java.awt.Dimension(32767, 50));
-
-        dayLabel.setText("day");
-
-        yearLabel.setText("year");
-
-        monthLabel.setText("month");
 
         hourLabel.setText("hourStart");
 
@@ -71,7 +62,7 @@ public class ViewingPanelElement extends javax.swing.JPanel {
 
         priceLabel.setText("price");
 
-        jLabel1.setText("date :");
+        dateLabel.setText("date :");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -87,14 +78,8 @@ public class ViewingPanelElement extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(hourLabel))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(dayLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(monthLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(yearLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                        .addComponent(dateLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 134, Short.MAX_VALUE)
                         .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -103,11 +88,8 @@ public class ViewingPanelElement extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(dayLabel)
-                    .addComponent(monthLabel)
-                    .addComponent(yearLabel)
                     .addComponent(titleLabel)
-                    .addComponent(jLabel1))
+                    .addComponent(dateLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(hourLabel)
@@ -120,19 +102,15 @@ public class ViewingPanelElement extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel areaLabel;
-    private javax.swing.JLabel dayLabel;
+    private javax.swing.JLabel dateLabel;
     private javax.swing.JLabel hourLabel;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel monthLabel;
     private javax.swing.JLabel priceLabel;
     private javax.swing.JLabel titleLabel;
-    private javax.swing.JLabel yearLabel;
     // End of variables declaration//GEN-END:variables
 
     private void loaddata() {
-        dayLabel.setText(Integer.toString(day));
-        yearLabel.setText(Integer.toString(year));
-        monthLabel.setText(Integer.toString(month));
+        String date = String.format("date : %02d/%02d/%02d",day,month,year);
+        dateLabel.setText(date);
         hourLabel.setText(Integer.toString(hour)+"h-"+Integer.toString(hour+1)+"h");
         
         Locale locale  = new Locale("en", "UK");

@@ -317,6 +317,54 @@ public class BDD {
         return "Error";
     }
     
+    public static boolean hasBuyerAlreadyReservedViewing(int userId, int propertyId){
+        try {
+            PreparedStatement st;
+            ResultSet rs;
+            
+            String query = "SELECT * "
+                    + "     FROM viewing "
+                    + "     WHERE userId = ? AND propertyId = ? AND datetime >= CURRENT_TIMESTAMP";
+            
+            st = MainWindow.getUser().getCon().prepareStatement(query);
+            st.setInt(1,userId);
+            st.setInt(2,propertyId);
+            
+            rs = st.executeQuery();
+            
+            return rs.next();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(BDD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+    
+    public static ResultSet getOneViewing(int userId, int propertyId){
+        try {
+            PreparedStatement st;
+            ResultSet rs;
+            
+            String query = "SELECT * "
+                    + "     FROM viewing v"
+                    + "     INNER JOIN property p"
+                    + "     ON v.propertyId = p.propertyId"
+                    + "     WHERE v.userId = ? AND v.propertyId = ? AND datetime >= CURRENT_TIMESTAMP";
+            
+            st = MainWindow.getUser().getCon().prepareStatement(query);
+            st.setInt(1,userId);
+            st.setInt(2,propertyId);
+            
+            rs = st.executeQuery();
+            
+            return rs;
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(BDD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    
     public static boolean isBooked(int propertyId, int year, int month, int day, int hour){
         try {
             PreparedStatement st;

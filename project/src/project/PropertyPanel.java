@@ -9,6 +9,10 @@ import java.awt.Font;
 import static project.Tokeniser.Token.BUYER;
 import static project.Tokeniser.Token.EMPLOYEE;
 import static project.Tokeniser.Token.SELLER;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -35,8 +39,23 @@ public class PropertyPanel extends javax.swing.JPanel {
         desciptionText.setText(property.description);
         desciptionText.setLineWrap(true);
         desciptionText.setWrapStyleWord(true);
+        
         if (MainWindow.getUser().token==BUYER){
-            jPanel1.add(new BookViewingPanel(property));
+            if (BDD.hasBuyerAlreadyReservedViewing(MainWindow.getUser().getUserId() , property.getPropertyId())){
+                ResultSet rs = BDD.getOneViewing(MainWindow.getUser().getUserId(), property.getPropertyId());
+                if (rs != null){
+                    try {
+                        if (rs.next()){
+                            jPanel1.add(new ViewingPanelElement(rs.getInt("year"), rs.getInt("month"), rs.getInt("day"), rs.getInt("hour"),rs.getInt("price"),rs.getString("title"),rs.getDouble("area")));
+                        }
+                    } catch (SQLException ex) {
+                        Logger.getLogger(PropertyPanel.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+                
+            }else{
+                jPanel1.add(new BookViewingPanel(property));
+            }
         }
         
         loaddata();
