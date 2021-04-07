@@ -54,6 +54,7 @@ public class PropertyScroolPaneElement2 extends javax.swing.JPanel {
         areaLabel = new javax.swing.JLabel();
         priceLabel = new javax.swing.JLabel();
 
+        setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.darkGray, java.awt.Color.white, null, null));
         setMaximumSize(new java.awt.Dimension(32767, 100));
 
         favCheckBox.setText("fav");
@@ -66,7 +67,6 @@ public class PropertyScroolPaneElement2 extends javax.swing.JPanel {
         titleLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         titleLabel.setText("titleLabel");
 
-        addressLabel.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         addressLabel.setText("addressLabel");
 
         areaLabel.setText("area");
@@ -85,7 +85,7 @@ public class PropertyScroolPaneElement2 extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(areaLabel))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(priceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
