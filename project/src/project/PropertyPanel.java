@@ -82,7 +82,7 @@ public class PropertyPanel extends javax.swing.JPanel {
         });
 
         jPanel1.setBackground(new java.awt.Color(204, 255, 0));
-        jPanel1.setLayout(new java.awt.GridLayout());
+        jPanel1.setLayout(new java.awt.GridLayout(1, 0));
 
         desciptionText.setEditable(false);
         desciptionText.setBackground(new java.awt.Color(240, 240, 240));

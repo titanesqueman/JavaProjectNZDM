@@ -334,7 +334,8 @@ public class BrowsePropertiesPanel extends JPanel {
             PreparedStatement st;
             ResultSet rs;
             
-            String query = "SELECT * FROM property";
+            String query = "SELECT * FROM property"
+                    + "     WHERE isSell = false";
             
             st = MainWindow.getUser().getCon().prepareStatement(query);
             

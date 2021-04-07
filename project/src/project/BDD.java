@@ -262,6 +262,7 @@ public class BDD {
                     + "     FROM property"
                     + "     WHERE (area BETWEEN ? AND ?)"
                     + "     AND   (price BETWEEN ? AND ?)"
+                    + "     WHERE isSell = true"
                     + "     ORDER BY %s %s", sortBy, orderBy);
             
  
