@@ -92,8 +92,9 @@ public class ViewingPanel extends javax.swing.JPanel {
             
             container.removeAll();
             while (rs.next()){
-                System.out.println("HERE");
-                container.add(new ViewingPanelElement(rs.getInt("year"), rs.getInt("month"), rs.getInt("day"), rs.getInt("hour"),rs.getInt("price"),rs.getString("title"),rs.getDouble("area")));
+                //int propertyId, String title, String address, double area, String features, int price, String description
+                container.add(new ViewingPanelElement(new Property(rs.getInt("propertyId"),rs.getString("title"),rs.getString("address"),rs.getDouble("area"),null,rs.getInt("price"),rs.getString("description"))
+                        , rs.getInt("year"), rs.getInt("month"), rs.getInt("day"), rs.getInt("hour"),rs.getInt("price"),rs.getString("title"),rs.getDouble("area")));
             }
             container.revalidate();
             container.repaint();
