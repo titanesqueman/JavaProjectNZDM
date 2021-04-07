@@ -456,4 +456,31 @@ public class BDD {
         }
         return "Error";
     }
+    
+    public static String updateProperty(int propertyId, String title, double area, String address, int price, String description) {
+        try {
+            PreparedStatement st;
+            ResultSet rs;
+            String query = "UPDATE property " 
+                            +"SET title = ? , area = ? , address = ? , price = ? , description = ?"
+                            + "WHERE propertyId = ?";
+            
+            st = BDD.getConnection().prepareStatement(query);
+            
+           
+            st.setString(1, title);
+            st.setDouble(2, area);
+            st.setString(3, address);
+            st.setInt(4, price);
+            st.setString(5,description);
+            st.setInt(6, propertyId);
+            
+            st.executeUpdate();
+            
+            return "Success";
+        } catch (SQLException ex) {
+            Logger.getLogger(BDD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return "Error";
+    }
 }
