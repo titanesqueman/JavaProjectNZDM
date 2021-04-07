@@ -5,6 +5,7 @@
  */
 package project;
 
+import java.awt.Color;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -29,6 +30,7 @@ public class BrowsePropertiesPanel extends JPanel {
     private int maxArea = 99999999;
     private String orderBy = "ASC";
     private String sortBy = "price";
+    final private Color myPropertiesColor = new Color(183, 142, 142, 45);
 
     /**
      * Creates new form BrowseProperties
@@ -348,6 +350,9 @@ public class BrowsePropertiesPanel extends JPanel {
                 if (p != null){
                     PropertyScroolPaneElement2 newpPropertyScroolPaneElement = new PropertyScroolPaneElement2(p);
                     container.add(newpPropertyScroolPaneElement);
+                    if (BDD.isMyProperty(MainWindow.getUser().userId, p.propertyId)){
+                        newpPropertyScroolPaneElement.setBackground(myPropertiesColor);
+                    }
                 }
             }
         } catch (SQLException ex) {
@@ -372,6 +377,9 @@ public class BrowsePropertiesPanel extends JPanel {
                 if (p != null){
                     PropertyScroolPaneElement2 newpPropertyScroolPaneElement = new PropertyScroolPaneElement2(p);
                     container.add(newpPropertyScroolPaneElement);
+                    if (BDD.isMyProperty(MainWindow.getUser().userId, p.propertyId)){
+                        newpPropertyScroolPaneElement.setBackground(myPropertiesColor);
+                    }
                 }
                 // refresh
                 container.revalidate();

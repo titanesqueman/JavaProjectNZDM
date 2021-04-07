@@ -287,23 +287,24 @@ public class BDD {
             return null;
         }
     }
-    public static String addProperty(int ownerId, String title, double area, String address, int price){
+    public static String addProperty(int sellerId, String title, double area, String address, int price, String description){
         
         try {
             PreparedStatement st;
             ResultSet rs;
             
             
-            String query = "INSERT INTO property(OwnerId,title,area,address,price)"
-                    + "     VALUES (?,?,?,?,?)";
+            String query = "INSERT INTO property(sellerId,title,area,address,price,description)"
+                    + "     VALUES (?,?,?,?,?,?)";
             
             st = MainWindow.getUser().getCon().prepareStatement(query);
             
-            st.setInt(1, ownerId);
+            st.setInt(1, sellerId);
             st.setString(2, title);
             st.setDouble(3, area);
             st.setString(4, address);
             st.setInt(5, price);
+            st.setString(6,description);
             
             st.executeUpdate();
             
@@ -324,12 +325,33 @@ public class BDD {
                     + "     WHERE propertyId = ? AND year = ? AND month = ? AND day = ? AND hour = ?";
             
             st = MainWindow.getUser().getCon().prepareStatement(query);
-            
             st.setInt(1,propertyId);
             st.setInt(2,year);
             st.setInt(3,month);
             st.setInt(4,day);
             st.setInt(5,hour);
+            
+            rs = st.executeQuery();
+            
+            return rs.next();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(BDD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+    public static boolean isMyProperty(int sellerId, int propertyId){
+        try {
+            PreparedStatement st;
+            ResultSet rs;
+            
+            String query = "SELECT * "
+                    + "     FROM property "
+                    + "     WHERE sellerId = ? AND propertyId = ?";
+            
+            st = MainWindow.getUser().getCon().prepareStatement(query);
+            st.setInt(1,sellerId);
+            st.setInt(2,propertyId);
             
             rs = st.executeQuery();
             

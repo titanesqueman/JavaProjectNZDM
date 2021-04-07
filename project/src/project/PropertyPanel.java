@@ -32,11 +32,11 @@ public class PropertyPanel extends javax.swing.JPanel {
     public PropertyPanel(Property property) {
         this.property = property;
         initComponents();
+        desciptionText.setText(property.description);
+        desciptionText.setLineWrap(true);
+        desciptionText.setWrapStyleWord(true);
         if (MainWindow.getUser().token==BUYER){
             jPanel1.add(new BookViewingPanel(property));
-            desciptionText.setText(property.description);
-            desciptionText.setLineWrap(true);
-            desciptionText.setWrapStyleWord(true);
         }
         
         loaddata();
@@ -82,7 +82,6 @@ public class PropertyPanel extends javax.swing.JPanel {
             }
         });
 
-        jPanel1.setBackground(new java.awt.Color(204, 255, 0));
         jPanel1.setLayout(new java.awt.GridLayout(1, 0));
 
         desciptionText.setEditable(false);
