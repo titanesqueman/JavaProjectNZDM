@@ -321,12 +321,33 @@ public class BDD {
                     + "     WHERE propertyId = ? AND year = ? AND month = ? AND day = ? AND hour = ?";
             
             st = MainWindow.getUser().getCon().prepareStatement(query);
-            
             st.setInt(1,propertyId);
             st.setInt(2,year);
             st.setInt(3,month);
             st.setInt(4,day);
             st.setInt(5,hour);
+            
+            rs = st.executeQuery();
+            
+            return rs.next();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(BDD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+    public static boolean isMyProperty(int sellerId, int propertyId){
+        try {
+            PreparedStatement st;
+            ResultSet rs;
+            
+            String query = "SELECT * "
+                    + "     FROM property "
+                    + "     WHERE sellerId = ? AND propertyId = ?";
+            
+            st = MainWindow.getUser().getCon().prepareStatement(query);
+            st.setInt(1,sellerId);
+            st.setInt(2,propertyId);
             
             rs = st.executeQuery();
             
