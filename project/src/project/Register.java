@@ -33,6 +33,7 @@ public class Register extends javax.swing.JFrame {
     public Register() {
         initComponents();
         setGhostTexts();
+        getRootPane().setDefaultButton(confirmButton);
         //confirmButtonEnabled();
         if (!email.equals("")){
             mailTextField.setText(email);
@@ -280,7 +281,7 @@ public class Register extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(passwordMatchLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(allEntriesLabel))
-                .addGap(18, 18, 18)
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(confirmButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cancelButton))

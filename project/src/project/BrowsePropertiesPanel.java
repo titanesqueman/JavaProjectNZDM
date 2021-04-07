@@ -99,10 +99,11 @@ public class BrowsePropertiesPanel extends JPanel {
 
         areaMinLabel.setText("0 m²");
 
+        rangeSlider2.setForeground(new java.awt.Color(0, 0, 0));
         rangeSlider2.setMajorTickSpacing(10);
         rangeSlider2.setMaximum(500);
         rangeSlider2.setSnapToTicks(true);
-        rangeSlider2.setExtent(600);
+        rangeSlider2.setExtent(550);
         rangeSlider2.setLowValue(0);
         rangeSlider2.setName(""); // NOI18N
         rangeSlider2.addChangeListener(new javax.swing.event.ChangeListener() {
@@ -143,7 +144,7 @@ public class BrowsePropertiesPanel extends JPanel {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
+                .addContainerGap(22, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(priceMinLabel)
@@ -154,10 +155,10 @@ public class BrowsePropertiesPanel extends JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(areaMinLabel)
-                        .addGap(230, 230, 230)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(areaMaxLabel))
                     .addComponent(rangeSlider2, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(104, 104, 104)
                 .addComponent(priceLabel)

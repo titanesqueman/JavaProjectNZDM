@@ -17,6 +17,7 @@ public class LogIn2 extends javax.swing.JFrame {
      * Creates new form LogIn2
      */
     public LogIn2() {
+        setTitle("LogIn");
         initComponents();
         getRootPane().setDefaultButton(loginButton);
         new Register.GhostText(passwordTextField,"password123");
@@ -73,21 +74,21 @@ public class LogIn2 extends javax.swing.JFrame {
                     .addComponent(emailLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(passwordLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(passwordTextField)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(errorMessage)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 141, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
                         .addComponent(registerButton)
                         .addGap(18, 18, 18)
                         .addComponent(loginButton))
-                    .addComponent(emailTextField)
-                    .addComponent(passwordTextField))
-                .addGap(26, 26, 26))
+                    .addComponent(emailTextField))
+                .addGap(25, 25, 25))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(32, 32, 32)
+                .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(emailLabel)
                     .addComponent(emailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -104,7 +105,7 @@ public class LogIn2 extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(errorMessage)))
-                .addContainerGap(143, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         pack();

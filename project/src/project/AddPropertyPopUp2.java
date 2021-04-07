@@ -22,9 +22,11 @@ public class AddPropertyPopUp2 extends javax.swing.JFrame {
      */
     public AddPropertyPopUp2() {
         initComponents();
+        getRootPane().setDefaultButton(confirmButton);
     }
     public AddPropertyPopUp2(Property selectedProp) {
         initComponents();
+        getRootPane().setDefaultButton(confirmButton);
         this.selectedProp = selectedProp;
         titleText.setText(selectedProp.title);
         areaText.setText(Double.toString(selectedProp.area));
