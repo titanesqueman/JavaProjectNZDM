@@ -387,4 +387,28 @@ public class BDD {
             return null;
         }
     }
+    
+    public static boolean canSetSellProperty(int userId, int propertyId){
+        try {
+            PreparedStatement st;
+            ResultSet rs;
+            
+            String query = "SELECT * "
+                    + "     FROM property "
+                    + "     WHERE propertyId = ? AND sellerId = ? ";
+            
+            st = MainWindow.getUser().getCon().prepareStatement(query);
+            
+            st.setInt(1,propertyId);
+            st.setInt(2,userId);
+            
+            rs = st.executeQuery();
+            
+            return rs.next();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(BDD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
 }
