@@ -16,6 +16,7 @@ public class AddPropertyPopUp2 extends javax.swing.JFrame {
     private String price;
     private String area;
     Property selectedProp;
+    private int edit = 0;
     /**
      * Creates new form addPropertyPopUp
      */
@@ -24,12 +25,13 @@ public class AddPropertyPopUp2 extends javax.swing.JFrame {
     }
     public AddPropertyPopUp2(Property selectedProp) {
         initComponents();
+        this.selectedProp = selectedProp;
         titleText.setText(selectedProp.title);
         areaText.setText(Double.toString(selectedProp.area));
         addressText.setText(selectedProp.address);
         priceText.setText(Integer.toString(selectedProp.price));
         descriptionText.setText(selectedProp.description);
-        
+        edit=1;
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -207,17 +209,31 @@ public class AddPropertyPopUp2 extends javax.swing.JFrame {
             confirmButton.setEnabled(false);
         }
         else{
-                propertyCreated.setArea(Integer.parseInt(area));
+                propertyCreated.setArea(Double.parseDouble(area));
                 propertyCreated.setPrice(Integer.parseInt(price));
-            
-                BDD.addProperty(MainWindow.getUser().getUserId(),propertyCreated.title,
-                    propertyCreated.area, propertyCreated.address, propertyCreated.price, propertyCreated.description);
+                if(edit==0){
+                    BDD.addProperty(MainWindow.getUser().getUserId(),propertyCreated.title,
+                        propertyCreated.area, propertyCreated.address, propertyCreated.price, propertyCreated.description);
+
+                    String message = "Thank you for your adding "+propertyCreated.title+"!";
+                    JOptionPane.showMessageDialog(null, message);
+                }
+                else{
+                    propertyCreated.setPropertyId(selectedProp.getPropertyId());
+                    BDD.updateProperty(selectedProp.propertyId,propertyCreated.title,
+                        propertyCreated.area, propertyCreated.address, propertyCreated.price, propertyCreated.description);
+
+                    String message = "You have edited "+propertyCreated.title+" successfully.";
+                    JOptionPane.showMessageDialog(null, message);
+                    
+                }
+                //MainWindow.changePanel(new MenuPanel(MainWindow.getUser()));.
                 dispose();
-                String message = "Thank you for your adding "+propertyCreated.title+"!";
-                JOptionPane.showMessageDialog(null, message);
-                //MainWindow.changePanel(new MenuPanel(MainWindow.getUser()));
-            
+                
+                MainWindow.changePanel(new PropertyPanel(propertyCreated));
+                
         }
+        
         
     }//GEN-LAST:event_confirmButtonActionPerformed
 
