@@ -37,7 +37,7 @@ public class BrowsePropertiesPanel extends JPanel {
      */
     public BrowsePropertiesPanel() {
         initComponents();
-        
+        rangeSlider2.setExtent(600);
         jScrollPane1.getVerticalScrollBar().setUnitIncrement(16);
        
         loadAllProperties();
@@ -74,7 +74,7 @@ public class BrowsePropertiesPanel extends JPanel {
 
         jLabel1.setText("Browse Properties");
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(204, 0, 102)));
+        jPanel1.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(207, 204, 242)));
 
         priceMaxLabel.setText("2,000,000 €");
 
@@ -102,6 +102,7 @@ public class BrowsePropertiesPanel extends JPanel {
         rangeSlider2.setMajorTickSpacing(10);
         rangeSlider2.setMaximum(500);
         rangeSlider2.setSnapToTicks(true);
+        rangeSlider2.setExtent(600);
         rangeSlider2.setLowValue(0);
         rangeSlider2.setName(""); // NOI18N
         rangeSlider2.addChangeListener(new javax.swing.event.ChangeListener() {
@@ -208,7 +209,6 @@ public class BrowsePropertiesPanel extends JPanel {
 
         rangeSlider2.getAccessibleContext().setAccessibleName("");
 
-        container.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(204, 0, 51)));
         container.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         container.setMaximumSize(new java.awt.Dimension(300, 300));
         container.setLayout(new javax.swing.BoxLayout(container, javax.swing.BoxLayout.Y_AXIS));

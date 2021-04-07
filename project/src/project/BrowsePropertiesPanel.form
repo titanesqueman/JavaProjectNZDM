@@ -73,7 +73,7 @@
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
             <MatteColorBorder bottom="4" left="4" right="4" top="4">
-              <Color PropertyName="color" blue="66" green="0" red="cc" type="rgb"/>
+              <Color PropertyName="color" blue="f2" green="cc" red="cf" type="rgb"/>
             </MatteColorBorder>
           </Border>
         </Property>
@@ -204,6 +204,7 @@
             <Property name="majorTickSpacing" type="int" value="10"/>
             <Property name="maximum" type="int" value="500"/>
             <Property name="snapToTicks" type="boolean" value="true"/>
+            <Property name="extent" type="int" value="600"/>
             <Property name="lowValue" type="int" value="0"/>
             <Property name="name" type="java.lang.String" value="" noResource="true"/>
           </Properties>
@@ -275,13 +276,6 @@
       <SubComponents>
         <Container class="javax.swing.JPanel" name="container">
           <Properties>
-            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-                <MatteColorBorder bottom="4" left="4" right="4" top="4">
-                  <Color PropertyName="color" blue="33" green="0" red="cc" type="rgb"/>
-                </MatteColorBorder>
-              </Border>
-            </Property>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
               <Color id="Default Cursor"/>
             </Property>
