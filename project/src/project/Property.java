@@ -45,6 +45,10 @@ public class Property {
         return null;
     }
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public int getPropertyId() {
         return propertyId;
     }
