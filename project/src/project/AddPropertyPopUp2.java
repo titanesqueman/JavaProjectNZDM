@@ -5,16 +5,20 @@
  */
 package project;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author nicol
  */
-public class addPropertyPopUp extends javax.swing.JFrame {
+public class AddPropertyPopUp2 extends javax.swing.JFrame {
     private Property propertyCreated = new Property();
+    private String price;
+    private String area;
     /**
      * Creates new form addPropertyPopUp
      */
-    public addPropertyPopUp() {
+    public AddPropertyPopUp2() {
         initComponents();
     }
 
@@ -38,7 +42,7 @@ public class addPropertyPopUp extends javax.swing.JFrame {
         descriptionLabel = new javax.swing.JLabel();
         priceText = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
+        descriptionText = new javax.swing.JTextPane();
         confirmButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
         allEntriesLabel = new javax.swing.JLabel();
@@ -47,23 +51,23 @@ public class addPropertyPopUp extends javax.swing.JFrame {
 
         titleLabel.setText("Title:");
 
-        titleText.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                titleTextActionPerformed(evt);
+        titleText.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                titleTextMouseClicked(evt);
             }
         });
 
         areaLabel.setText("Area:");
 
-        areaText.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                areaTextActionPerformed(evt);
+        areaText.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                areaTextMouseClicked(evt);
             }
         });
 
-        addressText.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addressTextActionPerformed(evt);
+        addressText.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                addressTextMouseClicked(evt);
             }
         });
 
@@ -75,13 +79,18 @@ public class addPropertyPopUp extends javax.swing.JFrame {
 
         descriptionLabel.setText("Description :");
 
-        priceText.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                priceTextActionPerformed(evt);
+        priceText.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                priceTextMouseClicked(evt);
             }
         });
 
-        jScrollPane1.setViewportView(jTextPane1);
+        descriptionText.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                descriptionTextMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(descriptionText);
 
         confirmButton.setText("Confirm");
         confirmButton.addActionListener(new java.awt.event.ActionListener() {
@@ -164,42 +173,48 @@ public class addPropertyPopUp extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                 .addComponent(allEntriesLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(confirmButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cancelButton))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void titleTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_titleTextActionPerformed
-        propertyCreated.setTitle(titleText.getText());
-    }//GEN-LAST:event_titleTextActionPerformed
-
-    private void addressTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addressTextActionPerformed
-        propertyCreated.setAddress(addressText.getText());
-    }//GEN-LAST:event_addressTextActionPerformed
-
-    private void priceTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_priceTextActionPerformed
-        propertyCreated.setPrice(Integer.parseInt(priceText.getText()));
-    }//GEN-LAST:event_priceTextActionPerformed
-
     private void confirmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmButtonActionPerformed
+        
+        price = priceText.getText();
+        area = areaText.getText();
+        propertyCreated.setTitle(titleText.getText());
+        propertyCreated.setAddress(addressText.getText());
+        propertyCreated.setDescription(descriptionText.getText());
+        
         if (entriesAreDefault()){
-            allEntriesLabel.setVisible(false);
+            allEntriesLabel.setVisible(true);
+            confirmButton.setEnabled(false);
         }
         else{
-            // creer dans la BDD avec propertyCreated (qui a déjà tout les champs)
+                propertyCreated.setArea(Integer.parseInt(area));
+                propertyCreated.setPrice(Integer.parseInt(price));
+            
+                BDD.addProperty(MainWindow.getUser().getUserId(),propertyCreated.title,
+                    propertyCreated.area, propertyCreated.address, propertyCreated.price, propertyCreated.description);
+                dispose();
+                String message = "Thank you for your adding "+propertyCreated.title+"!";
+                JOptionPane.showMessageDialog(null, message);
+                //MainWindow.changePanel(new MenuPanel(MainWindow.getUser()));
+            
         }
+        
     }//GEN-LAST:event_confirmButtonActionPerformed
 
     private boolean entriesAreDefault(){
-        if (propertyCreated.address==null||propertyCreated.area==-1||
-                propertyCreated.price==-1|| propertyCreated.title==null){
+        if (propertyCreated.address.equals("")|| price.equals("")|| propertyCreated.title.equals("")|| 
+                titleText.getText().equals("")||  area.equals("")|| propertyCreated.description.equals("")){
             return true;
         }
         return false;
@@ -210,9 +225,30 @@ public class addPropertyPopUp extends javax.swing.JFrame {
         setVisible(false);
     }//GEN-LAST:event_cancelButtonActionPerformed
 
-    private void areaTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_areaTextActionPerformed
-        propertyCreated.setArea(Integer.parseInt(areaText.getText()));
-    }//GEN-LAST:event_areaTextActionPerformed
+    private void titleTextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_titleTextMouseClicked
+        allEntriesLabel.setVisible(false);
+        confirmButton.setEnabled(true);
+    }//GEN-LAST:event_titleTextMouseClicked
+
+    private void areaTextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_areaTextMouseClicked
+        allEntriesLabel.setVisible(false);
+        confirmButton.setEnabled(true);
+    }//GEN-LAST:event_areaTextMouseClicked
+
+    private void addressTextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addressTextMouseClicked
+        allEntriesLabel.setVisible(false);
+        confirmButton.setEnabled(true);
+    }//GEN-LAST:event_addressTextMouseClicked
+
+    private void priceTextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_priceTextMouseClicked
+        allEntriesLabel.setVisible(false);
+        confirmButton.setEnabled(true);
+    }//GEN-LAST:event_priceTextMouseClicked
+
+    private void descriptionTextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_descriptionTextMouseClicked
+        allEntriesLabel.setVisible(false);
+        confirmButton.setEnabled(true);
+    }//GEN-LAST:event_descriptionTextMouseClicked
 
     /**
      * @param args the command line arguments
@@ -231,20 +267,23 @@ public class addPropertyPopUp extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(addPropertyPopUp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AddPropertyPopUp2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(addPropertyPopUp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AddPropertyPopUp2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(addPropertyPopUp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AddPropertyPopUp2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(addPropertyPopUp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AddPropertyPopUp2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new addPropertyPopUp().setVisible(true);
+                new AddPropertyPopUp2().setVisible(true);
                 allEntriesLabel.setVisible(false);
             }
         });
@@ -259,8 +298,8 @@ public class addPropertyPopUp extends javax.swing.JFrame {
     private javax.swing.JButton cancelButton;
     private javax.swing.JButton confirmButton;
     private javax.swing.JLabel descriptionLabel;
+    private javax.swing.JTextPane descriptionText;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextPane jTextPane1;
     private javax.swing.JLabel metersqLabel;
     private javax.swing.JLabel priceLabel;
     private javax.swing.JTextField priceText;

@@ -85,7 +85,7 @@ public class ButtonMenuPanelSeller extends javax.swing.JPanel {
 
     private void addPropertyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addPropertyButtonActionPerformed
         // TODO add your handling code here:
-        addPropertyPopUp.main(null);
+        AddPropertyPopUp2.main(null);
     }//GEN-LAST:event_addPropertyButtonActionPerformed
 
     private void browseOnSellPropertyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browseOnSellPropertyActionPerformed
