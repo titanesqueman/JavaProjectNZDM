@@ -103,7 +103,7 @@ public class BrowseFavPropertiesPanel extends JPanel {
                     + "     INNER JOIN fav f"
                     + "     INNER JOIN users u"
                     + "     ON u.userId = f.userId AND p.propertyId = f.propertyId"
-                    + "     WHERE u.userId = ?";
+                    + "     WHERE u.userId = ? AND isSell = false";
             
             st = MainWindow.getUser().getCon().prepareStatement(query);
             

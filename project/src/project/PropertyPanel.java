@@ -61,6 +61,7 @@ public class PropertyPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         desciptionText = new javax.swing.JTextArea();
         jButton1 = new javax.swing.JButton();
+        setSellButton = new javax.swing.JButton();
 
         titleLabel.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         titleLabel.setText("titleLabel");
@@ -82,7 +83,7 @@ public class PropertyPanel extends javax.swing.JPanel {
         });
 
         jPanel1.setBackground(new java.awt.Color(204, 255, 0));
-        jPanel1.setLayout(new java.awt.GridLayout());
+        jPanel1.setLayout(new java.awt.GridLayout(1, 0));
 
         desciptionText.setEditable(false);
         desciptionText.setBackground(new java.awt.Color(240, 240, 240));
@@ -95,6 +96,13 @@ public class PropertyPanel extends javax.swing.JPanel {
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
+            }
+        });
+
+        setSellButton.setText("set Selled");
+        setSellButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                setSellButtonActionPerformed(evt);
             }
         });
 
@@ -116,9 +124,10 @@ public class PropertyPanel extends javax.swing.JPanel {
                             .addComponent(addressLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
                             .addComponent(areaLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(favCheckBox, javax.swing.GroupLayout.Alignment.TRAILING)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(favCheckBox, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(setSellButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addComponent(jScrollPane1))
                 .addContainerGap())
         );
@@ -138,9 +147,11 @@ public class PropertyPanel extends javax.swing.JPanel {
                     .addComponent(areaLabel)
                     .addComponent(favCheckBox))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(addressLabel)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(addressLabel)
+                    .addComponent(setSellButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 109, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -159,6 +170,11 @@ public class PropertyPanel extends javax.swing.JPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         MainWindow.changePanel(new BrowsePropertiesPanel());
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void setSellButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setSellButtonActionPerformed
+        // TODO add your handling code here:
+        DeleteFramePopUp.main(property);
+    }//GEN-LAST:event_setSellButtonActionPerformed
     
     private void loaddata() {
         
@@ -170,6 +186,11 @@ public class PropertyPanel extends javax.swing.JPanel {
             }else{
                 favCheckBox.setSelected(false);
             }
+        }
+        
+        setSellButton.setVisible(false);
+        if (MainWindow.getUser().getToken() == EMPLOYEE || BDD.canSetSellProperty(MainWindow.getUser().getUserId(), property.getPropertyId())){
+            setSellButton.setVisible(true);
         }
         
         titleLabel.setText(property.getTitle());
@@ -188,6 +209,7 @@ public class PropertyPanel extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel priceLabel;
+    private javax.swing.JButton setSellButton;
     private javax.swing.JLabel titleLabel;
     // End of variables declaration//GEN-END:variables
 }
