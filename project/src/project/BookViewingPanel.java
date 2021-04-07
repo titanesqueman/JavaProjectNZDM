@@ -6,6 +6,9 @@
 package project;
 
 import java.text.ParseException;
+import java.time.LocalDateTime;
+import java.time.Month;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
@@ -20,12 +23,16 @@ public class BookViewingPanel extends javax.swing.JPanel {
     private int day=0;
     private int year=0;
     private int hour=0;
+    final private LocalDateTime currentDate = LocalDateTime.now(); 
     /**
      * Creates new form BookViewingPanel
      */
     public BookViewingPanel(Property property) {
         this.property = property;
         initComponents();
+        for (Month mymonth : Month.values()){
+            monthCombo.addItem(mymonth.name());
+        }
     }
 
     /**
@@ -54,7 +61,7 @@ public class BookViewingPanel extends javax.swing.JPanel {
             }
         });
 
-        monthCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Month", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" }));
+        monthCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Month" }));
         monthCombo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 monthComboActionPerformed(evt);
@@ -128,43 +135,88 @@ public class BookViewingPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void dayComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dayComboActionPerformed
-        day = (int)dayCombo.getSelectedIndex();
-        updateHours();
+        if (dayCombo.getSelectedIndex()!=0){
+            day = Integer.parseInt((String) dayCombo.getSelectedItem());
+            updateHours();
+        }
     }//GEN-LAST:event_dayComboActionPerformed
 
     private void monthComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_monthComboActionPerformed
-        month = (int)monthCombo.getSelectedIndex();
+        if (monthCombo.getSelectedIndex()!=0){
+            month = Month.valueOf((String) monthCombo.getSelectedItem()).getValue();
 
-        if (month==2||month==4 || month ==6 || month==9|| month ==11){
-            dayCombo.removeItem("31");
-            if (dayCombo.getItemCount()<31 ){ //if there's not 31 days avalaible
-                int initialNrOfDays =dayCombo.getItemCount();
-                int daystoadd = 30-dayCombo.getItemCount();
-                for (int i=1; i<=daystoadd; i++){
-                    dayCombo.addItem(Integer.toString(initialNrOfDays+i));
+            //Month.APRIL.getValue();
+            if (month==2||month==4 || month ==6 || month==9|| month ==11){
+                dayCombo.removeItem("31");
+                if (dayCombo.getItemCount()<31 ){ //if there's not 31 days avalaible
+                    int initialNrOfDays =dayCombo.getItemCount();
+                    int daystoadd = 30-dayCombo.getItemCount();
+                    for (int i=1; i<=daystoadd; i++){
+                        dayCombo.addItem(Integer.toString(initialNrOfDays+i));
+                    }
+                }
+                if (month==2){
+                    dayCombo.removeItem("30");
+                    dayCombo.removeItem("29");
                 }
             }
-            if (month==2){
-                dayCombo.removeItem("30");
-                dayCombo.removeItem("29");
-            }
-        }
-        else { //if it's a month with > than 30 days
-            if (dayCombo.getItemCount()<32 ){ //if there's not 31 days avalaible
-                int initialNrOfDays =dayCombo.getItemCount();
-                int daystoadd = 31-dayCombo.getItemCount();
-                for (int i=1; i<=daystoadd; i++){
-                    dayCombo.addItem(Integer.toString(initialNrOfDays+i));
+            else { //if it's a month with > than 30 days
+                if (dayCombo.getItemCount()<32 ){ //if there's not 31 days avalaible
+                    int initialNrOfDays =dayCombo.getItemCount();
+                    int daystoadd = 31-dayCombo.getItemCount();
+                    for (int i=1; i<=daystoadd; i++){
+                        dayCombo.addItem(Integer.toString(initialNrOfDays+i));
+                    }
                 }
             }
+
+
+            updateDaysAfterToday();
+            updateHours();
         }
-        updateHours();
     }//GEN-LAST:event_monthComboActionPerformed
 
+    private void updateDaysAfterToday(){
+        confirmButton.setEnabled(false);
+        if(year==currentDate.getYear()&& month==currentDate.getMonthValue()){
+            for (int i=1;i<currentDate.getDayOfMonth();i++){
+                dayCombo.removeItemAt(1);
+            }
+        }
+        else {
+            if (dayCombo.getItemCount()!=32){
+                int currentItemNr = dayCombo.getItemCount();
+                for (int i=1; i<currentItemNr;i++){
+                    dayCombo.removeItemAt(1);
+                }
+                for(int i=1; i<32;i++){
+                    dayCombo.addItem(Integer.toString(i));
+                }
+            }
+        }
+        confirmButton.setEnabled(false);
+    }
     private void yearComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yearComboActionPerformed
-        year = Integer.parseInt((String) yearCombo.getSelectedItem());
-
-        updateHours();
+        if (yearCombo.getSelectedIndex()!=0){
+            year = Integer.parseInt((String) yearCombo.getSelectedItem());
+            if(year==currentDate.getYear()){
+                for (int i=1;i<currentDate.getMonthValue();i++){                
+                    monthCombo.removeItemAt(1); //because it will always be the second item that we have to remove
+                }
+            }
+            else if (year>currentDate.getYear()&& monthCombo.getItemCount()<13){
+                int currentItemNr = monthCombo.getItemCount();
+                for (int i=1;i<currentItemNr;i++){
+                    //remove all except first item
+                    monthCombo.removeItemAt(1);
+                }
+                for (Month mymonth : Month.values()){
+                    monthCombo.addItem(mymonth.name());
+                }
+            }
+            updateDaysAfterToday();
+            updateHours();
+        }
     }//GEN-LAST:event_yearComboActionPerformed
 
     private void hourComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hourComboActionPerformed
@@ -200,10 +252,32 @@ public class BookViewingPanel extends javax.swing.JPanel {
                 hourCombo.removeItemAt(i-1);
         }
         if ((month != 0 && year != 0 && day != 0)){
-            
-            for (int i=8; i<18;i++){
-                if (!BDD.isBooked(property.propertyId,year,month,day,i)){
-                    hourCombo.addItem(i+"h -- "+(i+1)+"h");
+            if ((year==currentDate.getYear()&& month==currentDate.getMonthValue())&& day == currentDate.getDayOfMonth()){
+                // if you want to book for today yoou can't book for past hours
+                if (currentDate.getHour()>8){
+                    //if you are booking today and it's after 8, you can't book for past hours
+                    for (int i=currentDate.getHour()+1; i<18;i++){
+                        if (!BDD.isBooked(property.propertyId,year,month,day,i)){
+                            hourCombo.addItem(i+"h -- "+(i+1)+"h");
+                        }
+                    }
+                }
+                else {
+                    
+                    // you are booking before 8AM so you can book when you want in this day
+                    for (int i=8; i<18;i++){
+                        if (!BDD.isBooked(property.propertyId,year,month,day,i)){
+                            hourCombo.addItem(i+"h -- "+(i+1)+"h");
+                        }
+                    }
+                }
+            }
+            else{
+                //you are not booking today
+                for (int i=8; i<18;i++){
+                    if (!BDD.isBooked(property.propertyId,year,month,day,i)){
+                        hourCombo.addItem(i+"h -- "+(i+1)+"h");
+                    }
                 }
             }
         }
