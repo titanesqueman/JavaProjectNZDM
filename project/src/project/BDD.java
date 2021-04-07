@@ -404,7 +404,7 @@ public class BDD {
     }
     
     // get ResultSet 
-    public static ResultSet getViewing(int sellerId){
+    public static ResultSet getSellerViewing(int sellerId){
         PreparedStatement st;
         ResultSet rs;
         try {
@@ -421,6 +421,31 @@ public class BDD {
             st = MainWindow.getUser().getCon().prepareStatement(query);
             
             st.setInt(1, sellerId);
+            
+            rs = st.executeQuery();
+            
+            return rs;
+        } catch (SQLException ex) {
+            Logger.getLogger(BDD.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
+    
+    public static ResultSet getBuyerViewing(int userId){
+        PreparedStatement st;
+        ResultSet rs;
+        try {
+            String query =
+                      "     SELECT * "
+                    + "     FROM viewing v"
+                    + "     INNER JOIN property p"
+                    + "     ON v.propertyId = p.propertyId"
+                    + "     WHERE v.userId = ? AND v.datetime >= CURRENT_TIMESTAMP"
+                    + "     ORDER BY v.datetime ASC";
+ 
+            st = MainWindow.getUser().getCon().prepareStatement(query);
+            
+            st.setInt(1, userId);
             
             rs = st.executeQuery();
             

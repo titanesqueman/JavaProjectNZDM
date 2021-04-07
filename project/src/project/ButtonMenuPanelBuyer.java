@@ -33,6 +33,7 @@ public class ButtonMenuPanelBuyer extends javax.swing.JPanel {
         browsePropertiesButton = new javax.swing.JButton();
         browseFavButton = new javax.swing.JButton();
         signoutButton = new javax.swing.JButton();
+        browseMyViewing = new javax.swing.JButton();
 
         setLayout(new java.awt.GridLayout(2, 2));
 
@@ -62,6 +63,15 @@ public class ButtonMenuPanelBuyer extends javax.swing.JPanel {
             }
         });
         add(signoutButton);
+
+        browseMyViewing.setText("Browse my viewing");
+        browseMyViewing.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.lightGray, java.awt.Color.white, java.awt.Color.black, java.awt.Color.darkGray));
+        browseMyViewing.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                browseMyViewingActionPerformed(evt);
+            }
+        });
+        add(browseMyViewing);
     }// </editor-fold>//GEN-END:initComponents
 
     private void browsePropertiesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browsePropertiesButtonActionPerformed
@@ -80,9 +90,15 @@ public class ButtonMenuPanelBuyer extends javax.swing.JPanel {
 
     }//GEN-LAST:event_signoutButtonActionPerformed
 
+    private void browseMyViewingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browseMyViewingActionPerformed
+        // TODO add your handling code here:
+        MainWindow.changePanel(new ViewingPanel());
+    }//GEN-LAST:event_browseMyViewingActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton browseFavButton;
+    private javax.swing.JButton browseMyViewing;
     public javax.swing.JButton browsePropertiesButton;
     private javax.swing.JButton signoutButton;
     // End of variables declaration//GEN-END:variables
