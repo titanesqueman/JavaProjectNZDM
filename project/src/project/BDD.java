@@ -363,7 +363,7 @@ public class BDD {
         return false;
     }
     
-    public static String addViewing(int userId, int propertyId, int year, int month, int day, int hour) throws ParseException{
+    public static String addViewing(int userId, int propertyId, int year, int month, int day, int hour){
         try {
             PreparedStatement st;
             ResultSet rs;
@@ -375,21 +375,26 @@ public class BDD {
             
             String myDate = String.format("%04d/%02d/%02d %02d:00:00",year,month,day,hour);
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-            Date date = sdf.parse(myDate);
-            long timeInMillis = date.getTime();
-            Timestamp tmstmp = new Timestamp(timeInMillis);
-            
-            st.setInt(1, userId);
-            st.setInt(2, propertyId);
-            st.setInt(3, year);
-            st.setInt(4, month);
-            st.setInt(5, day);
-            st.setInt(6, hour);
-            st.setTimestamp(7, tmstmp);
-            
-            st.executeUpdate();
-            
-            return "Success";
+            Date date;
+            try {
+                date = sdf.parse(myDate);
+                long timeInMillis = date.getTime();
+                Timestamp tmstmp = new Timestamp(timeInMillis);
+                st.setInt(1, userId);
+                st.setInt(2, propertyId);
+                st.setInt(3, year);
+                st.setInt(4, month);
+                st.setInt(5, day);
+                st.setInt(6, hour);
+                st.setTimestamp(7, tmstmp);
+                
+                st.executeUpdate();
+                return "Success";
+                
+            } catch (ParseException ex) {
+                Logger.getLogger(BDD.class.getName()).log(Level.SEVERE, null, ex);
+                return "Error";
+            }
         } catch (SQLException ex) {
             Logger.getLogger(BDD.class.getName()).log(Level.SEVERE, null, ex);
         }
