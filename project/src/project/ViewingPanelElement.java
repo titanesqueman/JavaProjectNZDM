@@ -136,7 +136,5 @@ public class ViewingPanelElement extends javax.swing.JPanel {
         priceLabel.setText(priceTemp+"€");
         areaLabel.setText("area : "+area+" m²");
         titleLabel.setText(title);
-        
-        System.out.println(title);
     }
 }
