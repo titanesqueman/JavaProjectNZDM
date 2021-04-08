@@ -108,6 +108,8 @@ public class PropertyPanel extends javax.swing.JPanel {
         sendOfferButton = new javax.swing.JButton();
         offerPanel = new javax.swing.JPanel();
 
+        setBackground(new java.awt.Color(197, 217, 217));
+
         titleLabel.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         titleLabel.setText("titleLabel");
 
@@ -127,6 +129,7 @@ public class PropertyPanel extends javax.swing.JPanel {
             }
         });
 
+        viewingPanel.setBackground(new java.awt.Color(197, 217, 217));
         viewingPanel.setLayout(new javax.swing.BoxLayout(viewingPanel, javax.swing.BoxLayout.X_AXIS));
 
         desciptionText.setEditable(false);
@@ -165,7 +168,8 @@ public class PropertyPanel extends javax.swing.JPanel {
             }
         });
 
-        offerPanel.setLayout(new java.awt.GridLayout());
+        offerPanel.setBackground(new java.awt.Color(197, 217, 217));
+        offerPanel.setLayout(new java.awt.GridLayout(1, 0));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -186,7 +190,7 @@ public class PropertyPanel extends javax.swing.JPanel {
                             .addComponent(editPropertyButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addComponent(jScrollPane1)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(titleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE)
+                        .addComponent(titleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 338, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addComponent(backButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
@@ -194,7 +198,7 @@ public class PropertyPanel extends javax.swing.JPanel {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(offerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 348, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(favCheckBox, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(sendOfferButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -267,6 +271,7 @@ public class PropertyPanel extends javax.swing.JPanel {
         int offer = Integer.parseInt(JOptionPane.showInputDialog(null, "Send an offer", property.getPrice()));
         BDD.addOffer(property.getPropertyId(), MainWindow.getUser().getUserId(), offer);
         JOptionPane.showMessageDialog(null, "You have successfully sent the offer for \n"+property.getTitle()+" for "+Integer.toString(offer)+" €");
+        MainWindow.changePanel(new PropertyPanel(property));
     }//GEN-LAST:event_sendOfferButtonActionPerformed
     
     private void loaddata() {

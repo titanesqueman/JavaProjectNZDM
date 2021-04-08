@@ -64,6 +64,7 @@ public class ViewingPanelElement extends javax.swing.JPanel {
         dateLabel = new javax.swing.JLabel();
         cancelViewing = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(197, 217, 217));
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 formMouseClicked(evt);
@@ -111,7 +112,7 @@ public class ViewingPanelElement extends javax.swing.JPanel {
                         .addComponent(dateLabel))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(titleLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                         .addComponent(cancelViewing)
                         .addContainerGap())))
         );

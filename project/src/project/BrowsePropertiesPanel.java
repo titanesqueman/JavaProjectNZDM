@@ -80,7 +80,7 @@ public class BrowsePropertiesPanel extends JPanel {
         container = new javax.swing.JPanel();
         backButton21 = new project.BackButton2();
 
-        setBackground(new java.awt.Color(245, 219, 205));
+        setBackground(new java.awt.Color(197, 217, 217));
 
         jLabel1.setText("Browse Properties");
 

@@ -45,6 +45,8 @@ public class MenuPanel extends javax.swing.JPanel {
 
         ButtonPanel = new javax.swing.JPanel();
 
+        setBackground(new java.awt.Color(197, 217, 217));
+
         ButtonPanel.setLayout(new java.awt.GridLayout(1, 0));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

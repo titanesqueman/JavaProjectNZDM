@@ -67,11 +67,12 @@ public class UserInfoPanel extends javax.swing.JPanel {
         phonenumberLabel = new javax.swing.JLabel();
         tokenLabel = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(153, 153, 153));
+        setBackground(new java.awt.Color(129, 141, 141));
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 204));
         jPanel2.setForeground(new java.awt.Color(102, 102, 102));
 
+        jLabel1.setBackground(new java.awt.Color(197, 217, 217));
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 120)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);

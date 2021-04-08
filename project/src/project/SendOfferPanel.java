@@ -54,12 +54,13 @@ public class SendOfferPanel extends javax.swing.JPanel {
         declineOffer = new javax.swing.JButton();
         statusLabel = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(197, 217, 217));
         setMaximumSize(new java.awt.Dimension(32767, 120));
         setPreferredSize(new java.awt.Dimension(708, 145));
 
         jLabel1.setText(" You have already sent an offer :   ");
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(153, 153, 0)));
+        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         initialPrice.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         initialPrice.setForeground(new java.awt.Color(204, 0, 51));
@@ -102,7 +103,7 @@ public class SendOfferPanel extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addComponent(statusLabel))
                     .addComponent(areaLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 142, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 153, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(acceptOffer)

@@ -64,9 +64,15 @@ public class MainWindow extends JFrame {
         userInfoPanel1 = new project.UserInfoPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(197, 217, 217));
 
+        jLabel1.setBackground(new java.awt.Color(197, 217, 217));
+
+        mainPanel.setBackground(new java.awt.Color(197, 217, 217));
         mainPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         mainPanel.setLayout(new javax.swing.OverlayLayout(mainPanel));
+
+        userInfoPanel1.setBackground(new java.awt.Color(197, 217, 217));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

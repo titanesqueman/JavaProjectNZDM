@@ -42,6 +42,9 @@ public class BrowseMyOffer extends javax.swing.JPanel {
         container = new javax.swing.JPanel();
         backButton21 = new project.BackButton2();
 
+        setBackground(new java.awt.Color(197, 217, 217));
+
+        container.setBackground(new java.awt.Color(197, 217, 217));
         container.setLayout(new javax.swing.BoxLayout(container, javax.swing.BoxLayout.Y_AXIS));
         jScrollPane1.setViewportView(container);
 
