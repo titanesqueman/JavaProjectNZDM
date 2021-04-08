@@ -55,7 +55,7 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Are you suryou want to set selled this property ?"/>
+        <Property name="text" type="java.lang.String" value="Are you sure you want to set this property &quot;Selled&quot; ?"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="jButton1">
