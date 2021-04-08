@@ -17,7 +17,7 @@ public class LogIn2 extends javax.swing.JFrame {
      * Creates new form LogIn2
      */
     public LogIn2() {
-        setTitle("LogIn");
+        setTitle("LogIn to Real Estate Deluxe Edition ®");
         initComponents();
         getRootPane().setDefaultButton(loginButton);
         new Register.GhostText(passwordTextField,"password123");

@@ -5,6 +5,9 @@
  */
 package project;
 
+import javax.swing.ImageIcon;
+import static project.Tokeniser.Token.BUYER;
+
 /**
  *
  * @author Drazic
@@ -16,6 +19,7 @@ public class UserInfoPanel extends javax.swing.JPanel {
      */
     public UserInfoPanel() {
         initComponents();
+        
     }
     
     public UserInfoPanel(User user) {
@@ -34,7 +38,18 @@ public class UserInfoPanel extends javax.swing.JPanel {
         lastnameLabel.setText(user.getLastname());
         phonenumberLabel.setText("Contact " + user.getPhonenumber());
         tokenLabel.setText("Connected as " + Tokeniser.getTokenId(user.getToken()));
+        ImageIcon image;
+        if(user.getToken()==BUYER){
+            image = new javax.swing.ImageIcon(getClass().getResource("images/buyer.png"));
+        }
+        else{
+            image = new javax.swing.ImageIcon(getClass().getResource("images/seller.png"));
+        }
+        
+        jLabel1.setIcon(image);
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -54,28 +69,22 @@ public class UserInfoPanel extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(153, 153, 153));
 
-        jPanel2.setBackground(new java.awt.Color(102, 102, 102));
+        jPanel2.setBackground(new java.awt.Color(204, 204, 204));
         jPanel2.setForeground(new java.awt.Color(102, 102, 102));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 120)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("⌂");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
+            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         firstnameLabel.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
