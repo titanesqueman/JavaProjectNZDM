@@ -505,33 +505,29 @@ public class BDD {
         }
     }
     
-    public static int getOffer(int propertyId, int buyerId){
+    public static ResultSet getOffer(int propertyId, int buyerId){
         try {
             PreparedStatement st;
             ResultSet rs;
             
-            String query = "SELECT price "
+            String query = "SELECT * "
                     + "     FROM offers "
-                    + "     WHERE buyerId = ? AND propertyId = ?";
+                    + "     WHERE buyerId = ? AND propertyId = ?"
+                    + "     ORDER BY offerId DESC";
             
             st = MainWindow.getUser().getCon().prepareStatement(query);
             st.setInt(2,propertyId);
             st.setInt(1,buyerId);
             
             rs = st.executeQuery();
-            int result = 11;
-            if (rs.next()){
-                result = rs.getInt("price");
-            }
+            
+            return rs;
             //System.out.println(rs.getInt(1));
-            return result;
             
         } catch (SQLException ex) {
             Logger.getLogger(BDD.class.getName()).log(Level.SEVERE, null, ex);
         }
-        System.out.println(" non ");
-        return 0;
-        
+        return null;
         
     }
     
@@ -541,7 +537,7 @@ public class BDD {
             ResultSet rs;
             
             
-            String query = "INSERT INTO offers(propertyId,buyerId,price)"
+            String query = "INSERT INTO offers(propertyId,buyerId,offerPrice)"
                     + "     VALUES (?,?,?)";
             
             st = MainWindow.getUser().getCon().prepareStatement(query);
@@ -698,6 +694,81 @@ public class BDD {
             st.setInt(4, price);
             st.setString(5,description);
             st.setInt(6, propertyId);
+            
+            st.executeUpdate();
+            
+            return "Success";
+        } catch (SQLException ex) {
+            Logger.getLogger(BDD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return "Error";
+    }
+    
+    public static ResultSet getBuyerOffer(int userId){
+        PreparedStatement st;
+        ResultSet rs;
+        try {
+            String query =
+                      "     SELECT * "
+                    + "     FROM offers o"
+                    + "     INNER JOIN users u"
+                    + "     ON o.buyerId = u.userId"
+                    + "     INNER JOIN property p"
+                    + "     ON p.propertyId = o.propertyId"
+                    + "     WHERE u.userId = ?"
+                    + "     ORDER BY o.offerId DESC";
+ 
+            st = MainWindow.getUser().getCon().prepareStatement(query);
+            
+            st.setInt(1, userId);
+            
+            rs = st.executeQuery();
+            
+            return rs;
+        } catch (SQLException ex) {
+            Logger.getLogger(BDD.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
+    
+    public static ResultSet getSellerOffer(int userId){
+        PreparedStatement st;
+        ResultSet rs;
+        try {
+            String query =
+                      "     SELECT * "
+                    + "     FROM offers o"
+                    + "     INNER JOIN property p"
+                    + "     ON p.propertyId = o.propertyId"
+                    + "     WHERE p.sellerId = ? AND o.status = 'WAITING'"
+                    + "     ORDER BY o.offerId DESC";
+ 
+            st = MainWindow.getUser().getCon().prepareStatement(query);
+            
+            st.setInt(1, userId);
+            
+            rs = st.executeQuery();
+            
+            return rs;
+        } catch (SQLException ex) {
+            Logger.getLogger(BDD.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
+
+    static String setStatusOffer(int offerId, String status) {
+        try {
+            PreparedStatement st;
+            ResultSet rs;
+            String query = "UPDATE offers "
+                    + "     SET status = ?"
+                    + "     WHERE offerId = ?";
+            
+            st = BDD.getConnection().prepareStatement(query);
+            
+           
+            st.setString(1, status);
+            st.setDouble(2, offerId);
             
             st.executeUpdate();
             

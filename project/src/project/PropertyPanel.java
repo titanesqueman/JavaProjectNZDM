@@ -52,7 +52,7 @@ public class PropertyPanel extends javax.swing.JPanel {
                 if (rs != null){
                     try {
                         if (rs.next()){
-                            viewingPanel.add(new JLabel("You have already reserved a viewing :  "));
+                            viewingPanel.add(new JLabel("You have already reserved a viewing :"));
                             viewingPanel.add(Box.createRigidArea(new Dimension(10, 0)));
                             viewingPanel.add(new ViewingPanelElement(property, rs.getInt("year"), rs.getInt("month"), rs.getInt("day"), rs.getInt("hour"),rs.getInt("price"),rs.getString("title"),rs.getDouble("area")));
                         }
@@ -65,9 +65,19 @@ public class PropertyPanel extends javax.swing.JPanel {
                 viewingPanel.add(new BookViewingPanel(property));
             }
             if (BDD.isWithOffer(property.getPropertyId(), MainWindow.getUser().getUserId())){
-                //offerPanel.add(new JLabel("You have already send an offer :  "));
-                //offerPanel.add(Box.createRigidArea(new Dimension(10, 0)));
-                offerPanel.add(new SendOfferPanel(property, BDD.getOffer(property.getPropertyId(), MainWindow.getUser().getUserId())));
+                ResultSet rs = BDD.getOffer(property.getPropertyId(), MainWindow.getUser().getUserId());
+                if (rs!=null) {
+                    try {
+                        if (rs.next()){
+                            
+                            Offer myOffer = Offer.getOfferFromRS(rs);
+                            
+                            offerPanel.add(new SendOfferPanel(property, myOffer));
+                        }
+                    } catch (SQLException ex) {
+                        Logger.getLogger(PropertyPanel.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
             }
         }
         
@@ -155,7 +165,7 @@ public class PropertyPanel extends javax.swing.JPanel {
             }
         });
 
-        offerPanel.setLayout(new java.awt.GridLayout(1, 0));
+        offerPanel.setLayout(new java.awt.GridLayout());
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -179,15 +189,15 @@ public class PropertyPanel extends javax.swing.JPanel {
                         .addComponent(titleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addComponent(backButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(viewingPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(offerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(favCheckBox, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(sendOfferButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(viewingPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                            .addComponent(sendOfferButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -214,8 +224,8 @@ public class PropertyPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(viewingPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(viewingPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(sendOfferButton, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(offerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -257,7 +267,6 @@ public class PropertyPanel extends javax.swing.JPanel {
         int offer = Integer.parseInt(JOptionPane.showInputDialog(null, "Send an offer", property.getPrice()));
         BDD.addOffer(property.getPropertyId(), MainWindow.getUser().getUserId(), offer);
         JOptionPane.showMessageDialog(null, "You have successfully sent the offer for \n"+property.getTitle()+" for "+Integer.toString(offer)+" €");
-        MainWindow.changePanel(new PropertyPanel(property));
     }//GEN-LAST:event_sendOfferButtonActionPerformed
     
     private void loaddata() {
@@ -267,9 +276,9 @@ public class PropertyPanel extends javax.swing.JPanel {
             favCheckBox.setVisible(false);
         }else{
             sendOfferButton.setVisible(true);
-            if(BDD.isWithOffer(property.getPropertyId(),MainWindow.getUser().getUserId())){
-                sendOfferButton.setEnabled(false);
-            }
+            //if(BDD.isWithOffer(property.getPropertyId(),MainWindow.getUser().getUserId())){
+            //    sendOfferButton.setEnabled(false);
+            //}
             if (BDD.isFav(property.getPropertyId(), MainWindow.getUser().getUserId())){
             favCheckBox.setSelected(true);
             }else{

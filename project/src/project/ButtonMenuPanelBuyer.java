@@ -18,7 +18,6 @@ public class ButtonMenuPanelBuyer extends javax.swing.JPanel {
      */
     public ButtonMenuPanelBuyer() {
         initComponents();
-       
     }
 
     /**
@@ -35,7 +34,7 @@ public class ButtonMenuPanelBuyer extends javax.swing.JPanel {
         signoutButton = new javax.swing.JButton();
         browseMyViewing1 = new javax.swing.JButton();
 
-        setLayout(new java.awt.GridLayout(2, 2));
+        setLayout(new java.awt.GridLayout(2, 3));
 
         browsePropertiesButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         browsePropertiesButton.setText("Browse properties");
@@ -96,6 +95,7 @@ public class ButtonMenuPanelBuyer extends javax.swing.JPanel {
 
     private void browseMyViewing1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browseMyViewing1ActionPerformed
         // TODO add your handling code here:
+        MainWindow.changePanel(new BrowseMyOffer());
     }//GEN-LAST:event_browseMyViewing1ActionPerformed
 
 
