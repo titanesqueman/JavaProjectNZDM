@@ -65,8 +65,19 @@ public class PropertyPanel extends javax.swing.JPanel {
                 viewingPanel.add(new BookViewingPanel(property));
             }
             if (BDD.isWithOffer(property.getPropertyId(), MainWindow.getUser().getUserId())){
-                
-                offerPanel.add(new SendOfferPanel(property, BDD.getOffer(property.getPropertyId(), MainWindow.getUser().getUserId())));
+                ResultSet rs = BDD.getOffer(property.getPropertyId(), MainWindow.getUser().getUserId());
+                if (rs!=null) {
+                    try {
+                        if (rs.next()){
+                            
+                            Offer myOffer = Offer.getOfferFromRS(rs);
+                            
+                            offerPanel.add(new SendOfferPanel(property, myOffer));
+                        }
+                    } catch (SQLException ex) {
+                        Logger.getLogger(PropertyPanel.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
             }
         }
         
@@ -265,9 +276,9 @@ public class PropertyPanel extends javax.swing.JPanel {
             favCheckBox.setVisible(false);
         }else{
             sendOfferButton.setVisible(true);
-            if(BDD.isWithOffer(property.getPropertyId(),MainWindow.getUser().getUserId())){
-                sendOfferButton.setEnabled(false);
-            }
+            //if(BDD.isWithOffer(property.getPropertyId(),MainWindow.getUser().getUserId())){
+            //    sendOfferButton.setEnabled(false);
+            //}
             if (BDD.isFav(property.getPropertyId(), MainWindow.getUser().getUserId())){
             favCheckBox.setSelected(true);
             }else{
