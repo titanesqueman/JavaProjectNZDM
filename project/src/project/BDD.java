@@ -319,6 +319,7 @@ public class BDD {
             return null;
         }
     }
+    
     public static String addProperty(int sellerId, String title, double area, String address, int price, String description){
         
         try {
@@ -479,6 +480,29 @@ public class BDD {
             Logger.getLogger(BDD.class.getName()).log(Level.SEVERE, null, ex);
         }
         return "Error";
+    }
+    
+    static void deleteViewing(int propertyId, int userId) {
+        try {
+            PreparedStatement st;
+            ResultSet rs;
+            
+            String query = "DELETE"
+                    + "     FROM viewing "
+                    + "     WHERE propertyId = ? AND userId = ?";
+            
+            st = MainWindow.getUser().getCon().prepareStatement(query);
+            
+            st.setInt(1,propertyId);
+            st.setInt(2,userId);
+            
+            st.executeUpdate();
+            
+            st.close();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(BDD.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     public static int getOffer(int propertyId, int buyerId){

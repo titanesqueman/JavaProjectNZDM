@@ -5,6 +5,9 @@
  */
 package project;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.util.Locale;
 import javax.swing.JOptionPane;
 
 /**
@@ -43,7 +46,7 @@ public class SendOfferPanel extends javax.swing.JPanel {
 
         jLabel1.setText("You have already sent an offer :");
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(153, 153, 0)));
+        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         initialPrice.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         initialPrice.setForeground(new java.awt.Color(204, 0, 51));
@@ -62,7 +65,7 @@ public class SendOfferPanel extends javax.swing.JPanel {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 228, Short.MAX_VALUE)
+            .addGap(0, 230, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addContainerGap()
@@ -110,13 +113,22 @@ public class SendOfferPanel extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 58, Short.MAX_VALUE))
+                .addGap(0, 56, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
     private void loadData(){
-        initialPrice.setText("initial price : "+Integer.toString(property.getPrice())+" €");
+        Locale locale  = new Locale("en", "UK");
+        String pattern = "###,###,###";
+
+        DecimalFormat decimalFormat = (DecimalFormat)
+        NumberFormat.getNumberInstance(locale);
+        decimalFormat.applyPattern(pattern);
+        String init_price = decimalFormat.format(property.getPrice());
+        String offer_price = decimalFormat.format(offerPrice);
+        
+        initialPrice.setText("initial price : "+init_price+" €");
         areaLabel.setText(Double.toString(property.getArea())+" ");
-        priceOfOffer.setText(Integer.toString(offerPrice)+" ");
+        priceOfOffer.setText("offer : "+offer_price+" €");
         titleLabel.setText(property.getTitle());
     }
 

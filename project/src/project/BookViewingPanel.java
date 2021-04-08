@@ -243,7 +243,7 @@ public class BookViewingPanel extends javax.swing.JPanel {
             BDD.addViewing(MainWindow.getUser().getUserId(), property.propertyId,year,month,day,hour);
             String message = "Thank you for your reserving the viewing on the \n"+day+" "+monthCombo.getItemAt(month)+" "+year+", at "+hour+"h for \n"+property.title;
             JOptionPane.showMessageDialog(null, message);
-            MainWindow.changePanel(new BrowsePropertiesPanel());
+            MainWindow.changePanel(new PropertyPanel(property));
         }
     }//GEN-LAST:event_confirmButtonActionPerformed
     private void updateHours(){
