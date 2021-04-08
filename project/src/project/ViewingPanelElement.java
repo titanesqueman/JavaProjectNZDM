@@ -8,20 +8,22 @@ package project;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Locale;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Drazic
  */
 public class ViewingPanelElement extends javax.swing.JPanel {
-    int day;
-    int month;
-    int year;
-    int hour;
-    int price;
-    String title;
-    double area;
-    Property property;
+    private int day;
+    private int month;
+    private int year;
+    private int hour;
+    private int price;
+    private String title;
+    private double area;
+    private Property property;
+    private boolean fromBrowse=false;
     /**
      * Creates new form ViewingPanelElement
      */
@@ -35,7 +37,14 @@ public class ViewingPanelElement extends javax.swing.JPanel {
         this.title = title;
         this.price = price;
         initComponents();
+        //if (withdraw == true){
+        //    cancelViewing.setVisible(true);
+        //}
         loaddata();
+    }
+
+    public void setFromBrowse(boolean fromBrowse) {
+        this.fromBrowse = fromBrowse;
     }
 
     /**
@@ -47,23 +56,21 @@ public class ViewingPanelElement extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        hourLabel = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         titleLabel = new javax.swing.JLabel();
         areaLabel = new javax.swing.JLabel();
         priceLabel = new javax.swing.JLabel();
+        hourLabel = new javax.swing.JLabel();
         dateLabel = new javax.swing.JLabel();
+        cancelViewing = new javax.swing.JButton();
 
-        setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        setMaximumSize(new java.awt.Dimension(32767, 50));
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 formMouseClicked(evt);
             }
         });
 
-        hourLabel.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
-        hourLabel.setForeground(new java.awt.Color(204, 0, 51));
-        hourLabel.setText("hourStart");
+        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         titleLabel.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         titleLabel.setText("Title");
@@ -72,42 +79,70 @@ public class ViewingPanelElement extends javax.swing.JPanel {
 
         priceLabel.setText("price");
 
+        hourLabel.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
+        hourLabel.setForeground(new java.awt.Color(204, 0, 51));
+        hourLabel.setText("hourStart");
+
         dateLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         dateLabel.setForeground(new java.awt.Color(204, 0, 51));
         dateLabel.setText("date :");
+
+        cancelViewing.setText("Withdraw");
+        cancelViewing.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelViewingActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(areaLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(hourLabel))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(priceLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(dateLabel))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(titleLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                        .addComponent(cancelViewing)
+                        .addContainerGap())))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cancelViewing)
+                    .addComponent(titleLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(hourLabel)
+                    .addComponent(areaLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(dateLabel)
+                    .addComponent(priceLabel)))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(areaLabel)
-                        .addGap(18, 18, 18)
-                        .addComponent(priceLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 167, Short.MAX_VALUE)
-                        .addComponent(hourLabel))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(titleLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(dateLabel)))
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(titleLabel)
-                    .addComponent(dateLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(hourLabel)
-                    .addComponent(areaLabel)
-                    .addComponent(priceLabel))
-                .addGap(39, 39, 39))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -116,11 +151,28 @@ public class ViewingPanelElement extends javax.swing.JPanel {
         MainWindow.changePanel(new PropertyPanel(property));
     }//GEN-LAST:event_formMouseClicked
 
+    private void cancelViewingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelViewingActionPerformed
+        int dialogResult = JOptionPane.showConfirmDialog (null, "Are you sure you want to delete this viewing?");
+        if(dialogResult == JOptionPane.YES_OPTION){
+            BDD.deleteViewing(property.getPropertyId(), MainWindow.getUser().getUserId());
+            if(fromBrowse){
+                MainWindow.changePanel(new ViewingPanel());
+            }
+            else{
+                MainWindow.changePanel(new PropertyPanel(property));
+            }
+        }
+        
+        
+    }//GEN-LAST:event_cancelViewingActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel areaLabel;
+    private javax.swing.JButton cancelViewing;
     private javax.swing.JLabel dateLabel;
     private javax.swing.JLabel hourLabel;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel priceLabel;
     private javax.swing.JLabel titleLabel;
     // End of variables declaration//GEN-END:variables

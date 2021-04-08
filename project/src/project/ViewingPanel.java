@@ -66,8 +66,8 @@ public class ViewingPanel extends javax.swing.JPanel {
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(backButton21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(256, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -93,8 +93,10 @@ public class ViewingPanel extends javax.swing.JPanel {
             container.removeAll();
             while (rs.next()){
                 //int propertyId, String title, String address, double area, String features, int price, String description
-                container.add(new ViewingPanelElement(new Property(rs.getInt("propertyId"),rs.getString("title"),rs.getString("address"),rs.getDouble("area"),null,rs.getInt("price"),rs.getString("description"))
-                        , rs.getInt("year"), rs.getInt("month"), rs.getInt("day"), rs.getInt("hour"),rs.getInt("price"),rs.getString("title"),rs.getDouble("area")));
+                ViewingPanelElement elmt = new ViewingPanelElement(new Property(rs.getInt("propertyId"),rs.getString("title"),rs.getString("address"),rs.getDouble("area"),null,rs.getInt("price"),rs.getString("description"))
+                        , rs.getInt("year"), rs.getInt("month"), rs.getInt("day"), rs.getInt("hour"),rs.getInt("price"),rs.getString("title"),rs.getDouble("area"));
+                elmt.setFromBrowse(true);
+                container.add(elmt);
             }
             container.revalidate();
             container.repaint();
