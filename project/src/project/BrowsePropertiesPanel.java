@@ -33,6 +33,7 @@ public class BrowsePropertiesPanel extends JPanel {
     private String sortBy = "price";
     final private Color myPropertiesColor = new Color(183, 142, 142, 45);
     private int myPropertiesOnly=-1;
+    boolean onlyFav = false;
 
     /**
      * Creates new form BrowseProperties
@@ -43,6 +44,9 @@ public class BrowsePropertiesPanel extends JPanel {
         jScrollPane1.getVerticalScrollBar().setUnitIncrement(16);
         if (MainWindow.getUser().token==BUYER){
             myPropertiesCheckbox.setVisible(false);
+            onlyFavCheckBox.setVisible(true);
+        }else{
+            onlyFavCheckBox.setVisible(false);
         }
         loadAllProperties();
     }
@@ -71,6 +75,7 @@ public class BrowsePropertiesPanel extends JPanel {
         sortLabel = new javax.swing.JLabel();
         sortCombo = new javax.swing.JComboBox<>();
         myPropertiesCheckbox = new javax.swing.JCheckBox();
+        onlyFavCheckBox = new javax.swing.JCheckBox();
         jScrollPane1 = new javax.swing.JScrollPane();
         container = new javax.swing.JPanel();
         backButton21 = new project.BackButton2();
@@ -109,7 +114,6 @@ public class BrowsePropertiesPanel extends JPanel {
         rangeSlider2.setMajorTickSpacing(10);
         rangeSlider2.setMaximum(500);
         rangeSlider2.setSnapToTicks(true);
-        rangeSlider2.setExtent(550);
         rangeSlider2.setLowValue(0);
         rangeSlider2.setName(""); // NOI18N
         rangeSlider2.addChangeListener(new javax.swing.event.ChangeListener() {
@@ -152,6 +156,13 @@ public class BrowsePropertiesPanel extends JPanel {
             }
         });
 
+        onlyFavCheckBox.setText("See only my fav properties");
+        onlyFavCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                onlyFavCheckBoxActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -191,6 +202,8 @@ public class BrowsePropertiesPanel extends JPanel {
                         .addComponent(orderCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(91, 91, 91)
                         .addComponent(myPropertiesCheckbox)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(onlyFavCheckBox)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -218,7 +231,8 @@ public class BrowsePropertiesPanel extends JPanel {
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(orderCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel2)
-                                .addComponent(myPropertiesCheckbox))
+                                .addComponent(myPropertiesCheckbox)
+                                .addComponent(onlyFavCheckBox))
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(sortLabel)
                                 .addComponent(sortCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
@@ -332,6 +346,16 @@ public class BrowsePropertiesPanel extends JPanel {
         myPropertiesOnly = -myPropertiesOnly;
         loadAllProperties();
     }//GEN-LAST:event_myPropertiesCheckboxActionPerformed
+
+    private void onlyFavCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onlyFavCheckBoxActionPerformed
+        // TODO add your handling code here:
+        if (onlyFavCheckBox.isSelected()){
+            onlyFav = true;
+        }else{
+            onlyFav = false;
+        }
+        loadPropertiesFilter();
+    }//GEN-LAST:event_onlyFavCheckBoxActionPerformed
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -345,6 +369,7 @@ public class BrowsePropertiesPanel extends JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JCheckBox myPropertiesCheckbox;
+    private javax.swing.JCheckBox onlyFavCheckBox;
     private javax.swing.JComboBox<String> orderCombo;
     private javax.swing.JLabel priceLabel;
     private javax.swing.JLabel priceMaxLabel;
@@ -404,7 +429,12 @@ public class BrowsePropertiesPanel extends JPanel {
         container.revalidate();
         container.repaint();
         try {
-            ResultSet rs = BDD.propertiesFilter(minPrice, maxPrice, minArea, maxArea, sortBy, orderBy);
+            ResultSet rs;
+            if (onlyFav){
+                rs = BDD.propertiesFilterOnlyFav(MainWindow.getUser().getUserId(),minPrice, maxPrice, minArea, maxArea, sortBy, orderBy);
+            }else{
+                rs = BDD.propertiesFilter(minPrice, maxPrice, minArea, maxArea, sortBy, orderBy);
+            }
             
             if (rs == null) return;
             

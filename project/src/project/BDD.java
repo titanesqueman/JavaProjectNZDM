@@ -268,10 +268,40 @@ public class BDD {
                     + "     AND   (price BETWEEN ? AND ?)"
                     + "     AND isSell = false"
                     + "     ORDER BY %s %s", sortBy, orderBy);
-            
-            System.out.println(query);
-            
  
+            st = MainWindow.getUser().getCon().prepareStatement(query);
+            
+            st.setInt(1, minArea);
+            st.setInt(2, maxArea);
+            st.setInt(3, minPrice);
+            st.setInt(4, maxPrice);
+            //st.setString(5, sortBy);
+            //st.setString(6, orderBy);
+            
+            rs = st.executeQuery();
+            
+            return rs;
+        } catch (SQLException ex) {
+            Logger.getLogger(BDD.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
+    
+    // return Result set with a certain property filter
+    static ResultSet propertiesFilterOnlyFav(int userId, int minPrice, int maxPrice, int minArea, int maxArea, String sortBy, String orderBy){
+        PreparedStatement st;
+        ResultSet rs;
+        try {
+            String query = String.format("SELECT * "
+                    + "     FROM property p"
+                    + "     INNER JOIN users u"
+                    + "     INNER JOIN fav f"
+                    + "     ON f.userId = u.userId AND p.propertyId = f.propertyId"
+                    + "     WHERE (area BETWEEN ? AND ?)"
+                    + "     AND   (price BETWEEN ? AND ?)"
+                    + "     AND isSell = false"
+                    + "     ORDER BY %s %s", sortBy, orderBy);
+
             st = MainWindow.getUser().getCon().prepareStatement(query);
             
             st.setInt(1, minArea);
