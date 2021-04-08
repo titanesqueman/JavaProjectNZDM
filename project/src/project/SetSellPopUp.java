@@ -35,7 +35,7 @@ public class SetSellPopUp extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Are you suryou want to set selled this property ?");
+        jLabel1.setText("Are you sure you want to set this property \"Selled\" ?");
 
         jButton1.setText("No");
         jButton1.addActionListener(new java.awt.event.ActionListener() {

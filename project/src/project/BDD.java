@@ -451,6 +451,83 @@ public class BDD {
         return "Error";
     }
     
+    public static int getOffer(int propertyId, int buyerId){
+        try {
+            PreparedStatement st;
+            ResultSet rs;
+            
+            String query = "SELECT price "
+                    + "     FROM offers "
+                    + "     WHERE buyerId = ? AND propertyId = ?";
+            
+            st = MainWindow.getUser().getCon().prepareStatement(query);
+            st.setInt(2,propertyId);
+            st.setInt(1,buyerId);
+            
+            rs = st.executeQuery();
+            int result = 11;
+            if (rs.next()){
+                result = rs.getInt("price");
+            }
+            //System.out.println(rs.getInt(1));
+            return result;
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(BDD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        System.out.println(" non ");
+        return 0;
+        
+        
+    }
+    
+    public static String addOffer(int propertyId, int buyerId, int price){
+        try {
+            PreparedStatement st;
+            ResultSet rs;
+            
+            
+            String query = "INSERT INTO offers(propertyId,buyerId,price)"
+                    + "     VALUES (?,?,?)";
+            
+            st = MainWindow.getUser().getCon().prepareStatement(query);
+            
+            st.setInt(1, propertyId);
+            st.setInt(2, buyerId);
+            st.setInt(3, price);
+            
+            st.executeUpdate();
+            
+            return "Success";
+        } catch (SQLException ex) {
+            Logger.getLogger(BDD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return "Error";
+    }
+    
+    public static boolean isWithOffer(int propertyId, int buyerId){
+        try {
+            PreparedStatement st;
+            ResultSet rs;
+            
+            String query = "SELECT * "
+                    + "     FROM offers "
+                    + "     WHERE propertyId = ? AND buyerId = ?";
+            
+            st = MainWindow.getUser().getCon().prepareStatement(query);
+            st.setInt(1,propertyId);
+            st.setInt(2,buyerId);
+            
+            rs = st.executeQuery();
+            
+            return rs.next();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(BDD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+    
     // get ResultSet 
     public static ResultSet getSellerViewing(int sellerId){
         PreparedStatement st;
