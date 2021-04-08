@@ -237,7 +237,15 @@ public class PropertyPanel extends javax.swing.JPanel {
 
     private void setSellButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setSellButtonActionPerformed
         // TODO add your handling code here:
-        SetSellPopUp.main(property);
+        int input = JOptionPane.showConfirmDialog(this, 
+                "Set selled this properties : "+property.getTitle(), "Confirmation dialogue", 
+                JOptionPane.YES_NO_OPTION, JOptionPane.YES_NO_CANCEL_OPTION);
+        
+        if (input == 0){
+            // yes
+            BDD.setPropertySelled(property.getPropertyId());
+            MainWindow.changePanel(new BrowsePropertiesPanel());
+        }
     }//GEN-LAST:event_setSellButtonActionPerformed
 
     private void editPropertyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editPropertyButtonActionPerformed
